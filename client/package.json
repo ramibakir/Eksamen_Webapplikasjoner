@@ -72,12 +72,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ramibakir/WebApplikasjoner_Eksamen.git"
+    "url": "git+https://github.com/ramibakir/Eksamen_Webapplikasjoner.git"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ramibakir/WebApplikasjoner_Eksamen/issues"
+    "url": "https://github.com/ramibakir/Eksamen_Webapplikasjoner/issues"
   },
-  "homepage": "https://github.com/ramibakir/WebApplikasjoner_Eksamen#readme"
+  "homepage": "https://github.com/ramibakir/Eksamen_Webapplikasjoner#readme"
 }
