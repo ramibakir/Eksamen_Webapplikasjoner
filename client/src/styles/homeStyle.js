@@ -12,4 +12,5 @@ export const StyledHomeLayout = styled.div`
 
 export const StyledHomeSection = styled.section`
   grid-area: ${(props) => props.sectionName};
+  background-color: grey;
 `;
