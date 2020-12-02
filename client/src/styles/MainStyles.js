@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const StyledContainer = styled.div`
   margin: 0 auto;
   width: 100%;
-  max-width: 900px;
 `;
 
 export const StyledHeader = styled.div`
@@ -22,7 +21,8 @@ export const StyledFooter = styled.div`
 /* NAV START */
 export const StyledNav = styled.nav`
   width: 100%;
-  height: 20px;
+  height: 50px;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.26);
 `;
 
 export const StyledNavMenu = styled.ul`
@@ -37,6 +37,7 @@ export const StyledNavMenuItem = styled.li`
   padding: 0 20px;
   display: block;
   justify-content: space-between;
+  font-weight: bold;
 
   &:first-child {
     padding-left: 0;
@@ -49,8 +50,7 @@ export const StyledNavMenuItem = styled.li`
     text-decoration: none;
 
     &.active {
-      color: #678;
-      border-bottom: 4px solid #888;
+      color: teal;
     }
   }
 
@@ -65,7 +65,8 @@ export const StyledTitle = styled.h1`
 `;
 
 export const StyledSubtitle = styled.h2`
-  color: #777;
+  color: black;
+  margin: 10px;
 `;
 
 export const StyledParagraph = styled.p`
