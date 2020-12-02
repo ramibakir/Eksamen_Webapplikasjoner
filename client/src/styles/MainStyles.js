@@ -51,6 +51,10 @@ export const StyledNavMenuItem = styled.li`
       border-bottom: 4px solid #888;
     }
   }
+
+  &:last-child {
+    background-color: teal;
+  }
 `;
 /* NAV END */
 
