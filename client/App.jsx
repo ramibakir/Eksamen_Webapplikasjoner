@@ -1,13 +1,5 @@
 import React from 'react';
-import Routes from './src/routes/Routes';
-import Theme from './src/styles/Theme';
 
-const App = () => (
-  <>
-    <Theme>
-      <Routes />
-    </Theme>
-  </>
-);
+const App = () => <></>;
 
 export default App;
