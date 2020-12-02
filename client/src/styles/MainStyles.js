@@ -7,7 +7,7 @@ export const StyledContainer = styled.div`
 `;
 
 export const StyledHeader = styled.div`
-  position: absolute;
+  width: 100%;
   background-color: grey;
 `;
 
@@ -22,6 +22,7 @@ export const StyledFooter = styled.div`
 /* NAV START */
 export const StyledNav = styled.nav`
   width: 100%;
+  height: 20px;
 `;
 
 export const StyledNavMenu = styled.ul`
