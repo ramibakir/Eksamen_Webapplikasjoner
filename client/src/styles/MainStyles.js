@@ -6,6 +6,18 @@ export const StyledContainer = styled.div`
   max-width: 900px;
 `;
 
+export const StyledHeader = styled.div`
+  position: absolute;
+`;
+
+export const StyledFooter = styled.div`
+  position: fixed;
+  width: 100%;
+  background-color: white;
+  color: black;
+  text-align: center;
+`;
+
 /* NAV START */
 export const StyledNav = styled.nav`
   width: 100%;
@@ -63,4 +75,9 @@ export const StyledButton = styled.button`
   padding: 20px 30px;
   font-size: 15px;
   margin: 4px 2px;
+`;
+
+export const StyledImage = styled.img`
+  width: 100%;
+  height: auto;
 `;
