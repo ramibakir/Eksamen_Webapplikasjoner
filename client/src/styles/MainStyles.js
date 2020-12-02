@@ -26,15 +26,14 @@ export const StyledNav = styled.nav`
 export const StyledNavMenu = styled.ul`
   display: flex;
   margin: 0;
-  padding: 0;
   list-style: none;
   padding: 0 20px;
+  float: right;
 `;
 
 export const StyledNavMenuItem = styled.li`
   padding: 0 20px;
   display: block;
-  float: right;
   justify-content: space-between;
 
   &:first-child {
