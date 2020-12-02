@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyledHomeLayout, StyledHomeSection } from '../styles/homeStyle';
+import { StyledHomeLayout, StyledHomeSection } from '../styles/HomeStyle';
 
 const Home = () => (
   <StyledHomeLayout>
