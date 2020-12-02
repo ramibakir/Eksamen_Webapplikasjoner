@@ -70,6 +70,7 @@ export const StyledSubtitle = styled.h2`
 
 export const StyledParagraph = styled.p`
   color: #666;
+  padding: 10px;
 `;
 
 export const StyledButton = styled.button`
