@@ -8,6 +8,7 @@ export const StyledContainer = styled.div`
 
 export const StyledHeader = styled.div`
   position: absolute;
+  background-color: grey;
 `;
 
 export const StyledFooter = styled.div`

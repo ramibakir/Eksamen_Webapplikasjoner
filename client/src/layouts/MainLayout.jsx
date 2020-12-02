@@ -1,11 +1,12 @@
 import React from 'react';
+import Header from '../components/Header';
 import Nav from '../components/Nav';
-import { StyledContainer, StyledHeader } from '../styles/MainStyles';
+import { StyledContainer } from '../styles/MainStyles';
 
 const MainLayout = ({ children }) => (
   <div>
     <Nav />
-    <StyledHeader />
+    <Header />
     <StyledContainer>{children}</StyledContainer>
   </div>
 );
