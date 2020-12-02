@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 
+/* CONTAINER ELEMENTS START */
 export const StyledContainer = styled.div`
   margin: 0 auto;
   width: 100%;
+  max-width: 900px;
 `;
 
 export const StyledHeader = styled.div`
@@ -17,6 +19,12 @@ export const StyledFooter = styled.div`
   color: black;
   text-align: center;
 `;
+
+export const StyledButtonContainer = styled.div`
+  justify-content: center;
+  margin: 0 auto;
+`;
+/* CONTAINER ELEMENTS END */
 
 /* NAV START */
 export const StyledNav = styled.nav`
@@ -60,6 +68,7 @@ export const StyledNavMenuItem = styled.li`
 `;
 /* NAV END */
 
+/* TEXT ELEMENTS START */
 export const StyledTitle = styled.h1`
   color: #888;
 `;
@@ -71,9 +80,11 @@ export const StyledSubtitle = styled.h2`
 
 export const StyledParagraph = styled.p`
   color: #666;
-  padding: 10px;
+  margin: 10px;
 `;
+/* TEXT ELEMENTS END */
 
+/* BUTTON ELEMENTS START */
 export const StyledButton = styled.button`
   color: white;
   background-color: teal;
@@ -81,10 +92,14 @@ export const StyledButton = styled.button`
   border: none;
   padding: 20px 30px;
   font-size: 15px;
+  font-weight: bold;
   margin: 4px 2px;
 `;
+/* BUTTON ELEMENTS END */
 
+/* IMAGE ELEMENTS START */
 export const StyledImage = styled.img`
   width: 100%;
   height: auto;
 `;
+/* IMAGE ELEMENTS END */
