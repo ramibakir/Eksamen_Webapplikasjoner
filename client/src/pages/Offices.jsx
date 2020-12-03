@@ -17,7 +17,7 @@ import {
 } from '../styles/ListStyles';
 
 const FilterContainer = styled(StyledButtonContainer)`
-  //padding: 10px;
+  margin: 20px 20px 0 0;
   float: right;
 `;
 
@@ -30,97 +30,67 @@ const CardParagraph = styled(StyledParagraph)`
   font-size: 14px;
 `;
 
-const Offices = () => (
-  <>
-    <StyledSubHeader>
+const Offices = () => {
+  const officeList = [
+    { place: 'Fredrikstad', officeNr: [1, 2, 3, 4, 5, 6, 7, 8] },
+    { place: 'Sarpsborg', officeNr: [1, 2, 3, 4, 5] },
+    { place: 'Moss', officeNr: [1, 2, 3, 4] },
+    { place: 'Oslo', officeNr: [1, 2, 3, 4] },
+  ];
+
+  return (
+    <>
       <FilterContainer>
         <FilterButton>Filter</FilterButton>
         <ReorderIcon fontSize="large" />
         <ViewModuleIcon fontSize="large" />
       </FilterContainer>
-      <StyledSubtitle>Fredrikstad (8 kontorer)</StyledSubtitle>
-    </StyledSubHeader>
 
-    <StyledGridContainer>
-      <StyledCardItem>
-        <StyledParagraph>Rørlegger 1</StyledParagraph>
-        <CardParagraph>Rørleggerveien 1</CardParagraph>
-        <CardParagraph>69 99 00 00</CardParagraph>
-        <CardParagraph>fredrikstad1@epost.no</CardParagraph>
-      </StyledCardItem>
-      <StyledCardItem>
-        <StyledParagraph>Våre kontorer 1</StyledParagraph>
-      </StyledCardItem>
-      <StyledCardItem>
-        <StyledParagraph>Våre kontorer 2</StyledParagraph>
-      </StyledCardItem>
-      <StyledCardItem>
-        <StyledParagraph>Våre kontorer 3</StyledParagraph>
-      </StyledCardItem>
-      <StyledCardItem>
-        <StyledParagraph>Våre kontorer 4</StyledParagraph>
-      </StyledCardItem>
-      <StyledCardItem>
-        <StyledParagraph>Våre kontorer 5</StyledParagraph>
-      </StyledCardItem>
-      <StyledCardItem>
-        <StyledParagraph>Våre kontorer 6</StyledParagraph>
-      </StyledCardItem>
-      <StyledCardItem>
-        <StyledParagraph>Våre kontorer 7</StyledParagraph>
-      </StyledCardItem>
-      <StyledCardItem>
-        <StyledParagraph>Våre kontorer 8</StyledParagraph>
-      </StyledCardItem>
-    </StyledGridContainer>
-    <StyledSubtitle>Sarpsborg</StyledSubtitle>
-    <StyledListContainer>
-      <StyledListItem>
-        <StyledParagraph>Rørlegger 1</StyledParagraph>
-        <CardParagraph>Rørleggerveien 1</CardParagraph>
-        <CardParagraph>69 99 00 00</CardParagraph>
-        <CardParagraph>fredrikstad1@epost.no</CardParagraph>
-      </StyledListItem>
-      <StyledListItem>
-        <StyledParagraph>Rørlegger 2</StyledParagraph>
-        <CardParagraph>Rørleggerveien 1</CardParagraph>
-        <CardParagraph>69 99 00 00</CardParagraph>
-        <CardParagraph>fredrikstad1@epost.no</CardParagraph>
-      </StyledListItem>
-      <StyledListItem>
-        <StyledParagraph>Rørlegger 3</StyledParagraph>
-        <CardParagraph>Rørleggerveien 1</CardParagraph>
-        <CardParagraph>69 99 00 00</CardParagraph>
-        <CardParagraph>fredrikstad1@epost.no</CardParagraph>
-      </StyledListItem>
-      <StyledListItem>
-        <StyledParagraph>Rørlegger 3</StyledParagraph>
-        <CardParagraph>Rørleggerveien 1</CardParagraph>
-        <CardParagraph>69 99 00 00</CardParagraph>
-        <CardParagraph>fredrikstad1@epost.no</CardParagraph>
-      </StyledListItem>
-      <StyledListItem>
-        <StyledParagraph>Rørlegger 4</StyledParagraph>
-        <CardParagraph>Rørleggerveien 1</CardParagraph>
-        <CardParagraph>69 99 00 00</CardParagraph>
-        <CardParagraph>fredrikstad1@epost.no</CardParagraph>
-      </StyledListItem>
-    </StyledListContainer>
-    <StyledSubtitle>Moss</StyledSubtitle>
-    <StyledGridContainer>
-      <p>Våre kontorer</p>
-      <p>Våre kontorer 2</p>
-      <p>Våre kontorer 3</p>
-      <p>Våre kontorer 4</p>
-    </StyledGridContainer>
-    <StyledSubtitle>Oslo</StyledSubtitle>
-    <StyledGridContainer>
-      <p>Våre kontorer</p>
-      <p>Våre kontorer 2</p>
-      <p>Våre kontorer 3</p>
-      <p>Våre kontorer 4</p>
-    </StyledGridContainer>
-  </>
-);
+      {officeList.map((office) => (
+        <>
+          <StyledSubHeader>
+            <StyledSubtitle>
+              {office.place} ({office.officeNr.length} kontorer)
+            </StyledSubtitle>
+          </StyledSubHeader>
+
+          <StyledGridContainer>
+            {office.officeNr.map((nr) => (
+              <StyledCardItem>
+                <StyledParagraph>Rørlegger {nr}</StyledParagraph>
+                <CardParagraph>Rørleggerveien 1</CardParagraph>
+                <CardParagraph>69 99 00 00</CardParagraph>
+                <CardParagraph>
+                  {office.place}_{nr}@epost.no
+                </CardParagraph>
+              </StyledCardItem>
+            ))}
+          </StyledGridContainer>
+        </>
+      ))}
+
+      {officeList.map((office) => (
+        <>
+          <StyledSubHeader>
+            <StyledSubtitle>
+              {office.place} ({office.officeNr.length} kontorer)
+            </StyledSubtitle>
+          </StyledSubHeader>
+
+          <StyledListContainer>
+            {office.officeNr.map((nr) => (
+              <StyledListItem>
+                <StyledParagraph>Rørlegger {nr}</StyledParagraph>
+                <CardParagraph>
+                  Rørleggerveien 1 - 69 99 00 00 - {office.place}_{nr}@epost.no
+                </CardParagraph>
+              </StyledListItem>
+            ))}
+          </StyledListContainer>
+        </>
+      ))}
+    </>
+  );
+};
 
 export default Offices;

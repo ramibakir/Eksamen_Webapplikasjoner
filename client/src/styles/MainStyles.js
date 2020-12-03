@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 /* CONTAINER ELEMENTS START */
 export const StyledContainer = styled.div`
-  margin: 0 auto;
+  margin: 0;
 `;
 
 export const StyledCenteredFlex = styled.section`
