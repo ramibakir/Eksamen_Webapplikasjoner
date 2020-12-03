@@ -1,5 +1,10 @@
 import React from 'react';
+import ContactForm from '../components/ContactForm';
 
-const Contact = () => <h1>Kontakt</h1>;
+const Contact = () => (
+  <>
+    <ContactForm />
+  </>
+);
 
 export default Contact;
