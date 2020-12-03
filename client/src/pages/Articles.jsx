@@ -51,9 +51,6 @@ const SearchButton = styled(StyledButton)`
 
 const Articles = () => (
   <>
-    <TempHeader>
-      <h2>Fagartikler</h2>
-    </TempHeader>
     <TempContainer>
       <NewArticleButton>NY ARTIKKEL</NewArticleButton>
       <TempContainer>
