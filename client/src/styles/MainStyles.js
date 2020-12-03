@@ -10,6 +10,7 @@ export const StyledContainer = styled.div`
 export const StyledHeader = styled.div`
   width: 100%;
   background-color: grey;
+  text-align: center;
 `;
 
 export const StyledFooter = styled.div`
@@ -22,7 +23,6 @@ export const StyledFooter = styled.div`
 
 export const StyledButtonContainer = styled.div`
   justify-content: center;
-  margin: 0 auto;
 `;
 /* CONTAINER ELEMENTS END */
 
