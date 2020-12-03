@@ -7,8 +7,9 @@ const GlobalStyles = createGlobalStyle`
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif;
     }
 
-    html {
+    html, body, main {
         font-size: 1rem;
+        height: 100%; // put this here to stick footer to bottom
     }
 
     body {

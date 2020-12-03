@@ -15,6 +15,7 @@ export const StyledHeader = styled(StyledCenteredFlex)`
   width: 100%;
   background-color: #84a9ac;
   height: 12rem;
+  display: inline-flex;
 `;
 
 export const StyledSubHeader = styled.div`
@@ -22,12 +23,14 @@ export const StyledSubHeader = styled.div`
 `;
 
 export const StyledFooter = styled.div`
-  position: fixed;
-  bottom: 0;
+  //position: sticky;
+  //bottom: 0;
+  //display: inline-block;
   width: 100%;
   background-color: white;
   color: black;
   text-align: center;
+  flex-shrink: 0;
 `;
 
 export const StyledButtonContainer = styled.div`
@@ -37,8 +40,8 @@ export const StyledButtonContainer = styled.div`
 
 /* NAV START */
 export const StyledNav = styled.nav`
-  position: sticky;
-  top: 0;
+  //position: fixed;
+  //top: 0;
   width: 100%;
   height: 50px;
   box-shadow: 0 2px 8px #3b6978;
@@ -67,7 +70,6 @@ export const StyledNavMenuItem = styled(StyledCenteredFlex)`
     text-decoration: none;
 
     &.active {
-      //color: #3b6978;
       font-weight: 900;
     }
   }
