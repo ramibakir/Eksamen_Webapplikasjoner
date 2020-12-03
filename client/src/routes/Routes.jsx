@@ -1,5 +1,10 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  useParams,
+} from 'react-router-dom';
 
 import MainLayout from '../layouts/MainLayout';
 import Home from '../pages/Home';
@@ -29,7 +34,7 @@ const Routes = () => (
         <Route path="/login">
           <Login />
         </Route>
-        <Route path="/officedetail">
+        <Route path="/offices/:id">
           <OfficeDetailedView />
         </Route>
         <Route path="/articledetail">

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import ReorderIcon from '@material-ui/icons/Reorder';
 import ViewModuleIcon from '@material-ui/icons/ViewModule';
 import {
@@ -32,10 +33,10 @@ const CardParagraph = styled(StyledParagraph)`
 
 const Offices = () => {
   const officeList = [
-    { place: 'Fredrikstad', officeNr: [1, 2, 3, 4, 5, 6, 7, 8] },
-    { place: 'Sarpsborg', officeNr: [1, 2, 3, 4, 5] },
-    { place: 'Moss', officeNr: [1, 2, 3, 4] },
-    { place: 'Oslo', officeNr: [1, 2, 3, 4] },
+    { id: 'fr', place: 'Fredrikstad', officeNr: [1, 2, 3, 4, 5, 6, 7, 8] },
+    { id: 'sa', place: 'Sarpsborg', officeNr: [1, 2, 3, 4, 5] },
+    { id: 'mo', place: 'Moss', officeNr: [1, 2, 3, 4] },
+    { id: 'os', place: 'Oslo', officeNr: [1, 2, 3, 4] },
   ];
 
   return (
@@ -56,14 +57,19 @@ const Offices = () => {
 
           <StyledGridContainer>
             {office.officeNr.map((nr) => (
-              <StyledCardItem>
-                <StyledParagraph>Rørlegger {nr}</StyledParagraph>
-                <CardParagraph>Rørleggerveien 1</CardParagraph>
-                <CardParagraph>69 99 00 00</CardParagraph>
-                <CardParagraph>
-                  {office.place}_{nr}@epost.no
-                </CardParagraph>
-              </StyledCardItem>
+              <Link
+                to={`/offices/${office.id}${nr}`}
+                style={{ textDecoration: 'none' }}
+              >
+                <StyledCardItem>
+                  <StyledParagraph>Rørlegger {nr}</StyledParagraph>
+                  <CardParagraph>Rørleggerveien 1</CardParagraph>
+                  <CardParagraph>69 99 00 00</CardParagraph>
+                  <CardParagraph>
+                    {office.place}_{nr}@epost.no
+                  </CardParagraph>
+                </StyledCardItem>
+              </Link>
             ))}
           </StyledGridContainer>
         </>
@@ -79,12 +85,18 @@ const Offices = () => {
 
           <StyledListContainer>
             {office.officeNr.map((nr) => (
-              <StyledListItem>
-                <StyledParagraph>Rørlegger {nr}</StyledParagraph>
-                <CardParagraph>
-                  Rørleggerveien 1 - 69 99 00 00 - {office.place}_{nr}@epost.no
-                </CardParagraph>
-              </StyledListItem>
+              <Link
+                to={`/offices/${office.id}${nr}`}
+                style={{ textDecoration: 'none' }}
+              >
+                <StyledListItem>
+                  <StyledParagraph>Rørlegger {nr}</StyledParagraph>
+                  <CardParagraph>
+                    Rørleggerveien 1 - 69 99 00 00 - {office.place}_{nr}
+                    @epost.no
+                  </CardParagraph>
+                </StyledListItem>
+              </Link>
             ))}
           </StyledListContainer>
         </>
