@@ -32,7 +32,6 @@ export const StyledFooter = styled.div`
 
 export const StyledButtonContainer = styled.div`
   justify-content: center;
-  margin: 0 auto;
 `;
 /* CONTAINER ELEMENTS END */
 
