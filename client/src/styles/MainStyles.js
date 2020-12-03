@@ -15,6 +15,7 @@ export const StyledHeader = styled(StyledCenteredFlex)`
   width: 100%;
   background-color: #84a9ac;
   height: 12rem;
+  margin-bottom: 30px;
 `;
 
 export const StyledSubHeader = styled.div`
