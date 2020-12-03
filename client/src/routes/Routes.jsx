@@ -7,6 +7,7 @@ import Offices from '../pages/Offices';
 import Articles from '../pages/Articles';
 import Contact from '../pages/Contact';
 import Login from '../pages/Login';
+import OfficeDetailedView from '../pages/OfficeDetailedView';
 
 const Routes = () => (
   <Router>
@@ -26,6 +27,9 @@ const Routes = () => (
         </Route>
         <Route path="/login">
           <Login />
+        </Route>
+        <Route path="/officedetail">
+          <OfficeDetailedView />
         </Route>
       </Switch>
     </MainLayout>
