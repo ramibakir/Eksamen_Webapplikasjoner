@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-
 import {
   StyledImage,
   StyledParagraph,
@@ -8,13 +7,6 @@ import {
   StyledButton,
 } from '../styles/MainStyles';
 import { StyledListContainer, StyledListItem } from '../styles/ListStyles';
-
-const TempHeader = styled(StyledHeader)`
-  height: 200px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
 
 const TempContainer = styled.div`
   display: flex;
@@ -51,9 +43,6 @@ const SearchButton = styled(StyledButton)`
 
 const Articles = () => (
   <>
-    <TempHeader>
-      <h2>Fagartikler</h2>
-    </TempHeader>
     <TempContainer>
       <NewArticleButton>NY ARTIKKEL</NewArticleButton>
       <TempContainer>
