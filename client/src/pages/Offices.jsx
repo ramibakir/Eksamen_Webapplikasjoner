@@ -7,6 +7,7 @@ import {
   StyledParagraph,
   StyledButtonContainer,
   StyledButton,
+  StyledSubHeader,
 } from '../styles/MainStyles';
 import {
   StyledGridContainer,
@@ -16,7 +17,7 @@ import {
 } from '../styles/ListStyles';
 
 const FilterContainer = styled(StyledButtonContainer)`
-  margin: 10px;
+  //padding: 10px;
   float: right;
 `;
 
@@ -31,12 +32,15 @@ const CardParagraph = styled(StyledParagraph)`
 
 const Offices = () => (
   <>
-    <StyledSubtitle>Fredrikstad (8 kontorer)</StyledSubtitle>
-    <FilterContainer>
-      <FilterButton>Filter</FilterButton>
-      <ReorderIcon fontSize="large" />
-      <ViewModuleIcon fontSize="large" />
-    </FilterContainer>
+    <StyledSubHeader>
+      <FilterContainer>
+        <FilterButton>Filter</FilterButton>
+        <ReorderIcon fontSize="large" />
+        <ViewModuleIcon fontSize="large" />
+      </FilterContainer>
+      <StyledSubtitle>Fredrikstad (8 kontorer)</StyledSubtitle>
+    </StyledSubHeader>
+
     <StyledGridContainer>
       <StyledCardItem>
         <StyledParagraph>Rørlegger 1</StyledParagraph>

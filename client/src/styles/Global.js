@@ -12,9 +12,14 @@ const GlobalStyles = createGlobalStyle`
     }
 
     body {
+        h1, h2, h3, h4, p {
+            margin-block-start: 0;
+            margin-block-end: 0;
+        }
+
         h1 {
             font-size: 4rem;
-        }
+        }   
 
         h2 {
             font-size: 2.8rem;

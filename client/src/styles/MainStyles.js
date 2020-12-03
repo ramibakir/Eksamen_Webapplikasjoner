@@ -3,17 +3,27 @@ import styled from 'styled-components';
 /* CONTAINER ELEMENTS START */
 export const StyledContainer = styled.div`
   margin: 0 auto;
-  width: 100%;
-  max-width: 900px;
 `;
 
-export const StyledHeader = styled.div`
+export const StyledCenteredFlex = styled.section`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const StyledHeader = styled(StyledCenteredFlex)`
   width: 100%;
-  background-color: grey;
+  background-color: #84a9ac;
+  height: 12rem;
+`;
+
+export const StyledSubHeader = styled.div`
+  margin: 20px;
 `;
 
 export const StyledFooter = styled.div`
   position: fixed;
+  bottom: 0;
   width: 100%;
   background-color: white;
   color: black;
@@ -28,27 +38,27 @@ export const StyledButtonContainer = styled.div`
 
 /* NAV START */
 export const StyledNav = styled.nav`
+  position: sticky;
+  top: 0;
   width: 100%;
   height: 50px;
-  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.26);
-`;
-
-export const StyledNavMenu = styled.ul`
+  box-shadow: 0 2px 8px #3b6978;
   display: flex;
+  justify-content: flex-end;
   margin: 0;
   list-style: none;
-  padding: 0 20px;
-  float: right;
 `;
 
-export const StyledNavMenuItem = styled.li`
-  padding: 0 20px;
-  display: block;
-  justify-content: space-between;
-  font-weight: bold;
+export const StyledNavMenuItem = styled(StyledCenteredFlex)`
+  padding: 10px 20px;
+  font-weight: 650;
 
-  &:first-child {
-    padding-left: 0;
+  &:hover {
+    background-color: #3b6978;
+
+    & > a {
+      color: white;
+    }
   }
 
   & > a {
@@ -58,12 +68,22 @@ export const StyledNavMenuItem = styled.li`
     text-decoration: none;
 
     &.active {
-      color: teal;
+      //color: #3b6978;
+      font-weight: 900;
     }
   }
 
   &:last-child {
-    background-color: teal;
+    background-color: #204051;
+
+    & > a {
+      color: white;
+      text-transform: uppercase;
+    }
+
+    &:hover {
+      background-color: #3b6978;
+    }
   }
 `;
 /* NAV END */
@@ -75,7 +95,6 @@ export const StyledTitle = styled.h1`
 
 export const StyledSubtitle = styled.h2`
   color: black;
-  margin: 10px;
 `;
 
 export const StyledParagraph = styled.p`
@@ -93,7 +112,7 @@ export const StyledButton = styled.button`
   padding: 20px 30px;
   font-size: 15px;
   font-weight: bold;
-  margin: 4px 2px;
+  margin: 0px 4px;
 `;
 /* BUTTON ELEMENTS END */
 

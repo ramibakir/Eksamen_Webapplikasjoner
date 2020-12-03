@@ -19,7 +19,7 @@ export const StyledListContainer = styled(StyledContainer)`
 
 export const StyledCardItem = styled.div`
   grid-template-columns: repeat(4, 1fr);
-  width: 250px;
+  //width: 10%;
   border: 1px solid black;
   border-radius: 4px;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.26);

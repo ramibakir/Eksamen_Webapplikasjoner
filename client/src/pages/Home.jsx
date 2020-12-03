@@ -1,18 +1,19 @@
 import React from 'react';
-import { StyledHomeLayout, StyledHomeSection } from '../styles/HomeStyle';
+import { StyledHomeLayout, StyledHomeSection } from '../styles/homeStyle';
+import { StyledSubtitle } from '../styles/MainStyles';
 
 const Home = () => (
   <StyledHomeLayout>
     <StyledHomeSection sectionName="offices">
-      <h2>Kontorer</h2>
+      <StyledSubtitle>Kontorer</StyledSubtitle>
     </StyledHomeSection>
 
     <StyledHomeSection sectionName="contact">
-      <h2>Kontakt</h2>
+      <StyledSubtitle>Kontakt</StyledSubtitle>
     </StyledHomeSection>
 
     <StyledHomeSection sectionName="articles">
-      <h2>Se våre fagartikler om oppussing av bad</h2>
+      <StyledSubtitle>Se våre fagartikler om oppussing av bad</StyledSubtitle>
     </StyledHomeSection>
   </StyledHomeLayout>
 );

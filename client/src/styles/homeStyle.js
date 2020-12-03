@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { StyledCenteredFlex } from './MainStyles';
 
 export const StyledHomeLayout = styled.div`
   width: 100%;
@@ -10,8 +11,9 @@ export const StyledHomeLayout = styled.div`
     'articles articles articles articles';
 `;
 
-export const StyledHomeSection = styled.section`
+export const StyledHomeSection = styled(StyledCenteredFlex)`
   grid-area: ${(props) => props.sectionName};
-  background-color: grey;
-  text-align: center;
+  background-color: #3b6978;
+  //text-align: center;
+  height: 12rem;
 `;
