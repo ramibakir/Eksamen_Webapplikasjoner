@@ -8,6 +8,7 @@ export const StyledInput = styled.input`
   margin: 10px;
   height: 50px;
   padding: 10px;
+  margin: 10px 0 30px 0;
 `;
 
 export const StyledSelect = styled.select`
@@ -36,9 +37,8 @@ export const StyledForm = styled.form`
   padding: 10px;
   border-radius: 10px;
 
-  display: grid;
-  grid-row-gap: 10px;
-  grid-template-rows: auto auto auto auto auto 1fr;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const StyledTextArea = styled.textarea`
@@ -47,4 +47,5 @@ export const StyledTextArea = styled.textarea`
   border: 2px solid black;
   padding: 5px;
   border-radius: 4px;
+  margin: 10px 0 30px 0;
 `;

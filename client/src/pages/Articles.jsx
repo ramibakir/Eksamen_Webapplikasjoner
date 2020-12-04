@@ -2,19 +2,30 @@ import React from 'react';
 import styled from 'styled-components';
 import {
   StyledImage,
-  StyledParagraph,
-  StyledHeader,
-  StyledButton,
+  StyledContainer,
+  FilterContainer,
+  FilterButton,
 } from '../styles/MainStyles';
-import { StyledListContainer, StyledListItem } from '../styles/ListStyles';
+import {
+  StyledListContainer,
+  StyledListItem,
+  StyledCardTitle,
+  StyledCardInfo,
+} from '../styles/ListStyles';
 
-const TempContainer = styled.div`
+const StyledArticlesWrapper = styled(StyledContainer)`
+  margin: 0 20px;
+`;
+
+const TitleContainer = styled(StyledContainer)`
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
+  margin-right: 10px;
 `;
 
 const ArticleImage = styled(StyledImage)`
-  border-radius: 4px;
+  border-radius: 10px;
   padding: 5px;
   width: 150px;
   height: 150px;
@@ -23,40 +34,50 @@ const ArticleImage = styled(StyledImage)`
   float: left;
 `;
 
-const ArticleIntroParagraph = styled(StyledParagraph)`
+const ArticleIntroParagraph = styled(StyledCardInfo)`
   font-size: 18px;
   overflow: hidden;
 `;
 
-const CategoryParagraph = styled(StyledParagraph)`
-  font-size: 12px;
+const NewArticleButton = styled(FilterButton)`
+  background-color: #204051;
 `;
 
-const NewArticleButton = styled(StyledButton)`
-  font-weight: 700;
+const RightAlignContainer = styled(FilterContainer)`
+  justify-content: flex-end;
 `;
 
-const SearchButton = styled(StyledButton)`
-  color: black;
-  background-color: lightgrey;
+const LeftAlignContainer = styled(FilterContainer)`
+  justify-content: flex-start;
+`;
+
+const SpacedFilterContainer = styled(FilterContainer)`
+  justify-content: space-between;
+  margin-bottom: 30px;
+`;
+
+const FullSizeListItem = styled(StyledListItem)`
+  padding-right: 10px;
 `;
 
 const Articles = () => (
-  <>
-    <TempContainer>
-      <NewArticleButton>NY ARTIKKEL</NewArticleButton>
-      <TempContainer>
-        <SearchButton>SØK</SearchButton>
-        <SearchButton>FILTER</SearchButton>
-      </TempContainer>
-    </TempContainer>
+  <StyledArticlesWrapper>
+    <SpacedFilterContainer>
+      <LeftAlignContainer>
+        <NewArticleButton>NY ARTIKKEL</NewArticleButton>
+      </LeftAlignContainer>
+      <RightAlignContainer>
+        <FilterButton>SØK</FilterButton>
+        <FilterButton>FILTER</FilterButton>
+      </RightAlignContainer>
+    </SpacedFilterContainer>
     <StyledListContainer>
-      <StyledListItem>
+      <FullSizeListItem>
         <ArticleImage src="https://media.gettyimages.com/photos/coffee-and-the-morning-paper-picture-id184993811?s=612x612" />
-        <TempContainer>
-          <StyledParagraph>Artikkeltittel</StyledParagraph>
-          <CategoryParagraph>Testing</CategoryParagraph>
-        </TempContainer>
+        <TitleContainer>
+          <StyledCardTitle>Artikkeltittel</StyledCardTitle>
+          <StyledCardInfo>Testing</StyledCardInfo>
+        </TitleContainer>
         <ArticleIntroParagraph>
           I don't think anybody knows it was Russia that wrote Lorem Ipsum, but
           I don't know, maybe it was. It could be Russia, but it could also be
@@ -65,9 +86,9 @@ const Articles = () => (
           Ipsum is calling for a total and complete shutdown of Muslim text
           entering your website.
         </ArticleIntroParagraph>
-      </StyledListItem>
+      </FullSizeListItem>
     </StyledListContainer>
-  </>
+  </StyledArticlesWrapper>
 );
 
 export default Articles;

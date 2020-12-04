@@ -5,6 +5,10 @@ export const StyledContainer = styled.div`
   margin: 0;
 `;
 
+export const StyledDetailViewWrapper = styled(StyledContainer)`
+  margin: 0 70px;
+`;
+
 export const StyledCenteredFlex = styled.section`
   display: flex;
   justify-content: center;
@@ -20,13 +24,10 @@ export const StyledHeader = styled(StyledCenteredFlex)`
 `;
 
 export const StyledSubHeader = styled.div`
-  margin: 20px;
+  margin: 20px 0;
 `;
 
 export const StyledFooter = styled.div`
-  //position: sticky;
-  //bottom: 0;
-  //display: inline-block;
   width: 100%;
   background-color: white;
   color: black;
@@ -36,6 +37,10 @@ export const StyledFooter = styled.div`
 
 export const StyledButtonContainer = styled.div`
   justify-content: center;
+`;
+
+export const FilterContainer = styled(StyledButtonContainer)`
+  display: flex;
 `;
 /* CONTAINER ELEMENTS END */
 
@@ -112,13 +117,18 @@ export const StyledParagraph = styled.p`
 /* BUTTON ELEMENTS START */
 export const StyledButton = styled.button`
   color: white;
-  background-color: teal;
+  background-color: #204051;
   text-align: center;
   border: none;
   padding: 20px 30px;
   font-size: 15px;
   font-weight: bold;
   margin: 0px 4px;
+`;
+
+export const FilterButton = styled(StyledButton)`
+  background-color: #3b6978;
+  color: white;
 `;
 /* BUTTON ELEMENTS END */
 

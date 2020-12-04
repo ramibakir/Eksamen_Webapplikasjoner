@@ -5,9 +5,10 @@ import ReorderIcon from '@material-ui/icons/Reorder';
 import ViewModuleIcon from '@material-ui/icons/ViewModule';
 import {
   StyledSubtitle,
-  StyledButtonContainer,
-  StyledButton,
   StyledSubHeader,
+  StyledContainer,
+  FilterContainer,
+  FilterButton,
 } from '../styles/MainStyles';
 import {
   StyledGridContainer,
@@ -18,19 +19,14 @@ import {
   StyledCardInfo,
 } from '../styles/ListStyles';
 
-const FilterContainer = styled(StyledButtonContainer)`
+const StyledOfficesWrapper = styled(StyledContainer)`
+  margin: 20px;
+`;
+
+const RightAlignedFilter = styled(FilterContainer)`
+  justify-content: flex-end;
   margin: 20px 20px 0 0;
-  float: right;
 `;
-
-const FilterButton = styled(StyledButton)`
-  background-color: #3b6978;
-  color: white;
-`;
-
-/* const CardParagraph = styled(StyledParagraph)`
-  font-size: 14px;
-`; */
 
 const Offices = () => {
   const officeList = [
@@ -41,12 +37,12 @@ const Offices = () => {
   ];
 
   return (
-    <>
-      <FilterContainer>
+    <StyledOfficesWrapper>
+      <RightAlignedFilter>
         <FilterButton>Filter</FilterButton>
         <ReorderIcon fontSize="large" />
         <ViewModuleIcon fontSize="large" />
-      </FilterContainer>
+      </RightAlignedFilter>
 
       {officeList.map((office) => (
         <>
@@ -103,7 +99,7 @@ const Offices = () => {
           </StyledListContainer>
         </>
       ))}
-    </>
+    </StyledOfficesWrapper>
   );
 };
 
