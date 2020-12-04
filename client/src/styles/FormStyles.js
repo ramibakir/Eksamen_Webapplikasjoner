@@ -11,7 +11,7 @@ export const StyledInput = styled.input`
 `;
 
 export const StyledSelect = styled.select`
-  width: 100%;
+  width: 70%;
   padding: 16px 20px;
   border: none;
   border-radius: 4px;
@@ -46,4 +46,5 @@ export const StyledTextArea = styled.textarea`
   height: 120px;
   border: 2px solid black;
   padding: 5px;
+  border-radius: 4px;
 `;
