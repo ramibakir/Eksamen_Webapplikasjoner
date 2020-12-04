@@ -11,7 +11,7 @@ export const StyledInput = styled.input`
 `;
 
 export const StyledSelect = styled.select`
-  width: 70%;
+  width: 100%;
   padding: 16px 20px;
   border: none;
   border-radius: 4px;

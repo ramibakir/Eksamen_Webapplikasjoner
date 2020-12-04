@@ -19,6 +19,10 @@ const NewCategoryButton = styled(StyledButton)`
   width: 20%;
 `;
 
+const CategorySelector = styled(StyledSelect)`
+  width: 70%;
+`;
+
 const ArticleForm = () => (
   <>
     <StyledFormContainter>
@@ -37,13 +41,15 @@ const ArticleForm = () => (
 
         <StyledLabel htmlFor="category">Kategori</StyledLabel>
         <NewCategoryContainer>
-          <StyledSelect name="category">
+          <CategorySelector name="category">
             <option value="test">Just testing</option>
-          </StyledSelect>
+          </CategorySelector>
           <NewCategoryButton>NY</NewCategoryButton>
         </NewCategoryContainer>
         <StyledLabel htmlFor="author">Forfatter</StyledLabel>
-        <StyledInput required type="text" placeholder="Forfatter" />
+        <StyledSelect name="author">
+          <option value="author">Rami Bakir</option>
+        </StyledSelect>
         <StyledButton>OPPRETT ARTIKKEL</StyledButton>
       </StyledForm>
     </StyledFormContainter>
