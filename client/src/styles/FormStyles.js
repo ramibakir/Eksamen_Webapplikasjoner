@@ -10,7 +10,13 @@ export const StyledInput = styled.input`
   padding: 10px;
 `;
 
-export const StyledSelect = styled.select``;
+export const StyledSelect = styled.select`
+  width: 100%;
+  padding: 16px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #f1f1f1;
+`;
 
 export const StyledLabel = styled.label`
   display: grid;

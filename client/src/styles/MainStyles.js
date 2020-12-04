@@ -50,6 +50,10 @@ export const StyledNav = styled.nav`
   justify-content: flex-end;
   margin: 0;
   list-style: none;
+
+  @media ${(props) => props.theme.breakpoints.md} {
+    background: red;
+  }
 `;
 
 export const StyledNavMenuItem = styled(StyledCenteredFlex)`
@@ -124,3 +128,6 @@ export const StyledImage = styled.img`
   height: auto;
 `;
 /* IMAGE ELEMENTS END */
+
+/* BREAKPOINT START */
+/* BREAKPOINT END */

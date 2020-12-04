@@ -9,6 +9,7 @@ import Contact from '../pages/Contact';
 import Login from '../pages/Login';
 import OfficeDetailedView from '../pages/OfficeDetailedView';
 import ArticleDetailedView from '../pages/ArticleDetailedView';
+import CreateNewArticle from '../pages/CreateNewArticle';
 
 const Routes = () => (
   <Router>
@@ -34,6 +35,9 @@ const Routes = () => (
         </Route>
         <Route path="/articledetail">
           <ArticleDetailedView />
+        </Route>
+        <Route path="/articles/newarticle">
+          <CreateNewArticle />
         </Route>
       </Switch>
     </MainLayout>

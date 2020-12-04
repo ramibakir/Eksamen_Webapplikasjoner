@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Routes from './src/routes/Routes';
-import { GlobalStyles } from './src/styles/Global';
+import Theme from './src/styles/Theme';
 import Footer from './src/components/Footer';
 
 // Put this here to make footer stick to bottom with and without scroll
@@ -14,11 +14,12 @@ const StyledWrapper = styled.div`
 `;
 
 const App = () => (
-  <StyledWrapper>
-    <GlobalStyles />
-    <Routes />
-    <Footer />
-  </StyledWrapper>
+  <Theme>
+    <StyledWrapper>
+      <Routes />
+      <Footer />
+    </StyledWrapper>
+  </Theme>
 );
 
 export default App;
