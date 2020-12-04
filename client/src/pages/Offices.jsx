@@ -5,7 +5,6 @@ import ReorderIcon from '@material-ui/icons/Reorder';
 import ViewModuleIcon from '@material-ui/icons/ViewModule';
 import {
   StyledSubtitle,
-  StyledParagraph,
   StyledButtonContainer,
   StyledButton,
   StyledSubHeader,
@@ -15,6 +14,8 @@ import {
   StyledListContainer,
   StyledCardItem,
   StyledListItem,
+  StyledCardTitle,
+  StyledCardInfo,
 } from '../styles/ListStyles';
 
 const FilterContainer = styled(StyledButtonContainer)`
@@ -23,13 +24,13 @@ const FilterContainer = styled(StyledButtonContainer)`
 `;
 
 const FilterButton = styled(StyledButton)`
-  background-color: #ccc8c8;
-  color: black;
+  background-color: #3b6978;
+  color: white;
 `;
 
-const CardParagraph = styled(StyledParagraph)`
+/* const CardParagraph = styled(StyledParagraph)`
   font-size: 14px;
-`;
+`; */
 
 const Offices = () => {
   const officeList = [
@@ -62,12 +63,12 @@ const Offices = () => {
                 style={{ textDecoration: 'none' }}
               >
                 <StyledCardItem>
-                  <StyledParagraph>Rørlegger {nr}</StyledParagraph>
-                  <CardParagraph>Rørleggerveien 1</CardParagraph>
-                  <CardParagraph>69 99 00 00</CardParagraph>
-                  <CardParagraph>
+                  <StyledCardTitle>Rørlegger {nr}</StyledCardTitle>
+                  <StyledCardInfo>Rørleggerveien 1</StyledCardInfo>
+                  <StyledCardInfo>69 99 00 00</StyledCardInfo>
+                  <StyledCardInfo>
                     {office.place}_{nr}@epost.no
-                  </CardParagraph>
+                  </StyledCardInfo>
                 </StyledCardItem>
               </Link>
             ))}
@@ -90,11 +91,12 @@ const Offices = () => {
                 style={{ textDecoration: 'none' }}
               >
                 <StyledListItem>
-                  <StyledParagraph>Rørlegger {nr}</StyledParagraph>
-                  <CardParagraph>
-                    Rørleggerveien 1 - 69 99 00 00 - {office.place}_{nr}
-                    @epost.no
-                  </CardParagraph>
+                  <StyledCardTitle>Rørlegger {nr}</StyledCardTitle>
+                  <StyledCardInfo>Rørleggerveien 1</StyledCardInfo>
+                  <StyledCardInfo>69 99 00 00</StyledCardInfo>
+                  <StyledCardInfo>
+                    {office.place}_{nr}@epost.no
+                  </StyledCardInfo>
                 </StyledListItem>
               </Link>
             ))}
