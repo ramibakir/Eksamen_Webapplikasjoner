@@ -4,7 +4,9 @@ import catchAsyncErrors from '../middleware/catchAsync.js';
 export const get = catchAsyncErrors(async (req, res, next) => {
   const article = await articleService.getArticleById(req.params.id);
   if (!article) {
-    return res.status(404).json({ error: 'Not found' });
+    return next(
+      new ErrorHandler(`Finner ikke artikkel med id ${req.params.id}`, 404),
+    );
   }
   res.status(200).json(article);
 });
