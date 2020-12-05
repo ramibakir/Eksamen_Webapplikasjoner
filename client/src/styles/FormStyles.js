@@ -12,11 +12,12 @@ export const StyledInput = styled.input`
 `;
 
 export const StyledSelect = styled.select`
-  width: 100%;
+  width: 20%;
   padding: 16px 20px;
-  border: none;
+  border: 1px solid #3b6978;
   border-radius: 4px;
   background-color: #f1f1f1;
+  margin: 0 10px;
 `;
 
 export const StyledLabel = styled.label`

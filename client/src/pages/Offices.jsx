@@ -1,121 +1,77 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import ReorderIcon from '@material-ui/icons/Reorder';
-import ViewModuleIcon from '@material-ui/icons/ViewModule';
-import {
-  StyledSubtitle,
-  StyledSubHeader,
-  StyledContainer,
-  FilterContainer,
-  FilterButton,
-} from '../styles/MainStyles';
-import {
-  StyledGridContainer,
-  StyledListContainer,
-  StyledCardItem,
-  StyledListItem,
-  StyledCardTitle,
-  StyledCardInfo,
-} from '../styles/ListStyles';
+
+import { StyledContainer } from '../styles/MainStyles';
+import CardView from '../components/CardView';
+import ListView from '../components/ListView';
+import Filter from '../components/Filter';
 
 const StyledOfficesWrapper = styled(StyledContainer)`
   margin: 20px;
 `;
 
-const RightAlignedFilter = styled(FilterContainer)`
-  justify-content: flex-end;
-  margin: 20px 20px 0 0;
-`;
+const fullOfficeList = [
+  { id: 'fr', place: 'Fredrikstad', officeNr: [1, 2, 3, 4, 5, 6, 7, 8] },
+  { id: 'sa', place: 'Sarpsborg', officeNr: [1, 2, 3, 4, 5] },
+  { id: 'mo', place: 'Moss', officeNr: [1, 2, 3, 4] },
+  { id: 'os', place: 'Oslo', officeNr: [1, 2, 3, 4] },
+];
 
 const Offices = () => {
   const [cardView, setCardView] = useState(false);
-
-  const officeList = [
+  const [filterBox, setFilterBox] = useState(false);
+  const [filterCriteria, setFilterCriteria] = useState('all');
+  const [officeList, setOfficeList] = useState([
     { id: 'fr', place: 'Fredrikstad', officeNr: [1, 2, 3, 4, 5, 6, 7, 8] },
     { id: 'sa', place: 'Sarpsborg', officeNr: [1, 2, 3, 4, 5] },
     { id: 'mo', place: 'Moss', officeNr: [1, 2, 3, 4] },
     { id: 'os', place: 'Oslo', officeNr: [1, 2, 3, 4] },
-  ];
+  ]);
+
+  // let filteredOffices = officeList;
 
   const toggleCardView = () => {
     setCardView((display) => !display);
   };
 
+  const toggleFilterBox = () => {
+    setFilterBox((display) => !display);
+  };
+
+  // funker ikke, den vil ikke endre state på officeList til den filtrerte lista
+  const filter = (event) => {
+    console.log(event.target.value);
+    setFilterCriteria(event.target.value);
+
+    const filteredOffices = officeList.filter(
+      (office) => office.id === event.target.value
+    );
+
+    setOfficeList(filteredOffices);
+
+    console.log(filteredOffices);
+
+    if (event.target.value !== 'all') {
+      setOfficeList(fullOfficeList);
+    }
+
+    console.log(officeList);
+  };
+
   return (
     <StyledOfficesWrapper>
-      <RightAlignedFilter>
-        {cardView ? (
-          <ReorderIcon
-            fontSize="large"
-            onClick={toggleCardView}
-            style={{ cursor: 'pointer' }}
-          />
-        ) : (
-          <ViewModuleIcon
-            fontSize="large"
-            onClick={toggleCardView}
-            style={{ cursor: 'pointer' }}
-          />
-        )}
-        <FilterButton>Filter</FilterButton>
-      </RightAlignedFilter>
+      <Filter
+        filterBox={filterBox}
+        filter={filter}
+        officeList={officeList}
+        toggleFilterBox={toggleFilterBox}
+        cardView={cardView}
+        toggleCardView={toggleCardView}
+      />
 
       {cardView
-        ? officeList.map((office) => (
-            <>
-              <StyledSubHeader>
-                <StyledSubtitle>
-                  {office.place} ({office.officeNr.length} kontorer)
-                </StyledSubtitle>
-              </StyledSubHeader>
-
-              <StyledGridContainer>
-                {office.officeNr.map((nr) => (
-                  <Link
-                    to={`/offices/${office.id}${nr}`}
-                    style={{ textDecoration: 'none' }}
-                  >
-                    <StyledCardItem>
-                      <StyledCardTitle>Rørlegger {nr}</StyledCardTitle>
-                      <StyledCardInfo>Rørleggerveien 1</StyledCardInfo>
-                      <StyledCardInfo>69 99 00 00</StyledCardInfo>
-                      <StyledCardInfo>
-                        {office.place}_{nr}@epost.no
-                      </StyledCardInfo>
-                    </StyledCardItem>
-                  </Link>
-                ))}
-              </StyledGridContainer>
-            </>
-          ))
-        : officeList.map((office) => (
-            <>
-              <StyledSubHeader>
-                <StyledSubtitle>
-                  {office.place} ({office.officeNr.length} kontorer)
-                </StyledSubtitle>
-              </StyledSubHeader>
-
-              <StyledListContainer>
-                {office.officeNr.map((nr) => (
-                  <Link
-                    to={`/offices/${office.id}${nr}`}
-                    style={{ textDecoration: 'none' }}
-                  >
-                    <StyledListItem>
-                      <StyledCardTitle>Rørlegger {nr}</StyledCardTitle>
-                      <StyledCardInfo>Rørleggerveien 1</StyledCardInfo>
-                      <StyledCardInfo>69 99 00 00</StyledCardInfo>
-                      <StyledCardInfo>
-                        {office.place}_{nr}@epost.no
-                      </StyledCardInfo>
-                    </StyledListItem>
-                  </Link>
-                ))}
-              </StyledListContainer>
-            </>
-          ))}
+        ? officeList.map((office) => <CardView office={office} />)
+        : officeList.map((office) => <ListView office={office} />)}
     </StyledOfficesWrapper>
   );
 };
