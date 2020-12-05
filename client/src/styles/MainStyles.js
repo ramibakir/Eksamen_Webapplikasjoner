@@ -110,7 +110,7 @@ export const StyledSubtitle = styled.h2`
 
 export const StyledParagraph = styled.p`
   color: #666;
-  margin: 10px;
+  //margin: 10px;
 `;
 /* TEXT ELEMENTS END */
 

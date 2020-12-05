@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import {
   StyledImage,
@@ -60,35 +61,51 @@ const FullSizeListItem = styled(StyledListItem)`
   padding-right: 10px;
 `;
 
-const Articles = () => (
-  <StyledArticlesWrapper>
-    <SpacedFilterContainer>
-      <LeftAlignContainer>
-        <NewArticleButton>NY ARTIKKEL</NewArticleButton>
-      </LeftAlignContainer>
-      <RightAlignContainer>
-        <FilterButton>SØK</FilterButton>
-        <FilterButton>FILTER</FilterButton>
-      </RightAlignContainer>
-    </SpacedFilterContainer>
-    <StyledListContainer>
-      <FullSizeListItem>
-        <ArticleImage src="https://media.gettyimages.com/photos/coffee-and-the-morning-paper-picture-id184993811?s=612x612" />
-        <TitleContainer>
-          <StyledCardTitle>Artikkeltittel</StyledCardTitle>
-          <StyledCardInfo>Testing</StyledCardInfo>
-        </TitleContainer>
-        <ArticleIntroParagraph>
-          I don't think anybody knows it was Russia that wrote Lorem Ipsum, but
-          I don't know, maybe it was. It could be Russia, but it could also be
-          China. It could also be lots of other people. It also could be some
-          wordsmith sitting on their bed that weights 400 pounds. Ok? Trump
-          Ipsum is calling for a total and complete shutdown of Muslim text
-          entering your website.
-        </ArticleIntroParagraph>
-      </FullSizeListItem>
-    </StyledListContainer>
-  </StyledArticlesWrapper>
-);
+const Articles = () => {
+  const tempArticlesList = [
+    { id: 1, author: 'Lars Larsen', date: '20.12.20' },
+    { id: 2, author: 'Gunn Gundersen', date: '21.11.20' },
+    { id: 3, author: 'Simen Simensen', date: '22.10.20' },
+  ];
 
+  return (
+    <StyledArticlesWrapper>
+      <SpacedFilterContainer>
+        <LeftAlignContainer>
+          <NewArticleButton>NY ARTIKKEL</NewArticleButton>
+        </LeftAlignContainer>
+        <RightAlignContainer>
+          <FilterButton>SØK</FilterButton>
+          <FilterButton>FILTER</FilterButton>
+        </RightAlignContainer>
+      </SpacedFilterContainer>
+      <StyledListContainer>
+        {tempArticlesList.map((article) => (
+          <Link
+            to={`/articles/${article.id}`}
+            style={{ textDecoration: 'none' }}
+          >
+            <FullSizeListItem>
+              <ArticleImage src="https://media.gettyimages.com/photos/coffee-and-the-morning-paper-picture-id184993811?s=612x612" />
+              <TitleContainer>
+                <StyledCardTitle>Artikkeltittel {article.id}</StyledCardTitle>
+                <StyledCardInfo>
+                  Publisert {article.date} av {article.author}
+                </StyledCardInfo>
+                <ArticleIntroParagraph>
+                  I don't think anybody knows it was Russia that wrote Lorem
+                  Ipsum, but I don't know, maybe it was. It could be Russia, but
+                  it could also be China. It could also be lots of other people.
+                  It also could be some wordsmith sitting on their bed that
+                  weights 400 pounds. Ok? Trump Ipsum is calling for a total and
+                  complete shutdown of Muslim text entering your website.
+                </ArticleIntroParagraph>
+              </TitleContainer>
+            </FullSizeListItem>
+          </Link>
+        ))}
+      </StyledListContainer>
+    </StyledArticlesWrapper>
+  );
+};
 export default Articles;
