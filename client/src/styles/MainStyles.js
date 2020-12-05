@@ -46,8 +46,6 @@ export const FilterContainer = styled(StyledButtonContainer)`
 
 /* NAV START */
 export const StyledNav = styled.nav`
-  //position: fixed;
-  //top: 0;
   width: 100%;
   height: 50px;
   box-shadow: 0 2px 8px #3b6978;
@@ -55,15 +53,37 @@ export const StyledNav = styled.nav`
   justify-content: flex-end;
   margin: 0;
   list-style: none;
+  background-color: white;
 
-  @media ${(props) => props.theme.breakpoints.md} {
-    background: red;
+  @media ${({ theme }) => theme.breakpoints.md} {
+    height: 35px;
+    justify-content: space-between;
+  }
+
+  @media ${({ theme }) => theme.breakpoints.sm} {
+    z-index: ${(props) => props.menu && '999'};
+    flex-direction: ${(props) => props.menu && 'column'};
+    max-width: ${(props) => props.menu && '70%'};
+    height: ${(props) => props.menu && 'auto'};
+    position: ${(props) => props.menu && 'absolute'};
   }
 `;
 
 export const StyledNavMenuItem = styled(StyledCenteredFlex)`
-  padding: 10px 20px;
+  padding: 15px 30px;
   font-weight: 650;
+  background-color: white;
+
+  @media ${({ theme }) => theme.breakpoints.md} {
+    padding: 5px 10px;
+    flex: 1 1 auto;
+  }
+
+  @media ${({ theme }) => theme.breakpoints.sm} {
+    display: none;
+    display: ${(props) => props.menu && 'block'};
+    padding: ${(props) => props.menu && '15px'};
+  }
 
   &:hover {
     background-color: #3b6978;
@@ -76,11 +96,15 @@ export const StyledNavMenuItem = styled(StyledCenteredFlex)`
   & > a {
     color: #555;
     font-size: 15px;
-    padding: 5px 10px;
+    //padding: 5px 10px;
     text-decoration: none;
 
     &.active {
       font-weight: 900;
+    }
+
+    @media ${({ theme }) => theme.breakpoints.md} {
+      font-size: 13px;
     }
   }
 
