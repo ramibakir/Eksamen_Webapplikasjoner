@@ -14,13 +14,14 @@ export const login = catchAsyncErrors(async (req, res, next) => {
     return next(new ErrorHandler('Fyll inn epost og passord', 400));
   }
 
-  const user = await userService.getUserByEmail({ email });
+  const user = await userService.getUserByEmail({ email }, true);
 
   if (!user) {
     return next(new ErrorHandler('Fyll inn epost og passord', 400));
   }
 
   const isPasswordMatched = await user.comparePassword(password);
+
   if (!isPasswordMatched) {
     return next(new ErrorHandler('Fyll inn epost og passord', 400));
   }

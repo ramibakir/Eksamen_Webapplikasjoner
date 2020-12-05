@@ -8,5 +8,5 @@ export const create = catchAsyncErrors(async (req, res, next) => {
 
 export const listUsers = catchAsyncErrors(async (req, res, next) => {
   const result = await userService.listUsers();
-  res.status(200).json({ result });
+  res.status(200).json(result);
 });

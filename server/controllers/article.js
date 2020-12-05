@@ -14,7 +14,7 @@ export const get = catchAsyncErrors(async (req, res, next) => {
 
 export const list = catchAsyncErrors(async (req, res, next) => {
   const result = await articleService.listArticles();
-  res.status(200).json({ result });
+  res.status(200).json(result);
 });
 
 export const create = catchAsyncErrors(async (req, res, next) => {
