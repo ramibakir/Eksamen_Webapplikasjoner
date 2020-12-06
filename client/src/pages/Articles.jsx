@@ -6,16 +6,16 @@ import {
   StyledContainer,
   FilterContainer,
   FilterButton,
-} from '../styles/MainStyles';
+} from '../styles/mainStyles';
 import {
   StyledListContainer,
   StyledListItem,
   StyledCardTitle,
   StyledCardInfo,
-} from '../styles/ListStyles';
+} from '../styles/listStyles';
 
 const StyledArticlesWrapper = styled(StyledContainer)`
-  margin: 0 20px;
+  margin: 0 5%;
 `;
 
 const TitleContainer = styled(StyledContainer)`

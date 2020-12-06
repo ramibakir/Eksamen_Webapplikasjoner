@@ -6,7 +6,7 @@ export const StyledContainer = styled.div`
 `;
 
 export const StyledDetailViewWrapper = styled(StyledContainer)`
-  margin: 0 70px;
+  margin: 0 10%;
 `;
 
 export const StyledCenteredFlex = styled.section`

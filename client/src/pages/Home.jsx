@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { StyledHomeLayout, StyledHomeSection } from '../styles/homeStyle';
-import { StyledSubtitle } from '../styles/MainStyles';
+import { StyledSubtitle } from '../styles/mainStyles';
 
 const Home = () => (
   <StyledHomeLayout>

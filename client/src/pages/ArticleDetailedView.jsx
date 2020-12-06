@@ -6,7 +6,7 @@ import {
   StyledButton,
   StyledSubtitle,
   StyledDetailViewWrapper,
-} from '../styles/MainStyles';
+} from '../styles/mainStyles';
 
 const ArticleDataContainer = styled.div`
   display: flex;

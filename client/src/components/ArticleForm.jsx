@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { StyledButton, StyledContainer } from '../styles/MainStyles.js';
+import { StyledButton, StyledContainer } from '../styles/mainStyles.js';
 import {
   StyledFormContainter,
   StyledForm,
@@ -8,7 +8,7 @@ import {
   StyledTextArea,
   StyledLabel,
   StyledSelect,
-} from '../styles/FormStyles.js';
+} from '../styles/formStyles.js';
 
 const NewCategoryContainer = styled(StyledContainer)`
   display: flex;

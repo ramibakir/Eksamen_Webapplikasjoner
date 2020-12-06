@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import { StyledContainer } from '../styles/MainStyles';
+import { StyledContainer } from '../styles/mainStyles';
 import CardView from '../components/CardView';
 import ListView from '../components/ListView';
 import Filter from '../components/Filter';
 
 const StyledOfficesWrapper = styled(StyledContainer)`
-  margin: 20px;
+  margin: 20px 5%;
 `;
 
 const fullOfficeList = [

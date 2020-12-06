@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { StyledContainer } from './MainStyles.js';
+import { StyledContainer } from './mainStyles.js';
 
 export const StyledInput = styled.input`
   font-size: 1em;

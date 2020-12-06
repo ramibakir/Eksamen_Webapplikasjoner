@@ -7,12 +7,12 @@ import {
   StyledImage,
   StyledHeader,
   StyledDetailViewWrapper,
-} from '../styles/MainStyles';
+} from '../styles/mainStyles';
 import {
   StyledGridContainer,
   StyledCardItem,
   StyledCardInfo,
-} from '../styles/ListStyles';
+} from '../styles/listStyles';
 
 const StyledEmpoyeeGrid = styled(StyledGridContainer)`
   margin: 20px 0;

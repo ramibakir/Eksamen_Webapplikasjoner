@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import MenuIcon from '@material-ui/icons/Menu';
-import { StyledNav, StyledNavMenuItem } from '../styles/MainStyles';
+import { StyledNav, StyledNavMenuItem } from '../styles/mainStyles';
 
 const Nav = () => {
   const [menu, setShowMenu] = useState(false);

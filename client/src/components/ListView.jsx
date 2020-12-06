@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { StyledSubHeader, StyledSubtitle } from '../styles/MainStyles';
+import { StyledSubHeader, StyledSubtitle } from '../styles/mainStyles';
 import {
   StyledListContainer,
   StyledListItem,
   StyledCardTitle,
   StyledCardInfo,
-} from '../styles/ListStyles';
+} from '../styles/listStyles';
 
 const ListView = ({ office }) => (
   <>

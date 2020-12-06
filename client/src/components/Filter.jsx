@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import ReorderIcon from '@material-ui/icons/Reorder';
 import ViewModuleIcon from '@material-ui/icons/ViewModule';
-import { FilterContainer, FilterButton } from '../styles/MainStyles';
-import { StyledSelect } from '../styles/FormStyles';
+import { FilterContainer, FilterButton } from '../styles/mainStyles';
+import { StyledSelect } from '../styles/formStyles';
 
 const RightAlignedFilter = styled(FilterContainer)`
   justify-content: flex-end;
