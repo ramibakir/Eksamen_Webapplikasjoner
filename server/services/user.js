@@ -4,7 +4,7 @@ export const createUser = async (data) => User.create(data);
 
 export const getUserByEmail = async (email, usePassword) => {
   if (usePassword) {
-    return (await User.findOne(email)).isSelected('+password');
+    return User.findOne(email).select('+password');
   }
   return User.findOne(email);
 };

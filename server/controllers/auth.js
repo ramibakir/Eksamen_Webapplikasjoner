@@ -11,24 +11,32 @@ export const register = catchAsyncErrors(async (req, res, next) => {
 export const login = catchAsyncErrors(async (req, res, next) => {
   const { email, password } = req.body;
   if (!email || !password) {
-    return next(new ErrorHandler('Fyll inn epost og passord', 400));
+    return next(new ErrorHandler('Fyll ut epost og passord', 400));
   }
 
   const user = await userService.getUserByEmail({ email }, true);
 
   if (!user) {
-    return next(new ErrorHandler('Fyll inn epost og passord', 400));
+    return next(new ErrorHandler('Fyll ut epost og passord', 400));
   }
 
   const isPasswordMatched = await user.comparePassword(password);
 
   if (!isPasswordMatched) {
-    return next(new ErrorHandler('Fyll inn epost og passord', 400));
+    return next(new ErrorHandler('Fyll ut epost og passord', 400));
   }
 
   sendToken(user, res);
 });
 
 export const logout = catchAsyncErrors(async (req, res, next) => {
-  // implement logout
+  res.cookie('token', 'none', {
+    expires: new Date(Date.now()),
+    httpOnly: true,
+  });
+
+  res.status(200).json({
+    success: true,
+    data: 'Logget ut',
+  });
 });

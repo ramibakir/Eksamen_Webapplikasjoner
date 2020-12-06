@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "server files for exam",
   "main": "main.js",
+  "type": "module",
   "scripts": {
     "dev": "nodemon server.js"
   },
@@ -25,8 +26,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.10.7",
     "morgan": "^1.10.0",
-    "slugify": "^1.4.5",
-    "validator": "^13.1.17"
+    "slugify": "^1.4.5"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
