@@ -34,38 +34,51 @@ const AuthorSelector = styled(StyledSelect)`
   margin: 10px 0 30px 0;
 `;
 
-const ArticleForm = () => (
-  <>
-    <StyledFormContainter>
-      <StyledForm>
-        <StyledLabel htmlFor="title">Tittel</StyledLabel>
-        <StyledInput required type="text" placeholder="Tittel" />
+const ArticleForm = () => {
+  const authorList = [
+    { id: 'l', name: 'Lars Larsen' },
+    { id: 'g', name: 'Gunn Gundersen' },
+    { id: 's', name: 'Simen Simensen' },
+  ];
 
-        <StyledLabel htmlFor="ingress">Ingress</StyledLabel>
-        <StyledInput required type="text" placeholder="Ingress" />
+  return (
+    <>
+      <StyledFormContainter>
+        <StyledForm>
+          <StyledLabel htmlFor="title">Tittel</StyledLabel>
+          <StyledInput required type="text" placeholder="Tittel" />
 
-        <StyledLabel htmlFor="date">Dato</StyledLabel>
-        <StyledInput required type="date" placeholder="Dato" />
+          <StyledLabel htmlFor="ingress">Ingress</StyledLabel>
+          <StyledInput required type="text" placeholder="Ingress" />
 
-        <StyledLabel htmlFor="category">Kategori</StyledLabel>
-        <NewCategoryContainer>
-          <CategorySelector name="category">
-            <option value="test">Just testing</option>
-          </CategorySelector>
-          <NewCategoryButton>NY</NewCategoryButton>
-        </NewCategoryContainer>
-        <StyledLabel htmlFor="author">Forfatter</StyledLabel>
-        <AuthorSelector name="author">
-          <option value="author">Rami Bakir</option>
-        </AuthorSelector>
-        <StyledLabel htmlFor="content">Innhold</StyledLabel>
-        <StyledTextArea required type="text" placeholder="Innhold" />
-        <StyledButton style={{ margin: '30px 0 50px 0' }}>
-          OPPRETT ARTIKKEL
-        </StyledButton>
-      </StyledForm>
-    </StyledFormContainter>
-  </>
-);
+          <StyledLabel htmlFor="date">Dato</StyledLabel>
+          <StyledInput required type="date" placeholder="Dato" />
+
+          <StyledLabel htmlFor="category">Kategori</StyledLabel>
+          <NewCategoryContainer>
+            <CategorySelector name="category">
+              <option value="test">Just testing</option>
+            </CategorySelector>
+            <NewCategoryButton>NY</NewCategoryButton>
+          </NewCategoryContainer>
+          <StyledLabel htmlFor="author">Forfatter</StyledLabel>
+          <AuthorSelector name="author">
+            <option value="none" disabled selected>
+              -- Velg forfatter --
+            </option>
+            {authorList.map((author) => (
+              <option value={author.id}>{author.name}</option>
+            ))}
+          </AuthorSelector>
+          <StyledLabel htmlFor="content">Innhold</StyledLabel>
+          <StyledTextArea required type="text" placeholder="Innhold" />
+          <StyledButton style={{ margin: '30px 0 50px 0' }}>
+            OPPRETT ARTIKKEL
+          </StyledButton>
+        </StyledForm>
+      </StyledFormContainter>
+    </>
+  );
+};
 
 export default ArticleForm;
