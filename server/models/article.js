@@ -31,7 +31,8 @@ const ArticleSchema = new Schema(
       required: true,
     },
     category: {
-      type: String,
+      type: mongoose.Schema.ObjectId,
+      ref: 'Category',
       required: true,
     },
   },
@@ -43,4 +44,6 @@ ArticleSchema.pre('save', function (next) {
   next();
 });
 
-export default mongoose.model('Article', ArticleSchema);
+const Article = mongoose.model('Article', ArticleSchema);
+
+export default Article;
