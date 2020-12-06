@@ -26,6 +26,10 @@ const ArticleSchema = new Schema(
       required: true,
     },
     author: {
+      type: String,
+      required: true,
+    },
+    admin: {
       type: mongoose.Schema.ObjectId,
       ref: 'User',
       required: true,
