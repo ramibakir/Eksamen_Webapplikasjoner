@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 export const sendToken = (user, res) => {
   const token = user.getJwtToken();
 
