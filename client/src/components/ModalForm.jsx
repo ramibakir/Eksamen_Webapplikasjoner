@@ -1,12 +1,11 @@
 import React from 'react';
-import styled from 'styled-components';
-import { StyledButton, StyledContainer } from '../styles/MainStyles.js';
+import { StyledButton } from '../styles/mainStyles.js';
 import {
   StyledFormContainter,
   StyledForm,
   StyledInput,
   StyledLabel,
-} from '../styles/FormStyles.js';
+} from '../styles/formStyles.js';
 
 const ModalForm = () => (
   <>
@@ -19,3 +18,5 @@ const ModalForm = () => (
     </StyledFormContainter>
   </>
 );
+
+export default ModalForm;

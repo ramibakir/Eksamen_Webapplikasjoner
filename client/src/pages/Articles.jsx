@@ -1,20 +1,32 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import {
   StyledImage,
-  StyledParagraph,
-  StyledHeader,
-  StyledButton,
-} from '../styles/MainStyles';
-import { StyledListContainer, StyledListItem } from '../styles/ListStyles';
+  StyledContainer,
+  FilterContainer,
+  FilterButton,
+} from '../styles/mainStyles';
+import {
+  StyledListContainer,
+  StyledListItem,
+  StyledCardTitle,
+  StyledCardInfo,
+} from '../styles/listStyles';
 
-const TempContainer = styled.div`
+const StyledArticlesWrapper = styled(StyledContainer)`
+  margin: 0 5%;
+`;
+
+const TitleContainer = styled(StyledContainer)`
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
+  margin-right: 10px;
 `;
 
 const ArticleImage = styled(StyledImage)`
-  border-radius: 4px;
+  border-radius: 10px;
   padding: 5px;
   width: 150px;
   height: 150px;
@@ -23,51 +35,77 @@ const ArticleImage = styled(StyledImage)`
   float: left;
 `;
 
-const ArticleIntroParagraph = styled(StyledParagraph)`
+const ArticleIntroParagraph = styled(StyledCardInfo)`
   font-size: 18px;
   overflow: hidden;
 `;
 
-const CategoryParagraph = styled(StyledParagraph)`
-  font-size: 12px;
+const NewArticleButton = styled(FilterButton)`
+  background-color: #204051;
 `;
 
-const NewArticleButton = styled(StyledButton)`
-  font-weight: 700;
+const RightAlignContainer = styled(FilterContainer)`
+  justify-content: flex-end;
 `;
 
-const SearchButton = styled(StyledButton)`
-  color: black;
-  background-color: lightgrey;
+const LeftAlignContainer = styled(FilterContainer)`
+  justify-content: flex-start;
 `;
 
-const Articles = () => (
-  <>
-    <TempContainer>
-      <NewArticleButton>NY ARTIKKEL</NewArticleButton>
-      <TempContainer>
-        <SearchButton>SØK</SearchButton>
-        <SearchButton>FILTER</SearchButton>
-      </TempContainer>
-    </TempContainer>
-    <StyledListContainer>
-      <StyledListItem>
-        <ArticleImage src="https://media.gettyimages.com/photos/coffee-and-the-morning-paper-picture-id184993811?s=612x612" />
-        <TempContainer>
-          <StyledParagraph>Artikkeltittel</StyledParagraph>
-          <CategoryParagraph>Testing</CategoryParagraph>
-        </TempContainer>
-        <ArticleIntroParagraph>
-          I don't think anybody knows it was Russia that wrote Lorem Ipsum, but
-          I don't know, maybe it was. It could be Russia, but it could also be
-          China. It could also be lots of other people. It also could be some
-          wordsmith sitting on their bed that weights 400 pounds. Ok? Trump
-          Ipsum is calling for a total and complete shutdown of Muslim text
-          entering your website.
-        </ArticleIntroParagraph>
-      </StyledListItem>
-    </StyledListContainer>
-  </>
-);
+const SpacedFilterContainer = styled(FilterContainer)`
+  justify-content: space-between;
+  margin-bottom: 30px;
+`;
 
+const FullSizeListItem = styled(StyledListItem)`
+  padding-right: 10px;
+`;
+
+const Articles = () => {
+  const tempArticlesList = [
+    { id: 1, author: 'Lars Larsen', date: '20.12.20' },
+    { id: 2, author: 'Gunn Gundersen', date: '21.11.20' },
+    { id: 3, author: 'Simen Simensen', date: '22.10.20' },
+  ];
+
+  return (
+    <StyledArticlesWrapper>
+      <SpacedFilterContainer>
+        <LeftAlignContainer>
+          <NewArticleButton>NY ARTIKKEL</NewArticleButton>
+        </LeftAlignContainer>
+        <RightAlignContainer>
+          <FilterButton>SØK</FilterButton>
+          <FilterButton>FILTER</FilterButton>
+        </RightAlignContainer>
+      </SpacedFilterContainer>
+      <StyledListContainer>
+        {tempArticlesList.map((article) => (
+          <Link
+            to={`/articles/${article.id}`}
+            style={{ textDecoration: 'none' }}
+          >
+            <FullSizeListItem>
+              <ArticleImage src="https://media.gettyimages.com/photos/coffee-and-the-morning-paper-picture-id184993811?s=612x612" />
+              <TitleContainer>
+                <StyledCardTitle>Artikkeltittel {article.id}</StyledCardTitle>
+                <StyledCardInfo>
+                  Publisert {article.date} av {article.author}
+                </StyledCardInfo>
+                <ArticleIntroParagraph>
+                  I don't think anybody knows it was Russia that wrote Lorem
+                  Ipsum, but I don't know, maybe it was. It could be Russia, but
+                  it could also be China. It could also be lots of other people.
+                  It also could be some wordsmith sitting on their bed that
+                  weights 400 pounds. Ok? Trump Ipsum is calling for a total and
+                  complete shutdown of Muslim text entering your website.
+                </ArticleIntroParagraph>
+              </TitleContainer>
+            </FullSizeListItem>
+          </Link>
+        ))}
+      </StyledListContainer>
+    </StyledArticlesWrapper>
+  );
+};
 export default Articles;

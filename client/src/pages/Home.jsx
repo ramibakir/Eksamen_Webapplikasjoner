@@ -1,19 +1,26 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { StyledHomeLayout, StyledHomeSection } from '../styles/homeStyle';
-import { StyledSubtitle } from '../styles/MainStyles';
+import { StyledSubtitle } from '../styles/mainStyles';
 
 const Home = () => (
   <StyledHomeLayout>
     <StyledHomeSection sectionName="offices">
-      <StyledSubtitle>Kontorer</StyledSubtitle>
+      <Link to="/offices" style={{ textDecoration: 'none' }}>
+        <StyledSubtitle>Kontorer</StyledSubtitle>
+      </Link>
     </StyledHomeSection>
 
     <StyledHomeSection sectionName="contact">
-      <StyledSubtitle>Kontakt</StyledSubtitle>
+      <Link to="/contact" style={{ textDecoration: 'none' }}>
+        <StyledSubtitle>Kontakt</StyledSubtitle>
+      </Link>
     </StyledHomeSection>
 
     <StyledHomeSection sectionName="articles">
-      <StyledSubtitle>Se våre fagartikler om oppussing av bad</StyledSubtitle>
+      <Link to="/articles" style={{ textDecoration: 'none' }}>
+        <StyledSubtitle>Se våre fagartikler om oppussing av bad</StyledSubtitle>
+      </Link>
     </StyledHomeSection>
   </StyledHomeLayout>
 );

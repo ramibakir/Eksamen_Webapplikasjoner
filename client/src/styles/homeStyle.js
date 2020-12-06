@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import { StyledCenteredFlex } from './MainStyles';
+import { StyledCenteredFlex } from './mainStyles';
 
 export const StyledHomeLayout = styled.div`
   width: 100%;
-  padding: 50px;
+  padding: 50px 5%;
   display: grid;
   grid-gap: 50px;
   grid-template-areas:

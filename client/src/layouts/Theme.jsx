@@ -1,6 +1,6 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
-import { GlobalStyles } from './Global.js';
+import { GlobalStyles } from '../styles/global.js';
 
 const theme = {
   breakpoints: {
