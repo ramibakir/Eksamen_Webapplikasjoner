@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { StyledContainer } from './MainStyles.js';
+import { StyledContainer } from './mainStyles.js';
 
 export const StyledInput = styled.input`
   font-size: 1em;
@@ -8,14 +8,16 @@ export const StyledInput = styled.input`
   margin: 10px;
   height: 50px;
   padding: 10px;
+  margin: 10px 0 30px 0;
 `;
 
 export const StyledSelect = styled.select`
-  width: 100%;
+  width: 20%;
   padding: 16px 20px;
-  border: none;
+  border: 1px solid #3b6978;
   border-radius: 4px;
   background-color: #f1f1f1;
+  margin: 0 10px;
 `;
 
 export const StyledLabel = styled.label`
@@ -36,9 +38,8 @@ export const StyledForm = styled.form`
   padding: 10px;
   border-radius: 10px;
 
-  display: grid;
-  grid-row-gap: 10px;
-  grid-template-rows: auto auto auto auto auto 1fr;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const StyledTextArea = styled.textarea`
@@ -47,4 +48,5 @@ export const StyledTextArea = styled.textarea`
   border: 2px solid black;
   padding: 5px;
   border-radius: 4px;
+  margin: 10px 0 30px 0;
 `;

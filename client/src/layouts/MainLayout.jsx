@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Header from '../components/Header';
 import Nav from '../components/Nav';
-import { StyledContainer } from '../styles/MainStyles';
+import { StyledContainer } from '../styles/mainStyles';
 
 // Put this here to make footer stick to bottom with and without scroll
 // https://css-tricks.com/couple-takes-sticky-footer/

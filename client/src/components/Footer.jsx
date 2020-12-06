@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { StyledFooter, StyledParagraph } from '../styles/MainStyles';
+import { StyledFooter, StyledParagraph } from '../styles/mainStyles';
 
 const StyledFooterParagraphContainer = styled.div`
   display: flex;

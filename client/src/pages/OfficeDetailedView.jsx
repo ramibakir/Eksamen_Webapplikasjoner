@@ -6,11 +6,20 @@ import {
   StyledParagraph,
   StyledImage,
   StyledHeader,
-} from '../styles/MainStyles';
-import { StyledGridContainer, StyledCardItem } from '../styles/ListStyles';
+  StyledDetailViewWrapper,
+} from '../styles/mainStyles';
+import {
+  StyledGridContainer,
+  StyledCardItem,
+  StyledCardInfo,
+} from '../styles/listStyles';
+
+const StyledEmpoyeeGrid = styled(StyledGridContainer)`
+  margin: 20px 0;
+`;
 
 const EmployeeImage = styled(StyledImage)`
-  border-radius: 4px;
+  border-radius: 10px;
   padding: 5px;
   width: 150px;
   display: block;
@@ -19,10 +28,11 @@ const EmployeeImage = styled(StyledImage)`
 
 const IntroParagraph = styled(StyledParagraph)`
   font-size: 18px;
+  margin: 10px 0 30px 0;
 `;
 
-const EmployeeParagraph = styled(StyledParagraph)`
-  font-size: 14px;
+const StyledEmployeeInfo = styled(StyledCardInfo)`
+  text-align: center;
 `;
 
 const BottomHeader = styled(StyledHeader)`
@@ -30,6 +40,7 @@ const BottomHeader = styled(StyledHeader)`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 70px;
 `;
 
 const OfficeDetailedView = () => {
@@ -53,7 +64,7 @@ const OfficeDetailedView = () => {
   const officeNumber = officeLocation[0].officeNr.filter((nr) => nr == paramNr);
 
   return (
-    <>
+    <StyledDetailViewWrapper>
       <StyledSubtitle>
         Velkommen til Rørlegger {officeNumber} i {officeLocation[0].place}
       </StyledSubtitle>
@@ -68,17 +79,17 @@ const OfficeDetailedView = () => {
         converting your tin cans into pure gold.
       </IntroParagraph>
       <StyledSubtitle>Våre ansatte</StyledSubtitle>
-      <StyledGridContainer>
+      <StyledEmpoyeeGrid>
         <StyledCardItem>
           <EmployeeImage src="https://c8.alamy.com/comp/BP35EX/ripe-grapefruit-with-a-person-smiling-girl-computer-assembly-on-a-BP35EX.jpg" />
-          <EmployeeParagraph>Ansatt Ansattnavn</EmployeeParagraph>
-          <EmployeeParagraph>Stilling</EmployeeParagraph>
+          <StyledEmployeeInfo>Ansatt Ansattnavn</StyledEmployeeInfo>
+          <StyledEmployeeInfo>Stilling</StyledEmployeeInfo>
         </StyledCardItem>
-      </StyledGridContainer>
+      </StyledEmpoyeeGrid>
       <BottomHeader>
         <h2>Kontakt oss på 69 99 00 00</h2>
       </BottomHeader>
-    </>
+    </StyledDetailViewWrapper>
   );
 };
 
