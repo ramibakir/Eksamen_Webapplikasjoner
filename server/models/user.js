@@ -53,7 +53,7 @@ UserSchema.methods.comparePassword = async function (password) {
 UserSchema.virtual('article', {
   ref: 'Article',
   localField: '_id',
-  foreignField: 'author',
+  foreignField: 'admin',
   justOne: false,
 });
 

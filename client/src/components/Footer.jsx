@@ -4,7 +4,7 @@ import { StyledFooter, StyledParagraph } from '../styles/mainStyles';
 
 const StyledFooterParagraphContainer = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
 `;
 
 const Footer = () => (
