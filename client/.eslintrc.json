@@ -60,6 +60,7 @@
       }
     ],
     "no-console": 0,
+    "linebreak-style": ["error", "windows"],
     "import/prefer-default-export": 0,
     "import": 0,
     "func-names": 0,

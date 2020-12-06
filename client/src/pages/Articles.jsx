@@ -72,7 +72,9 @@ const Articles = () => {
     <StyledArticlesWrapper>
       <SpacedFilterContainer>
         <LeftAlignContainer>
-          <NewArticleButton>NY ARTIKKEL</NewArticleButton>
+          <Link to="/newarticle" style={{ textDecoration: 'none' }}>
+            <NewArticleButton>NY ARTIKKEL</NewArticleButton>
+          </Link>
         </LeftAlignContainer>
         <RightAlignContainer>
           <FilterButton>SØK</FilterButton>

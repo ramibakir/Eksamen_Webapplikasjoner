@@ -37,7 +37,7 @@ const Routes = () => (
           <ArticleDetailedView />
         </Route>
         {/* TODO replace /newarticle with /:id */}
-        <Route path="/articles/newarticle">
+        <Route path="/newarticle">
           <CreateNewArticle />
         </Route>
       </Switch>
