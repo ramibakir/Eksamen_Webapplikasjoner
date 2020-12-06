@@ -9,4 +9,6 @@ export const getUserByEmail = async (email, usePassword) => {
   return User.findOne(email);
 };
 
+export const getUserById = async (id) => User.findById(id);
+
 export const listUsers = async () => User.find();

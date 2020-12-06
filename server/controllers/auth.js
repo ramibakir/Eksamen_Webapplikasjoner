@@ -40,3 +40,16 @@ export const logout = catchAsyncErrors(async (req, res, next) => {
     data: 'Logget ut',
   });
 });
+
+export const currentUser = catchAsyncErrors(async (req, res, next) => {
+  const user = await userService.getUserById(req.user.id);
+
+  if (!user) {
+    return next(new ErrorHandler('Finner ikke brukeren', 404));
+  }
+
+  res.status(200).json({
+    success: true,
+    data: user,
+  });
+});

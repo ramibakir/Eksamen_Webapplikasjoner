@@ -46,7 +46,6 @@ UserSchema.methods.getJwtToken = function () {
 };
 
 UserSchema.methods.comparePassword = async function (password) {
-  console.log(password);
   const result = argon2.verify(this.password, password);
   return result;
 };
