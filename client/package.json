@@ -1,5 +1,5 @@
 {
-  "name": "webapplikasjoner_eksamen",
+  "name": "Eksamen_Webapplikasjoner",
   "version": "1.0.0",
   "description": "client files",
   "main": "main.js",
@@ -39,6 +39,8 @@
     "webpack-merge": "^5.2.0"
   },
   "dependencies": {
+    "@material-ui/core": "^4.11.1",
+    "@material-ui/icons": "^4.9.1",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-router-dom": "^5.2.0",
@@ -72,12 +74,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ramibakir/WebApplikasjoner_Eksamen.git"
+    "url": "git+https://github.com/ramibakir/Eksamen_Webapplikasjoner.git"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ramibakir/WebApplikasjoner_Eksamen/issues"
+    "url": "https://github.com/ramibakir/Eksamen_Webapplikasjoner/issues"
   },
-  "homepage": "https://github.com/ramibakir/WebApplikasjoner_Eksamen#readme"
+  "homepage": "https://github.com/ramibakir/Eksamen_Webapplikasjoner#readme"
 }
