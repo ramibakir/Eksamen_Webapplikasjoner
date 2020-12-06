@@ -11,6 +11,7 @@ import connectDatabase from './config/db.js';
 import article from './routes/article.js';
 import user from './routes/user.js';
 import auth from './routes/auth.js';
+import category from './routes/category.js';
 
 const app = express();
 
@@ -33,6 +34,7 @@ app.use(cookieParser());
 app.use(`${process.env.BASE_URL}/articles`, article);
 app.use(`${process.env.BASE_URL}/users`, user);
 app.use(`${process.env.BASE_URL}/`, auth);
+app.use(`${process.env.BASE_URL}/categories`, category);
 
 app.use(errorMiddleware);
 
