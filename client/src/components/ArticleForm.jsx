@@ -13,14 +13,25 @@ import {
 const NewCategoryContainer = styled(StyledContainer)`
   display: flex;
   justify-content: space-between;
+  align-content: center;
 `;
 
 const NewCategoryButton = styled(StyledButton)`
-  width: 20%;
+  //width: 100%;
+  //height: 50px;
+  margin: 10px 0 30px 10px;
+  flex: 1 1 auto;
+  //padding: 10px;
 `;
 
 const CategorySelector = styled(StyledSelect)`
   width: 70%;
+  margin: 10px 0 30px 0;
+`;
+
+const AuthorSelector = styled(StyledSelect)`
+  width: 100%;
+  margin: 10px 0 30px 0;
 `;
 
 const ArticleForm = () => (
@@ -33,9 +44,6 @@ const ArticleForm = () => (
         <StyledLabel htmlFor="ingress">Ingress</StyledLabel>
         <StyledInput required type="text" placeholder="Ingress" />
 
-        <StyledLabel htmlFor="content">Innhold</StyledLabel>
-        <StyledTextArea required type="text" placeholder="Innhold" />
-
         <StyledLabel htmlFor="date">Dato</StyledLabel>
         <StyledInput required type="date" placeholder="Dato" />
 
@@ -47,10 +55,14 @@ const ArticleForm = () => (
           <NewCategoryButton>NY</NewCategoryButton>
         </NewCategoryContainer>
         <StyledLabel htmlFor="author">Forfatter</StyledLabel>
-        <StyledSelect name="author">
+        <AuthorSelector name="author">
           <option value="author">Rami Bakir</option>
-        </StyledSelect>
-        <StyledButton>OPPRETT ARTIKKEL</StyledButton>
+        </AuthorSelector>
+        <StyledLabel htmlFor="content">Innhold</StyledLabel>
+        <StyledTextArea required type="text" placeholder="Innhold" />
+        <StyledButton style={{ margin: '30px 0 50px 0' }}>
+          OPPRETT ARTIKKEL
+        </StyledButton>
       </StyledForm>
     </StyledFormContainter>
   </>

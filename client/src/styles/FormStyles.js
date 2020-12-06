@@ -33,18 +33,15 @@ export const StyledFormContainter = styled(StyledContainer)`
 
 export const StyledForm = styled.form`
   margin: auto;
-  width: 520px;
-  height: 500px;
+  width: 40%;
   padding: 10px;
   border-radius: 10px;
-
   display: flex;
   flex-direction: column;
 `;
 
 export const StyledTextArea = styled.textarea`
-  width: 500px;
-  height: 120px;
+  height: 200px;
   border: 2px solid black;
   padding: 5px;
   border-radius: 4px;
