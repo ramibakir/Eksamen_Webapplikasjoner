@@ -8,13 +8,13 @@ const ArticleSchema = new Schema(
     title: {
       type: String,
       required: true,
-      min: ['3', 'Tittel må bestå av flere enn 3 tegn'],
+      minlength: ['3', 'Tittel må bestå av flere enn 3 tegn'],
       max: ['100', 'Tittel må være under 100 tegn'],
     },
     ingress: {
       type: String,
       required: true,
-      min: ['3', 'Ingress må bestå av flere enn 3 tegn'],
+      minlength: ['3', 'Ingress må bestå av flere enn 3 tegn'],
       max: ['150', 'Ingress må være under 150 tegn'],
     },
     content: {

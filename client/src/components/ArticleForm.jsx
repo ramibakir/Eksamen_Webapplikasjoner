@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
 import { StyledButton, StyledContainer } from '../styles/mainStyles.js';
 import {
   StyledFormContainter,
@@ -10,6 +11,7 @@ import {
   StyledSelect,
 } from '../styles/formStyles.js';
 import { listCategories } from '../utils/categoryService';
+import { create } from '../utils/articleService';
 
 const NewCategoryContainer = styled(StyledContainer)`
   display: flex;
@@ -38,12 +40,19 @@ const AuthorSelector = styled(StyledSelect)`
 const ArticleForm = () => {
   const [error, setError] = useState(null);
   const [categories, setCategories] = useState(null);
+  const [success, setSuccess] = useState(false);
+
+  const history = useHistory();
 
   const authorList = [
     { id: 'l', name: 'Lars Larsen' },
     { id: 'g', name: 'Gunn Gundersen' },
     { id: 's', name: 'Simen Simensen' },
   ];
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+  };
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -57,10 +66,23 @@ const ArticleForm = () => {
     fetchCategories();
   }, []);
 
+  const onSubmit = async (formData) => {
+    const { data } = await create(formData);
+    if (!data.success) {
+      setError(data.message);
+    } else {
+      setSuccess(true);
+      setError(null);
+      setTimeout(() => {
+        history.pushState(`/articles/${data.data.id}`);
+      }, 2000);
+    }
+  };
+
   return (
     <>
       <StyledFormContainter>
-        <StyledForm>
+        <StyledForm onSubmit={handleSubmit}>
           <StyledLabel htmlFor="title">Tittel</StyledLabel>
           <StyledInput required type="text" placeholder="Tittel" />
 
@@ -92,7 +114,7 @@ const ArticleForm = () => {
           </AuthorSelector>
           <StyledLabel htmlFor="content">Innhold</StyledLabel>
           <StyledTextArea required type="text" placeholder="Innhold" />
-          <StyledButton style={{ margin: '30px 0 50px 0' }}>
+          <StyledButton style={{ margin: '30px 0 50px 0' }} onClick={onSubmit}>
             OPPRETT ARTIKKEL
           </StyledButton>
         </StyledForm>

@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { useAuthContext } from '../context/AuthProvider';
+import { list } from '../utils/articleService';
 import {
   StyledImage,
   StyledContainer,
@@ -63,13 +64,32 @@ const FullSizeListItem = styled(StyledListItem)`
 `;
 
 const Articles = () => {
+  const [articles, setArticles] = useState(null);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+
   const tempArticlesList = [
     { id: 1, author: 'Lars Larsen', date: '20.12.20' },
     { id: 2, author: 'Gunn Gundersen', date: '21.11.20' },
     { id: 3, author: 'Simen Simensen', date: '22.10.20' },
   ];
 
-  const { isLoggedIn, isAdmin, setUser } = useAuthContext();
+  const { isLoggedIn, isAdmin } = useAuthContext();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      const { data } = await list();
+      if (!data.success) {
+        setError(error);
+      } else {
+        setArticles(data.data);
+        setError(null);
+      }
+      setLoading(false);
+    };
+    fetchData();
+  }, []);
 
   return (
     <StyledArticlesWrapper>
@@ -86,7 +106,9 @@ const Articles = () => {
           <FilterButton>FILTER</FilterButton>
         </RightAlignContainer>
       </SpacedFilterContainer>
+      {error && <p>{error}</p>}
       <StyledListContainer>
+        {loading && <div>Loading ...</div>}
         {tempArticlesList.map((article) => (
           <Link
             to={`/articles/${article.id}`}

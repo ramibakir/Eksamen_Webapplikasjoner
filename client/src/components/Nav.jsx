@@ -58,15 +58,15 @@ const Nav = () => {
             Kontakt
           </NavLink>
         </StyledNavMenuItem>
-
-        <StyledNavMenuItem menu={menu}>
-          <NavLink exact to="/login" activeClassName="active">
-            Logg inn
-          </NavLink>
-        </StyledNavMenuItem>
-
+        {!isLoggedIn && (
+          <StyledNavMenuItem menu={menu}>
+            <NavLink exact to="/login" activeClassName="active">
+              Logg inn
+            </NavLink>
+          </StyledNavMenuItem>
+        )}
         {isLoggedIn && (
-          <StyledNavMenuItem menu={menu} style={{ marginRight: 'auto' }}>
+          <StyledNavMenuItem menu={menu}>
             <StyledButton type="button" onClick={handleLogout}>
               Logg ut
             </StyledButton>
