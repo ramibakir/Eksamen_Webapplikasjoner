@@ -2,7 +2,7 @@ import { categoryService } from '../services/index.js';
 import catchAsyncErrors from '../middleware/catchAsync.js';
 import ErrorHandler from '../utils/errorHandler.js';
 
-export const get = catchAsyncErrors(async (req, res, next) => {
+/* export const get = catchAsyncErrors(async (req, res, next) => {
   const category = await categoryService.getCategoryById(req.params.id);
   if (!category) {
     return next(
@@ -10,7 +10,7 @@ export const get = catchAsyncErrors(async (req, res, next) => {
     );
   }
   res.status(200).json(category);
-});
+}); */
 
 export const list = catchAsyncErrors(async (req, res, next) => {
   const result = await categoryService.listCategories();

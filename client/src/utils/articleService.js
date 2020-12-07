@@ -1,6 +1,6 @@
-import http from './http';
+import http from './http.js';
 
-const API_URL = 'articles';
+const API_URL = '/articles';
 
 export const list = async () => {
   try {

@@ -34,7 +34,7 @@ app.use(cookieParser());
 app.use(`${process.env.BASE_URL}/articles`, article);
 app.use(`${process.env.BASE_URL}/users`, user);
 app.use(`${process.env.BASE_URL}/`, auth);
-app.use(`${process.env.BASE_URL}/categories`, category);
+app.use(`${process.env.BASE_URL}/newarticle`, category);
 
 app.use(errorMiddleware);
 
