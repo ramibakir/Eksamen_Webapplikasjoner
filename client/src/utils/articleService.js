@@ -28,7 +28,7 @@ export const put = async (id, data) => {
 
 export const create = async (data) => {
   try {
-    return await http.put(`${API_URL}`, data);
+    return await http.post(`${API_URL}`, data);
   } catch (error) {
     return error.response;
   }

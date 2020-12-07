@@ -1,28 +1,42 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import ArticleForm from '../components/ArticleForm';
+import { create } from '../utils/articleService';
 
-const CreateNewArticle = () =>  
-  /*const [error, setError] = useState(null);
-  const [newArticle, setNewArticle] = useState(null);
+const CreateNewArticle = () => {
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(false);
+  const [formData, setFormData] = useState(null);
 
-  const submitNewCategory = async () => {
-    if (newCategory.name) {
-      const { error } = await createCategory(newCategory);
-      if (error) {
-        setError(error.statusCode);
+  const history = useHistory();
+
+  const onSubmit = async () => {
+    if (formData) {
+      console.log(formData);
+      const { data } = await create(formData);
+      if (!data.success) {
+        setError(data.message);
       } else {
-        alert('Ny kategori lagt til!');
+        setSuccess(true);
+        setError(null);
+        /* setTimeout(() => {
+          history.pushState(`/articles/${data.data.id}`);
+        }, 2000); */
       }
     } else {
-      alert('Data mangler');
+      console.log('no form data');
     }
-  };*/
+  };
 
-   (
-  <>
-    <ArticleForm />
-  </>
-)
-  ;
+  return (
+    <>
+      <ArticleForm
+        onSubmit={onSubmit}
+        formData={formData}
+        setFormData={setFormData}
+      />
+    </>
+  );
+};
 
 export default CreateNewArticle;

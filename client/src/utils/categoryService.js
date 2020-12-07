@@ -1,6 +1,6 @@
 import http from './http.js';
 
-const API_URL = '/newarticle';
+const API_URL = '/create';
 
 export const listCategories = async () => {
   try {

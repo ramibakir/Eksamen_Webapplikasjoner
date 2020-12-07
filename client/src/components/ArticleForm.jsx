@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { useHistory } from 'react-router-dom';
 import { StyledButton, StyledContainer } from '../styles/mainStyles.js';
 import {
   StyledFormContainter,
@@ -12,7 +11,6 @@ import {
 } from '../styles/formStyles.js';
 import { listCategories, createCategory } from '../utils/categoryService.js';
 import ModalForm from './ModalForm';
-import { create } from '../utils/articleService';
 
 const NewCategoryContainer = styled(StyledContainer)`
   display: flex;
@@ -21,11 +19,8 @@ const NewCategoryContainer = styled(StyledContainer)`
 `;
 
 const NewCategoryButton = styled(StyledButton)`
-  //width: 100%;
-  //height: 50px;
   margin: 10px 0 30px 10px;
   flex: 1 1 auto;
-  //padding: 10px;
 `;
 
 const CategorySelector = styled(StyledSelect)`
@@ -38,14 +33,11 @@ const AuthorSelector = styled(StyledSelect)`
   margin: 10px 0 30px 0;
 `;
 
-const ArticleForm = () => {
+const ArticleForm = ({ onSubmit, formData, setFormData }) => {
   const [error, setError] = useState(null);
   const [categories, setCategories] = useState(null);
   const [modalVisibility, setModalVisibility] = useState(false);
   const [newCategory, setNewCategory] = useState(null);
-  const [success, setSuccess] = useState(false);
-
-  const history = useHistory();
 
   const authorList = [
     { id: 'l', name: 'Lars Larsen' },
@@ -54,7 +46,8 @@ const ArticleForm = () => {
   ];
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
+    event.preventDefault(event);
+    setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
   useEffect(() => {
@@ -90,19 +83,6 @@ const ArticleForm = () => {
     }
   };
 
-  const onSubmit = async (formData) => {
-    const { data } = await create(formData);
-    if (!data.success) {
-      setError(data.message);
-    } else {
-      setSuccess(true);
-      setError(null);
-      setTimeout(() => {
-        history.pushState(`/articles/${data.data.id}`);
-      }, 2000);
-    }
-  };
-
   return (
     <>
       <StyledFormContainter>
@@ -112,18 +92,33 @@ const ArticleForm = () => {
         />
         <StyledForm>
           <StyledLabel htmlFor="title">Tittel</StyledLabel>
-          <StyledInput type="text" placeholder="Tittel" />
+          <StyledInput
+            type="text"
+            placeholder="Tittel"
+            name="title"
+            onChange={handleSubmit}
+          />
 
           <StyledLabel htmlFor="ingress">Ingress</StyledLabel>
-          <StyledInput type="text" placeholder="Ingress" />
+          <StyledInput
+            type="text"
+            placeholder="Ingress"
+            name="ingress"
+            onChange={handleSubmit}
+          />
 
           <StyledLabel htmlFor="date">Dato</StyledLabel>
-          <StyledInput type="date" placeholder="Dato" />
+          <StyledInput
+            type="date"
+            placeholder="Dato"
+            name="publishDate"
+            onChange={handleSubmit}
+          />
 
           <StyledLabel htmlFor="category">Kategori</StyledLabel>
           <NewCategoryContainer>
             {error && <p>{error}</p>}
-            <CategorySelector name="category">
+            <CategorySelector name="category" onChange={handleSubmit}>
               {categories &&
                 categories.map((category) => (
                   <option key={category._id} value={category._id}>
@@ -136,7 +131,7 @@ const ArticleForm = () => {
             </NewCategoryButton>
           </NewCategoryContainer>
           <StyledLabel htmlFor="author">Forfatter</StyledLabel>
-          <AuthorSelector name="author">
+          <AuthorSelector name="author" onChange={handleSubmit}>
             <option value="none" disabled defaultValue>
               -- Velg forfatter --
             </option>
@@ -147,8 +142,17 @@ const ArticleForm = () => {
             ))}
           </AuthorSelector>
           <StyledLabel htmlFor="content">Innhold</StyledLabel>
-          <StyledTextArea required type="text" placeholder="Innhold" />
-          <StyledButton style={{ margin: '30px 0 50px 0' }} onClick={onSubmit}>
+          <StyledTextArea
+            required
+            type="text"
+            placeholder="Innhold"
+            name="content"
+            onChange={handleSubmit}
+          />
+          <StyledButton
+            style={{ margin: '30px 0 50px 0' }}
+            onClick={() => onSubmit()}
+          >
             OPPRETT ARTIKKEL
           </StyledButton>
         </StyledForm>
