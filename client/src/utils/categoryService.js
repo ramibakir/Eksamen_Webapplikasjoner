@@ -10,4 +10,12 @@ export const listCategories = async () => {
   }
 };
 
-export default { listCategories };
+export const createCategory = async (data) => {
+  try {
+    return await http.put(`${API_URL}`, data);
+  } catch (error) {
+    return error.response;
+  }
+};
+
+export default { listCategories, createCategory };
