@@ -162,6 +162,3 @@ export const StyledImage = styled.img`
   height: auto;
 `;
 /* IMAGE ELEMENTS END */
-
-/* BREAKPOINT START */
-/* BREAKPOINT END */

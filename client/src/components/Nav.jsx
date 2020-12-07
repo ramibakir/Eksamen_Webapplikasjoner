@@ -2,10 +2,17 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import MenuIcon from '@material-ui/icons/Menu';
-import { StyledNav, StyledNavMenuItem } from '../styles/mainStyles';
+import {
+  StyledNav,
+  StyledNavMenuItem,
+  StyledButton,
+} from '../styles/mainStyles';
+import { useAuthContext } from '../context/AuthProvider';
+import { logout } from '../utils/authService';
 
 const Nav = () => {
   const [menu, setShowMenu] = useState(false);
+  const { isLoggedIn, isAdmin, setUser } = useAuthContext();
 
   const MenuIconContainer = styled.div`
     display: none;
@@ -18,6 +25,11 @@ const Nav = () => {
   const toggleMenu = () => {
     setShowMenu((display) => !display);
     console.log(menu);
+  };
+
+  const handleLogout = async () => {
+    await logout();
+    setUser(null);
   };
 
   return (
@@ -46,11 +58,20 @@ const Nav = () => {
             Kontakt
           </NavLink>
         </StyledNavMenuItem>
+
         <StyledNavMenuItem menu={menu}>
           <NavLink exact to="/login" activeClassName="active">
             Logg inn
           </NavLink>
         </StyledNavMenuItem>
+
+        {isLoggedIn && (
+          <StyledNavMenuItem menu={menu} style={{ marginRight: 'auto' }}>
+            <StyledButton type="button" onClick={handleLogout}>
+              Logg ut
+            </StyledButton>
+          </StyledNavMenuItem>
+        )}
       </StyledNav>
     </>
   );

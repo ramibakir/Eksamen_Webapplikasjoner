@@ -1,6 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { useAuthContext } from '../context/AuthProvider';
 import {
   StyledImage,
   StyledContainer,
@@ -68,14 +69,18 @@ const Articles = () => {
     { id: 3, author: 'Simen Simensen', date: '22.10.20' },
   ];
 
+  const { isLoggedIn, isAdmin, setUser } = useAuthContext();
+
   return (
     <StyledArticlesWrapper>
       <SpacedFilterContainer>
-        <LeftAlignContainer>
-          <Link to="/newarticle" style={{ textDecoration: 'none' }}>
-            <NewArticleButton>NY ARTIKKEL</NewArticleButton>
-          </Link>
-        </LeftAlignContainer>
+        {isLoggedIn && isAdmin && (
+          <LeftAlignContainer>
+            <NavLink to="/newarticle" style={{ textDecoration: 'none' }}>
+              <NewArticleButton>NY ARTIKKEL</NewArticleButton>
+            </NavLink>
+          </LeftAlignContainer>
+        )}
         <RightAlignContainer>
           <FilterButton>SØK</FilterButton>
           <FilterButton>FILTER</FilterButton>
