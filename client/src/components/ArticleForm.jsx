@@ -9,7 +9,7 @@ import {
   StyledLabel,
   StyledSelect,
 } from '../styles/formStyles.js';
-import { listCategories } from '../utils/articleService';
+import { listCategories } from '../utils/categoryService';
 
 const NewCategoryContainer = styled(StyledContainer)`
   display: flex;
