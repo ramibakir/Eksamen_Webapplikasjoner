@@ -1,6 +1,15 @@
 import styled from 'styled-components';
 import { StyledContainer } from './mainStyles.js';
 
+export const StyledSelect = styled.select`
+  width: 20%;
+  padding: 16px 20px;
+  border: 1px solid #3b6978;
+  border-radius: 4px;
+  background-color: #f1f1f1;
+  margin: 0 10px;
+`;
+
 export const StyledInput = styled.input`
   font-size: 1em;
   border: 2px solid black;
@@ -9,15 +18,6 @@ export const StyledInput = styled.input`
   height: 50px;
   padding: 10px;
   margin: 10px 0 30px 0;
-`;
-
-export const StyledSelect = styled.select`
-  width: 20%;
-  padding: 16px 20px;
-  border: 1px solid #3b6978;
-  border-radius: 4px;
-  background-color: #f1f1f1;
-  margin: 0 10px;
 `;
 
 export const StyledLabel = styled.label`
