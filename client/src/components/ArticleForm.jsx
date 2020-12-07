@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { StyledButton, StyledContainer } from '../styles/mainStyles.js';
 import {
@@ -9,6 +9,7 @@ import {
   StyledLabel,
   StyledSelect,
 } from '../styles/formStyles.js';
+import { listCategories } from '../utils/createArticleService';
 
 const NewCategoryContainer = styled(StyledContainer)`
   display: flex;
@@ -35,11 +36,26 @@ const AuthorSelector = styled(StyledSelect)`
 `;
 
 const ArticleForm = () => {
+  const [error, setError] = useState(null);
+  const [categories, setCategories] = useState(null);
+
   const authorList = [
     { id: 'l', name: 'Lars Larsen' },
     { id: 'g', name: 'Gunn Gundersen' },
     { id: 's', name: 'Simen Simensen' },
   ];
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      const { data, error } = await listCategories();
+      if (error) {
+        setError(error.statusCode);
+      } else {
+        setCategories(data);
+      }
+    };
+    fetchCategories();
+  }, []);
 
   return (
     <>
@@ -56,8 +72,12 @@ const ArticleForm = () => {
 
           <StyledLabel htmlFor="category">Kategori</StyledLabel>
           <NewCategoryContainer>
+            {error && <p>{error}</p>}
             <CategorySelector name="category">
-              <option value="test">Just testing</option>
+              {categories &&
+                categories.map((category) => (
+                  <option value={category.id}>{category.name}</option>
+                ))}
             </CategorySelector>
             <NewCategoryButton>NY</NewCategoryButton>
           </NewCategoryContainer>

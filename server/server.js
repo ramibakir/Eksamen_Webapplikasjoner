@@ -12,6 +12,7 @@ import article from './routes/article.js';
 import user from './routes/user.js';
 import auth from './routes/auth.js';
 import category from './routes/category.js';
+import newarticle from './routes/newArticle.js';
 
 const app = express();
 
@@ -35,6 +36,7 @@ app.use(`${process.env.BASE_URL}/articles`, article);
 app.use(`${process.env.BASE_URL}/users`, user);
 app.use(`${process.env.BASE_URL}/`, auth);
 app.use(`${process.env.BASE_URL}/categories`, category);
+app.use(`${process.env.BASE_URL}/newarticle`, newarticle);
 
 app.use(errorMiddleware);
 
