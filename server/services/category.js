@@ -1,6 +1,6 @@
-import Category from '../models/category.js';
+import Category from '../models/category';
 
-export const getCategoryById = async (id) => Category.findById(id);
+// export const getCategoryById = async (id) => Category.findById(id);
 
 export const listCategories = async () => Category.find();
 

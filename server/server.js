@@ -3,16 +3,15 @@ import morgan from 'morgan';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 
-import { PORT } from './constants/index.js';
-import 'dotenv/config.js';
+import { PORT } from './constants/index';
+import 'dotenv/config';
 
-import errorMiddleware from './middleware/errors.js';
-import connectDatabase from './config/db.js';
-import article from './routes/article.js';
-import user from './routes/user.js';
-import auth from './routes/auth.js';
-import category from './routes/category.js';
-import newarticle from './routes/newArticle.js';
+import errorMiddleware from './middleware/errors';
+import connectDatabase from './config/db';
+import article from './routes/article';
+import user from './routes/user';
+import auth from './routes/auth';
+import category from './routes/category';
 
 const app = express();
 
@@ -35,8 +34,7 @@ app.use(cookieParser());
 app.use(`${process.env.BASE_URL}/articles`, article);
 app.use(`${process.env.BASE_URL}/users`, user);
 app.use(`${process.env.BASE_URL}/`, auth);
-app.use(`${process.env.BASE_URL}/categories`, category);
-app.use(`${process.env.BASE_URL}/newarticle`, newarticle);
+app.use(`${process.env.BASE_URL}/newarticle`, category);
 
 app.use(errorMiddleware);
 
