@@ -12,7 +12,7 @@ export const listCategories = async () => {
 
 export const createCategory = async (data) => {
   try {
-    return await http.put(`${API_URL}`, data);
+    return await http.post(`${API_URL}`, data);
   } catch (error) {
     return error.response;
   }

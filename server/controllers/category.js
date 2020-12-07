@@ -14,6 +14,9 @@ import ErrorHandler from '../utils/errorHandler.js';
 
 export const list = catchAsyncErrors(async (req, res, next) => {
   const result = await categoryService.listCategories();
+  if (!result) {
+    return next(new ErrorHandler('Can not find categories', 404));
+  }
   res.status(200).json(result);
 });
 

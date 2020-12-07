@@ -10,7 +10,8 @@ import {
   StyledLabel,
   StyledSelect,
 } from '../styles/formStyles.js';
-import { listCategories } from '../utils/categoryService';
+import { listCategories, createCategory } from '../utils/categoryService.js';
+import ModalForm from './ModalForm';
 import { create } from '../utils/articleService';
 
 const NewCategoryContainer = styled(StyledContainer)`
@@ -40,6 +41,8 @@ const AuthorSelector = styled(StyledSelect)`
 const ArticleForm = () => {
   const [error, setError] = useState(null);
   const [categories, setCategories] = useState(null);
+  const [modalVisibility, setModalVisibility] = useState(false);
+  const [newCategory, setNewCategory] = useState(null);
   const [success, setSuccess] = useState(false);
 
   const history = useHistory();
@@ -66,6 +69,27 @@ const ArticleForm = () => {
     fetchCategories();
   }, []);
 
+  const toggleNewCategoryModal = () => {
+    setModalVisibility((display) => !display);
+  };
+
+  /* useEffect(() => {
+    setModalVisibility((display) => !display);
+  }, [state]); */
+
+  const submitNewCategory = async () => {
+    if (newCategory.name) {
+      const { error } = await createCategory(newCategory);
+      if (error) {
+        setError(error.statusCode);
+      } else {
+        alert('Ny kategori lagt til!');
+      }
+    } else {
+      alert('Data mangler');
+    }
+  };
+
   const onSubmit = async (formData) => {
     const { data } = await create(formData);
     if (!data.success) {
@@ -82,15 +106,19 @@ const ArticleForm = () => {
   return (
     <>
       <StyledFormContainter>
-        <StyledForm onSubmit={handleSubmit}>
+        <ModalForm
+          setNewCategory={setNewCategory}
+          submitNewCategory={submitNewCategory}
+        />
+        <StyledForm>
           <StyledLabel htmlFor="title">Tittel</StyledLabel>
-          <StyledInput required type="text" placeholder="Tittel" />
+          <StyledInput type="text" placeholder="Tittel" />
 
           <StyledLabel htmlFor="ingress">Ingress</StyledLabel>
-          <StyledInput required type="text" placeholder="Ingress" />
+          <StyledInput type="text" placeholder="Ingress" />
 
           <StyledLabel htmlFor="date">Dato</StyledLabel>
-          <StyledInput required type="date" placeholder="Dato" />
+          <StyledInput type="date" placeholder="Dato" />
 
           <StyledLabel htmlFor="category">Kategori</StyledLabel>
           <NewCategoryContainer>
@@ -98,18 +126,24 @@ const ArticleForm = () => {
             <CategorySelector name="category">
               {categories &&
                 categories.map((category) => (
-                  <option value={category.id}>{category.name}</option>
+                  <option key={category._id} value={category._id}>
+                    {category.name}
+                  </option>
                 ))}
             </CategorySelector>
-            <NewCategoryButton>NY</NewCategoryButton>
+            <NewCategoryButton onClick={toggleNewCategoryModal}>
+              NY
+            </NewCategoryButton>
           </NewCategoryContainer>
           <StyledLabel htmlFor="author">Forfatter</StyledLabel>
           <AuthorSelector name="author">
-            <option value="none" disabled selected>
+            <option value="none" disabled defaultValue>
               -- Velg forfatter --
             </option>
             {authorList.map((author) => (
-              <option value={author.id}>{author.name}</option>
+              <option key={author.id} value={author.id}>
+                {author.name}
+              </option>
             ))}
           </AuthorSelector>
           <StyledLabel htmlFor="content">Innhold</StyledLabel>
