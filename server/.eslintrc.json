@@ -60,6 +60,7 @@
       }
     ],
     "no-console": 0,
+    "linebreak-style": ["error", "windows"],
     "import/prefer-default-export": 0,
     "import": 0,
     "func-names": 0,
@@ -106,7 +107,8 @@
       {
         "trailingComma": "es5",
         "singleQuote": true,
-        "printWidth": 80
+        "printWidth": 80,
+        "endOfLine": "auto"
       }
     ],
     "jsx-a11y/href-no-hash": "off",

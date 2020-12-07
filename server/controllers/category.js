@@ -1,8 +1,8 @@
-import { categoryService } from '../services/index';
-import catchAsyncErrors from '../middleware/catchAsync';
-import ErrorHandler from '../utils/errorHandler';
+import { categoryService } from '../services/index.js';
+import catchAsyncErrors from '../middleware/catchAsync.js';
+import ErrorHandler from '../utils/errorHandler.js';
 
-/*export const get = catchAsyncErrors(async (req, res, next) => {
+/* export const get = catchAsyncErrors(async (req, res, next) => {
   const category = await categoryService.getCategoryById(req.params.id);
   if (!category) {
     return next(
