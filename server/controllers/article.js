@@ -18,7 +18,7 @@ export const list = catchAsyncErrors(async (req, res, next) => {
 });
 
 export const create = catchAsyncErrors(async (req, res, next) => {
-  req.body.user = req.user.id;
+  req.body.admin = req.user.id;
   const article = await articleService.createArticle(req.body);
   res.status(201).json({ success: true, data: article });
 });

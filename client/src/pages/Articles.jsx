@@ -1,67 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import styled from 'styled-components';
 import { useAuthContext } from '../context/AuthProvider';
 import { list } from '../utils/articleService';
-import {
-  StyledImage,
-  StyledContainer,
-  FilterContainer,
-  FilterButton,
-} from '../styles/mainStyles';
+import { FilterButton } from '../styles/mainStyles';
 import {
   StyledListContainer,
-  StyledListItem,
   StyledCardTitle,
   StyledCardInfo,
 } from '../styles/listStyles';
-
-const StyledArticlesWrapper = styled(StyledContainer)`
-  margin: 0 5%;
-`;
-
-const TitleContainer = styled(StyledContainer)`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin-right: 10px;
-`;
-
-const ArticleImage = styled(StyledImage)`
-  border-radius: 10px;
-  padding: 5px;
-  width: 150px;
-  height: 150px;
-  display: block;
-  margin: 10px;
-  float: left;
-`;
-
-const ArticleIntroParagraph = styled(StyledCardInfo)`
-  font-size: 18px;
-  overflow: hidden;
-`;
-
-const NewArticleButton = styled(FilterButton)`
-  background-color: #204051;
-`;
-
-const RightAlignContainer = styled(FilterContainer)`
-  justify-content: flex-end;
-`;
-
-const LeftAlignContainer = styled(FilterContainer)`
-  justify-content: flex-start;
-`;
-
-const SpacedFilterContainer = styled(FilterContainer)`
-  justify-content: space-between;
-  margin-bottom: 30px;
-`;
-
-const FullSizeListItem = styled(StyledListItem)`
-  padding-right: 10px;
-`;
+import {
+  StyledArticlesWrapper,
+  SpacedFilterContainer,
+  LeftAlignContainer,
+  RightAlignContainer,
+  NewArticleButton,
+  FullSizeListItem,
+  ArticleImage,
+  TitleContainer,
+  ArticleIntroParagraph,
+} from '../styles/articleStyles';
 
 const Articles = () => {
   const [articles, setArticles] = useState(null);

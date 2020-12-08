@@ -1,37 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import { StyledButton, StyledContainer } from '../styles/mainStyles.js';
+import { StyledButton } from '../styles/mainStyles.js';
 import {
   StyledFormContainter,
   StyledForm,
   StyledInput,
   StyledTextArea,
   StyledLabel,
-  StyledSelect,
 } from '../styles/formStyles.js';
+import {
+  NewCategoryContainer,
+  NewCategoryButton,
+  CategorySelector,
+  AuthorSelector,
+} from '../styles/articleStyles';
 import { listCategories, createCategory } from '../utils/categoryService.js';
 import ModalForm from './ModalForm';
-
-const NewCategoryContainer = styled(StyledContainer)`
-  display: flex;
-  justify-content: space-between;
-  align-content: center;
-`;
-
-const NewCategoryButton = styled(StyledButton)`
-  margin: 10px 0 30px 10px;
-  flex: 1 1 auto;
-`;
-
-const CategorySelector = styled(StyledSelect)`
-  width: 70%;
-  margin: 10px 0 30px 0;
-`;
-
-const AuthorSelector = styled(StyledSelect)`
-  width: 100%;
-  margin: 10px 0 30px 0;
-`;
 
 const ArticleForm = ({ submitNewArticle, articleData, setArticleData }) => {
   const [error, setError] = useState(null);
@@ -71,10 +54,6 @@ const ArticleForm = ({ submitNewArticle, articleData, setArticleData }) => {
   const toggleNewCategoryModal = () => {
     setModalVisibility((display) => !display);
   };
-
-  /* useEffect(() => {
-    setModalVisibility((display) => !display);
-  }, [state]); */
 
   const submitNewCategory = async () => {
     if (newCategory.name) {
@@ -125,6 +104,9 @@ const ArticleForm = ({ submitNewArticle, articleData, setArticleData }) => {
           <NewCategoryContainer>
             {error && <p>{error}</p>}
             <CategorySelector name="category" onChange={updateArticleData}>
+              <option value="none" disabled defaultValue>
+                -- Velg kategori --
+              </option>
               {categories &&
                 categories.map((category) => (
                   <option key={category._id} value={category._id}>
