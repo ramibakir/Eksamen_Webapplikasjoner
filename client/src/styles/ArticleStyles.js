@@ -18,11 +18,11 @@ export const StyledArticlesWrapper = styled(StyledContainer)`
   margin: 0 5%;
 `;
 
-export const TitleContainer = styled(StyledContainer)`
+export const ArticleContentContainer = styled(StyledContainer)`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-right: 10px;
+  margin: 0 10px;
 `;
 
 export const ArticleImage = styled(StyledImage)`
@@ -58,7 +58,8 @@ export const SpacedFilterContainer = styled(FilterContainer)`
 `;
 
 export const FullSizeListItem = styled(StyledListItem)`
-  padding-right: 10px;
+  padding: 10px;
+  justify-content: flex-start;
 `;
 
 export const NewCategoryContainer = styled(StyledContainer)`

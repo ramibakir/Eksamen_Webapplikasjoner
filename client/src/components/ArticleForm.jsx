@@ -49,7 +49,7 @@ const ArticleForm = ({ submitNewArticle, articleData, setArticleData }) => {
       }
     };
     fetchCategories();
-  }, [newCategory]);
+  }, []);
 
   const toggleNewCategoryModal = () => {
     setModalVisibility((display) => !display);
@@ -57,6 +57,7 @@ const ArticleForm = ({ submitNewArticle, articleData, setArticleData }) => {
 
   const submitNewCategory = async () => {
     if (newCategory.name) {
+      setCategories({ ...categories, newCategory });
       const { error } = await createCategory(newCategory);
       if (error) {
         setError(error.statusCode);
@@ -103,8 +104,12 @@ const ArticleForm = ({ submitNewArticle, articleData, setArticleData }) => {
           <StyledLabel htmlFor="category">Kategori</StyledLabel>
           <NewCategoryContainer>
             {error && <p>{error}</p>}
-            <CategorySelector name="category" onChange={updateArticleData}>
-              <option value="none" disabled defaultValue>
+            <CategorySelector
+              name="category"
+              defaultValue="none"
+              onChange={updateArticleData}
+            >
+              <option value="none" disabled>
                 -- Velg kategori --
               </option>
               {categories &&
@@ -119,12 +124,16 @@ const ArticleForm = ({ submitNewArticle, articleData, setArticleData }) => {
             </NewCategoryButton>
           </NewCategoryContainer>
           <StyledLabel htmlFor="author">Forfatter</StyledLabel>
-          <AuthorSelector name="author" onChange={updateArticleData}>
-            <option value="none" disabled defaultValue>
+          <AuthorSelector
+            name="author"
+            defaultValue="none"
+            onChange={updateArticleData}
+          >
+            <option value="none" disabled>
               -- Velg forfatter --
             </option>
             {authorList.map((author) => (
-              <option key={author.id} value={author.id}>
+              <option key={author.id} value={author.name}>
                 {author.name}
               </option>
             ))}
