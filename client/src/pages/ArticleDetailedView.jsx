@@ -4,7 +4,7 @@ import { get } from '../utils/articleService';
 import { listCategories } from '../utils/categoryService';
 import { StyledSubtitle, StyledDetailViewWrapper } from '../styles/mainStyles';
 import {
-  ArticleDataContainer,
+  ArticleButtonContainer,
   AuthorDateParagraph,
   IntroParagraph,
   ContentParagraph,
@@ -59,21 +59,20 @@ const ArticleDetailedView = () => {
       {loading && <div>Loading ...</div>}
       {article && (
         <>
-          <ArticleDataContainer>
-            <AuthorDateParagraph>
-              Av {article.author} den {formatDate(article.publishDate)}
-            </AuthorDateParagraph>
-          </ArticleDataContainer>
           <StyledSubtitle>{article.title}</StyledSubtitle>
+          {category && (
+            <AuthorDateParagraph>Kategori: {category.name}</AuthorDateParagraph>
+          )}
+          <AuthorDateParagraph>Forfatter: {article.author}</AuthorDateParagraph>
+          <AuthorDateParagraph>
+            Publisert: {formatDate(article.publishDate)}
+          </AuthorDateParagraph>
           <IntroParagraph>{article.ingress}</IntroParagraph>
           <ContentParagraph>{article.content}</ContentParagraph>
-          {category && (
-            <AuthorDateParagraph>{category.name}</AuthorDateParagraph>
-          )}
-          <ArticleDataContainer>
+          <ArticleButtonContainer>
             <EditButton>Rediger</EditButton>
             <DeleteButton>Slett</DeleteButton>
-          </ArticleDataContainer>
+          </ArticleButtonContainer>
         </>
       )}
     </StyledDetailViewWrapper>

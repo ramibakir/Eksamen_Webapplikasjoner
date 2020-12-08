@@ -84,7 +84,7 @@ export const AuthorSelector = styled(StyledSelect)`
   margin: 10px 0 30px 0;
 `;
 
-export const ArticleDataContainer = styled.div`
+export const ArticleButtonContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   margin: 30px 0 10px 0;
@@ -92,6 +92,7 @@ export const ArticleDataContainer = styled.div`
 
 export const AuthorDateParagraph = styled(StyledParagraph)`
   font-size: 14px;
+  margin-top: 5px;
 `;
 
 export const IntroParagraph = styled(StyledParagraph)`
