@@ -18,6 +18,7 @@ import article from './routes/article.js';
 import user from './routes/user.js';
 import auth from './routes/auth.js';
 import category from './routes/category.js';
+import image from './routes/image.js';
 
 const app = express();
 
@@ -39,6 +40,8 @@ if (process.env.NODE_ENV === 'development') {
 
 app.use(express.json());
 
+app.use(express.static('public'));
+
 app.use(
   cors({
     origin: 'http://localhost:3000',
@@ -59,6 +62,7 @@ app.use(`${process.env.BASE_URL}/articles`, article);
 app.use(`${process.env.BASE_URL}/users`, user);
 app.use(`${process.env.BASE_URL}/`, auth);
 app.use(`${process.env.BASE_URL}/create`, category);
+app.use(`${process.env.BASE_URL}/`, image);
 
 app.use(errorMiddleware);
 

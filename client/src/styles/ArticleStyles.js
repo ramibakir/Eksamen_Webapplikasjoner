@@ -13,8 +13,6 @@ import { StyledListItem, StyledCardInfo } from './listStyles';
 
 export const StyledArticleContainer = styled(StyledContainer)``;
 
-export const StyledMainContent = styled.div``;
-
 export const StyledArticlesWrapper = styled(StyledContainer)`
   margin: 0 5%;
 `;
