@@ -1,7 +1,5 @@
-
 import http from './http.js';
 import { getCsrfToken } from './authService';
-
 
 const API_URL = '/articles';
 

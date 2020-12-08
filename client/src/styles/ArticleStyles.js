@@ -5,6 +5,7 @@ import {
   FilterContainer,
   FilterButton,
   StyledButton,
+  StyledParagraph,
 } from './mainStyles';
 import { StyledSelect } from './formStyles';
 
@@ -81,4 +82,40 @@ export const CategorySelector = styled(StyledSelect)`
 export const AuthorSelector = styled(StyledSelect)`
   width: 100%;
   margin: 10px 0 30px 0;
+`;
+
+export const ArticleDataContainer = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  margin: 30px 0 10px 0;
+`;
+
+export const AuthorDateParagraph = styled(StyledParagraph)`
+  font-size: 14px;
+`;
+
+export const IntroParagraph = styled(StyledParagraph)`
+  font-size: 18px;
+  margin: 20px 0;
+  font-weight: bold;
+  color: #204051;
+`;
+
+export const ContentParagraph = styled(StyledParagraph)`
+  font-size: 18px;
+  margin: 20px 0;
+`;
+
+export const DeleteButton = styled(StyledButton)`
+  color: #204051;
+  background-color: #84a9ac;
+  text-transform: uppercase;
+`;
+
+export const EditButton = styled(StyledButton)`
+  color: white;
+  background-color: #204051;
+  margin-left: 0px;
+  margin-right: 10px;
+  text-transform: uppercase;
 `;
