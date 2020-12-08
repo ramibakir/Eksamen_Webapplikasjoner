@@ -96,8 +96,7 @@ const Articles = () => {
       <SpacedFilterContainer>
         {isLoggedIn && isAdmin && (
           <LeftAlignContainer>
-            <NavLink>
-              to="/create" style={{ textDecoration: 'none' }}>
+            <NavLink to="/create" style={{ textDecoration: 'none' }}>
               <NewArticleButton>NY ARTIKKEL</NewArticleButton>
             </NavLink>
           </LeftAlignContainer>

@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import { getUserInfo } from '../utils/authService';
 
 const AuthContext = createContext();
@@ -8,10 +8,9 @@ const { Provider } = AuthContext;
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
-
   useEffect(() => {
-    console.log(user);
-    const fetchUserData = async () => {
+    const fetchUserdata = async () => {
+      console.log(user);
       if (user === null) {
         setLoading(true);
         const { data } = await getUserInfo();
@@ -24,7 +23,7 @@ const AuthProvider = ({ children }) => {
         setLoading(false);
       }
     };
-    fetchUserData();
+    fetchUserdata();
   }, [user]);
   return (
     <Provider

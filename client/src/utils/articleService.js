@@ -1,42 +1,44 @@
-import http from './http.js';
+import http from './http';
+import { getCsrfToken } from './authService.js';
 
 const API_URL = '/articles';
 
 export const list = async () => {
   try {
     return await http.get(`${API_URL}`);
-  } catch (error) {
-    return error.response;
+  } catch (err) {
+    return err.response;
   }
 };
 
 export const get = async (id) => {
   try {
     return await http.get(`${API_URL}/${id}`);
-  } catch (error) {
-    return error.response;
+  } catch (err) {
+    return err.response;
   }
 };
 
 export const put = async (id, data) => {
   try {
+    await getCsrfToken();
     return await http.put(`${API_URL}/${id}`, data);
-  } catch (error) {
-    return error.response;
+  } catch (err) {
+    return err.response;
   }
 };
 
 export const create = async (data) => {
   try {
     return await http.post(`${API_URL}`, data);
-  } catch (error) {
-    return error.response;
+  } catch (err) {
+    return err.response;
   }
 };
 
 export default {
+  create,
   list,
   get,
   put,
-  create,
 };
