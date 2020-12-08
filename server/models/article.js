@@ -44,10 +44,8 @@ const ArticleSchema = new Schema(
 );
 
 ArticleSchema.pre('save', function (next) {
-  this.slug = slugify(this.name, { lower: true });
+  this.slug = slugify(this.title, { lower: true });
   next();
 });
 
-const Article = mongoose.model('Article', ArticleSchema);
-
-export default Article;
+export default mongoose.model('Article', ArticleSchema);

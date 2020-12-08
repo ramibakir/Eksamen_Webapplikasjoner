@@ -33,7 +33,7 @@ const AuthorSelector = styled(StyledSelect)`
   margin: 10px 0 30px 0;
 `;
 
-const ArticleForm = ({ onSubmit, formData, setFormData }) => {
+const ArticleForm = ({ submitNewArticle, articleData, setArticleData }) => {
   const [error, setError] = useState(null);
   const [categories, setCategories] = useState(null);
   const [modalVisibility, setModalVisibility] = useState(false);
@@ -45,9 +45,15 @@ const ArticleForm = ({ onSubmit, formData, setFormData }) => {
     { id: 's', name: 'Simen Simensen' },
   ];
 
-  const handleSubmit = async (event) => {
-    event.preventDefault(event);
-    setFormData({ ...formData, [event.target.name]: event.target.value });
+  const updateArticleData = (event) => {
+    event.preventDefault();
+
+    setArticleData({
+      ...articleData,
+      [event.target.name]: event.target.value,
+    });
+
+    console.log(articleData);
   };
 
   useEffect(() => {
@@ -60,7 +66,7 @@ const ArticleForm = ({ onSubmit, formData, setFormData }) => {
       }
     };
     fetchCategories();
-  }, []);
+  }, [newCategory]);
 
   const toggleNewCategoryModal = () => {
     setModalVisibility((display) => !display);
@@ -96,7 +102,7 @@ const ArticleForm = ({ onSubmit, formData, setFormData }) => {
             type="text"
             placeholder="Tittel"
             name="title"
-            onChange={handleSubmit}
+            onChange={updateArticleData}
           />
 
           <StyledLabel htmlFor="ingress">Ingress</StyledLabel>
@@ -104,7 +110,7 @@ const ArticleForm = ({ onSubmit, formData, setFormData }) => {
             type="text"
             placeholder="Ingress"
             name="ingress"
-            onChange={handleSubmit}
+            onChange={updateArticleData}
           />
 
           <StyledLabel htmlFor="date">Dato</StyledLabel>
@@ -112,13 +118,13 @@ const ArticleForm = ({ onSubmit, formData, setFormData }) => {
             type="date"
             placeholder="Dato"
             name="publishDate"
-            onChange={handleSubmit}
+            onChange={updateArticleData}
           />
 
           <StyledLabel htmlFor="category">Kategori</StyledLabel>
           <NewCategoryContainer>
             {error && <p>{error}</p>}
-            <CategorySelector name="category" onChange={handleSubmit}>
+            <CategorySelector name="category" onChange={updateArticleData}>
               {categories &&
                 categories.map((category) => (
                   <option key={category._id} value={category._id}>
@@ -131,7 +137,7 @@ const ArticleForm = ({ onSubmit, formData, setFormData }) => {
             </NewCategoryButton>
           </NewCategoryContainer>
           <StyledLabel htmlFor="author">Forfatter</StyledLabel>
-          <AuthorSelector name="author" onChange={handleSubmit}>
+          <AuthorSelector name="author" onChange={updateArticleData}>
             <option value="none" disabled defaultValue>
               -- Velg forfatter --
             </option>
@@ -147,11 +153,11 @@ const ArticleForm = ({ onSubmit, formData, setFormData }) => {
             type="text"
             placeholder="Innhold"
             name="content"
-            onChange={handleSubmit}
+            onChange={updateArticleData}
           />
           <StyledButton
             style={{ margin: '30px 0 50px 0' }}
-            onClick={() => onSubmit()}
+            onClick={() => submitNewArticle()}
           >
             OPPRETT ARTIKKEL
           </StyledButton>
