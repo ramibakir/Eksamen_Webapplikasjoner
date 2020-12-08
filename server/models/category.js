@@ -25,6 +25,4 @@ CategorySchema.virtual('article', {
   justOne: false,
 });
 
-const Category = mongoose.model('Category', CategorySchema);
-
-export default Category;
+export default mongoose.model('Category', CategorySchema);

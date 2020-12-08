@@ -9,18 +9,18 @@ export const get = catchAsyncErrors(async (req, res, next) => {
       new ErrorHandler(`Finner ikke artikkel med id ${req.params.id}`, 404),
     );
   }
-  res.status(200).json(article);
+  res.status(201).json({ success: true, data: article });
 });
 
 export const list = catchAsyncErrors(async (req, res, next) => {
-  const result = await articleService.listArticles();
-  res.status(200).json(result);
+  const articles = await articleService.listArticles();
+  res.status(200).json({ success: true, data: articles });
 });
 
 export const create = catchAsyncErrors(async (req, res, next) => {
-  req.body.user = req.user.id;
+  // req.body.user = req.user.id;
   const article = await articleService.createArticle(req.body);
-  res.status(201).json(article);
+  res.status(201).json({ success: true, data: article });
 });
 
 export const update = catchAsyncErrors(async (req, res, next) => {
@@ -32,7 +32,7 @@ export const update = catchAsyncErrors(async (req, res, next) => {
   }
 
   article = await articleService.updateArticle(req.params.id, req.body);
-  res.status(200).json(article);
+  res.status(200).json({ success: true, data: article });
 });
 
 export const remove = catchAsyncErrors(async (req, res, next) => {
