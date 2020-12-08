@@ -37,7 +37,6 @@ const ArticleForm = ({ submitNewArticle, articleData, setArticleData }) => {
     });
 
     console.log(articleData);
-
   };
 
   useEffect(() => {

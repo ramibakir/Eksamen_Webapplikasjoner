@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+/*import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import { create } from '../utils/eventService';
+import { create } from '../utils/articleService';
 import { StyledButton, StyledContainer } from '../styles/mainStyles.js';
 import {
   StyledFormContainter,
@@ -179,4 +179,4 @@ const CreateArticleForm = () => {
   );
 };
 
-export default CreateArticleForm;
+export default CreateArticleForm; */
