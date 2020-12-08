@@ -1,39 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import { StyledButton, StyledContainer } from '../styles/mainStyles.js';
+import { StyledButton } from '../styles/mainStyles.js';
 import {
   StyledFormContainter,
   StyledForm,
   StyledInput,
   StyledTextArea,
   StyledLabel,
-  StyledSelect,
 } from '../styles/formStyles.js';
+import {
+  NewCategoryContainer,
+  NewCategoryButton,
+  CategorySelector,
+  AuthorSelector,
+} from '../styles/articleStyles';
 import { listCategories, createCategory } from '../utils/categoryService.js';
 import ModalForm from './ModalForm';
 
-const NewCategoryContainer = styled(StyledContainer)`
-  display: flex;
-  justify-content: space-between;
-  align-content: center;
-`;
-
-const NewCategoryButton = styled(StyledButton)`
-  margin: 10px 0 30px 10px;
-  flex: 1 1 auto;
-`;
-
-const CategorySelector = styled(StyledSelect)`
-  width: 70%;
-  margin: 10px 0 30px 0;
-`;
-
-const AuthorSelector = styled(StyledSelect)`
-  width: 100%;
-  margin: 10px 0 30px 0;
-`;
-
-const ArticleForm = ({ onSubmit, formData, setFormData }) => {
+const ArticleForm = ({ submitNewArticle, articleData, setArticleData }) => {
   const [error, setError] = useState(null);
   const [categories, setCategories] = useState(null);
   const [modalVisibility, setModalVisibility] = useState(false);
@@ -45,9 +28,16 @@ const ArticleForm = ({ onSubmit, formData, setFormData }) => {
     { id: 's', name: 'Simen Simensen' },
   ];
 
-  const handleSubmit = async (event) => {
-    event.preventDefault(event);
-    // setFormData({ ...formData, [event.target.name]: event.target.value });
+  const updateArticleData = (event) => {
+    event.preventDefault();
+
+    setArticleData({
+      ...articleData,
+      [event.target.name]: event.target.value,
+    });
+
+    console.log(articleData);
+
   };
 
   useEffect(() => {
@@ -66,12 +56,9 @@ const ArticleForm = ({ onSubmit, formData, setFormData }) => {
     setModalVisibility((display) => !display);
   };
 
-  /* useEffect(() => {
-    setModalVisibility((display) => !display);
-  }, [state]); */
-
   const submitNewCategory = async () => {
     if (newCategory.name) {
+      setCategories({ ...categories, newCategory });
       const { error } = await createCategory(newCategory);
       if (error) {
         setError(error.statusCode);
@@ -96,7 +83,7 @@ const ArticleForm = ({ onSubmit, formData, setFormData }) => {
             type="text"
             placeholder="Tittel"
             name="title"
-            onChange={handleSubmit}
+            onChange={updateArticleData}
           />
 
           <StyledLabel htmlFor="ingress">Ingress</StyledLabel>
@@ -104,7 +91,7 @@ const ArticleForm = ({ onSubmit, formData, setFormData }) => {
             type="text"
             placeholder="Ingress"
             name="ingress"
-            onChange={handleSubmit}
+            onChange={updateArticleData}
           />
 
           <StyledLabel htmlFor="date">Dato</StyledLabel>
@@ -112,13 +99,20 @@ const ArticleForm = ({ onSubmit, formData, setFormData }) => {
             type="date"
             placeholder="Dato"
             name="publishDate"
-            onChange={handleSubmit}
+            onChange={updateArticleData}
           />
 
           <StyledLabel htmlFor="category">Kategori</StyledLabel>
           <NewCategoryContainer>
             {error && <p>{error}</p>}
-            <CategorySelector name="category" onChange={handleSubmit}>
+            <CategorySelector
+              name="category"
+              defaultValue="none"
+              onChange={updateArticleData}
+            >
+              <option value="none" disabled>
+                -- Velg kategori --
+              </option>
               {categories &&
                 categories.map((category) => (
                   <option key={category._id} value={category._id}>
@@ -131,12 +125,16 @@ const ArticleForm = ({ onSubmit, formData, setFormData }) => {
             </NewCategoryButton>
           </NewCategoryContainer>
           <StyledLabel htmlFor="author">Forfatter</StyledLabel>
-          <AuthorSelector name="author" onChange={handleSubmit}>
-            <option value="none" disabled defaultValue>
+          <AuthorSelector
+            name="author"
+            defaultValue="none"
+            onChange={updateArticleData}
+          >
+            <option value="none" disabled>
               -- Velg forfatter --
             </option>
             {authorList.map((author) => (
-              <option key={author.id} value={author.id}>
+              <option key={author.id} value={author.name}>
                 {author.name}
               </option>
             ))}
@@ -147,11 +145,11 @@ const ArticleForm = ({ onSubmit, formData, setFormData }) => {
             type="text"
             placeholder="Innhold"
             name="content"
-            onChange={handleSubmit}
+            onChange={updateArticleData}
           />
           <StyledButton
             style={{ margin: '30px 0 50px 0' }}
-            onClick={() => onSubmit()}
+            onClick={() => submitNewArticle()}
           >
             OPPRETT ARTIKKEL
           </StyledButton>

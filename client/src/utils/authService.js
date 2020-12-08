@@ -34,3 +34,5 @@ export const logout = async () => {
     return err.response;
   }
 };
+
+export default { getCsrfToken, getUserInfo, login, logout };
