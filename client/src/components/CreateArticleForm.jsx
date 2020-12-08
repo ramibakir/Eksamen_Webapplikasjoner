@@ -1,25 +1,45 @@
-import React, { useEffect, useState } from 'react';
-import { StyledButton } from '../styles/mainStyles.js';
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useHistory } from 'react-router-dom';
+import styled from 'styled-components';
+import { create } from '../utils/eventService';
+import { StyledButton, StyledContainer } from '../styles/mainStyles.js';
 import {
   StyledFormContainter,
   StyledForm,
   StyledInput,
   StyledTextArea,
   StyledLabel,
+  StyledSelect,
 } from '../styles/formStyles.js';
-import {
-  NewCategoryContainer,
-  NewCategoryButton,
-  CategorySelector,
-  AuthorSelector,
-} from '../styles/articleStyles';
 import { listCategories, createCategory } from '../utils/categoryService.js';
 import ModalForm from './ModalForm';
 
-const ArticleForm = ({ submitNewArticle, articleData, setArticleData }) => {
-  const [error, setError] = useState(null);
+const NewCategoryContainer = styled(StyledContainer)`
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+`;
+
+const NewCategoryButton = styled(StyledButton)`
+  margin: 10px 0 30px 10px;
+  flex: 1 1 auto;
+`;
+
+const CategorySelector = styled(StyledSelect)`
+  width: 70%;
+  margin: 10px 0 30px 0;
+`;
+
+const AuthorSelector = styled(StyledSelect)`
+  width: 100%;
+  margin: 10px 0 30px 0;
+`;
+
+const CreateArticleForm = () => {
   const [categories, setCategories] = useState(null);
-  const [modalVisibility, setModalVisibility] = useState(false);
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(false);
   const [newCategory, setNewCategory] = useState(null);
 
   const authorList = [
@@ -28,16 +48,31 @@ const ArticleForm = ({ submitNewArticle, articleData, setArticleData }) => {
     { id: 's', name: 'Simen Simensen' },
   ];
 
-  const updateArticleData = (event) => {
+  const history = useHistory();
+
+  const { register, errors, handleSubmit, formState } = useForm({
+    mode: 'onBlur',
+  });
+
+  const testSubmit = (event) => {
     event.preventDefault();
+  };
 
-    setArticleData({
-      ...articleData,
-      [event.target.name]: event.target.value,
-    });
+  const toggleNewCategoryModal = () => {
+    setModalVisibility((display) => !display);
+  };
 
-    console.log(articleData);
-
+  const onSubmit = async (formData) => {
+    const { data } = await create(formData);
+    if (!data.success) {
+      setError(data.message);
+    } else {
+      setSuccess(true);
+      setError(null);
+      setTimeout(() => {
+        history.push(`/articles/${data.data.id}`);
+      }, 2000);
+    }
   };
 
   useEffect(() => {
@@ -52,13 +87,8 @@ const ArticleForm = ({ submitNewArticle, articleData, setArticleData }) => {
     fetchCategories();
   }, []);
 
-  const toggleNewCategoryModal = () => {
-    setModalVisibility((display) => !display);
-  };
-
   const submitNewCategory = async () => {
     if (newCategory.name) {
-      setCategories({ ...categories, newCategory });
       const { error } = await createCategory(newCategory);
       if (error) {
         setError(error.statusCode);
@@ -77,13 +107,13 @@ const ArticleForm = ({ submitNewArticle, articleData, setArticleData }) => {
           setNewCategory={setNewCategory}
           submitNewCategory={submitNewCategory}
         />
-        <StyledForm>
+        <StyledForm onSubmit={handleSubmit(onSubmit)}>
           <StyledLabel htmlFor="title">Tittel</StyledLabel>
           <StyledInput
             type="text"
             placeholder="Tittel"
             name="title"
-            onChange={updateArticleData}
+            ref={register({ required: true })}
           />
 
           <StyledLabel htmlFor="ingress">Ingress</StyledLabel>
@@ -91,7 +121,7 @@ const ArticleForm = ({ submitNewArticle, articleData, setArticleData }) => {
             type="text"
             placeholder="Ingress"
             name="ingress"
-            onChange={updateArticleData}
+            ref={register({ required: true })}
           />
 
           <StyledLabel htmlFor="date">Dato</StyledLabel>
@@ -99,20 +129,13 @@ const ArticleForm = ({ submitNewArticle, articleData, setArticleData }) => {
             type="date"
             placeholder="Dato"
             name="publishDate"
-            onChange={updateArticleData}
+            ref={register({ required: true })}
           />
 
           <StyledLabel htmlFor="category">Kategori</StyledLabel>
           <NewCategoryContainer>
             {error && <p>{error}</p>}
-            <CategorySelector
-              name="category"
-              defaultValue="none"
-              onChange={updateArticleData}
-            >
-              <option value="none" disabled>
-                -- Velg kategori --
-              </option>
+            <CategorySelector name="category" onChange={testSubmit}>
               {categories &&
                 categories.map((category) => (
                   <option key={category._id} value={category._id}>
@@ -125,16 +148,12 @@ const ArticleForm = ({ submitNewArticle, articleData, setArticleData }) => {
             </NewCategoryButton>
           </NewCategoryContainer>
           <StyledLabel htmlFor="author">Forfatter</StyledLabel>
-          <AuthorSelector
-            name="author"
-            defaultValue="none"
-            onChange={updateArticleData}
-          >
-            <option value="none" disabled>
+          <AuthorSelector name="author" onChange={testSubmit}>
+            <option value="none" disabled defaultValue>
               -- Velg forfatter --
             </option>
             {authorList.map((author) => (
-              <option key={author.id} value={author.name}>
+              <option key={author.id} value={author.id}>
                 {author.name}
               </option>
             ))}
@@ -145,11 +164,12 @@ const ArticleForm = ({ submitNewArticle, articleData, setArticleData }) => {
             type="text"
             placeholder="Innhold"
             name="content"
-            onChange={updateArticleData}
+            ref={register({ required: true })}
           />
           <StyledButton
             style={{ margin: '30px 0 50px 0' }}
-            onClick={() => submitNewArticle()}
+            type="submit"
+            isLoading={formState.isSubmitting}
           >
             OPPRETT ARTIKKEL
           </StyledButton>
@@ -159,4 +179,4 @@ const ArticleForm = ({ submitNewArticle, articleData, setArticleData }) => {
   );
 };
 
-export default ArticleForm;
+export default CreateArticleForm;

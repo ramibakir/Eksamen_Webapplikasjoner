@@ -49,13 +49,11 @@ const ArticleDetailedView = () => {
   return (
     <StyledDetailViewWrapper>
       <ArticleDataContainer>
-        <AuthorDateParagraph>
-          Av {articleData[0].author} den {articleData[0].date}
-        </AuthorDateParagraph>
+        <AuthorDateParagraph>Av Rami den 08/12/2020</AuthorDateParagraph>
       </ArticleDataContainer>
       <IntroParagraph>
-        Artikkel {articleData[0].id}. I think the only difference between me and
-        the other placeholder text is that I’m more honest and my words are more
+        Artikkel 1. I think the only difference between me and the other
+        placeholder text is that I’m more honest and my words are more
         beautiful. I write the best placeholder text, and I'm the biggest
         developer on the web by far... While that's mock-ups and this is
         politics, are they really so different? An 'extremely credible source'
