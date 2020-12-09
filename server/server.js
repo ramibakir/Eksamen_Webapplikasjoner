@@ -8,6 +8,7 @@ import xssClean from 'xss-clean';
 import csrf from 'csurf';
 import mongoSanitize from 'express-mongo-sanitize';
 import rateLimit from 'express-rate-limit';
+import path from 'path';
 
 import { PORT } from './constants/index.js';
 import 'dotenv/config.js';
@@ -48,7 +49,8 @@ if (process.env.NODE_ENV === 'production') {
 
 app.use(express.json());
 
-app.use(express.static('public'));
+const __dirname = path.resolve();
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(
   cors({

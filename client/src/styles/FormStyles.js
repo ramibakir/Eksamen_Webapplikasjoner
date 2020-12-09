@@ -31,6 +31,14 @@ export const StyledFormContainter = styled(StyledContainer)`
   width: 100%;
 `;
 
+export const StyledTextArea = styled.textarea`
+  height: 200px;
+  border: 2px solid black;
+  padding: 5px;
+  border-radius: 4px;
+  margin: 10px 0 30px 0;
+`;
+
 export const StyledForm = styled.form`
   margin: auto;
   width: 40%;
@@ -38,12 +46,4 @@ export const StyledForm = styled.form`
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-`;
-
-export const StyledTextArea = styled.textarea`
-  height: 200px;
-  border: 2px solid black;
-  padding: 5px;
-  border-radius: 4px;
-  margin: 10px 0 30px 0;
 `;

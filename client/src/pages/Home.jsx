@@ -10,7 +10,6 @@ const Home = () => (
         <StyledSubtitle>Kontorer</StyledSubtitle>
       </Link>
     </StyledHomeSection>
-
     <StyledHomeSection sectionName="contact">
       <Link to="/contact" style={{ textDecoration: 'none' }}>
         <StyledSubtitle>Kontakt</StyledSubtitle>
