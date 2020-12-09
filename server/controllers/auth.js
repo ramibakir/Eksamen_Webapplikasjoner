@@ -1,6 +1,6 @@
 import catchAsyncErrors from '../middleware/catchAsync.js';
 import { userService } from '../services/index.js';
-import ErrorHandler from '../utils/ErrorHandler.js';
+import ErrorHandler from '../utils/errorHandler.js';
 import { sendToken } from '../utils/jwtToken.js';
 
 export const register = catchAsyncErrors(async (req, res, next) => {

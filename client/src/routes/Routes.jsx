@@ -1,5 +1,11 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from 'react-router-dom';
+import { useAuthContext } from '../context/AuthProvider';
 
 import MainLayout from '../layouts/MainLayout';
 import Home from '../pages/Home';
@@ -10,6 +16,32 @@ import Login from '../pages/Login';
 import OfficeDetailedView from '../pages/OfficeDetailedView';
 import ArticleDetailedView from '../pages/ArticleDetailedView';
 import CreateNewArticle from '../pages/CreateNewArticle';
+
+const AdminRoutes = ({ children, ...rest }) => {
+  const { isLoggedIn, isAdmin, isLoading } = useAuthContext();
+  return (
+    <Route
+      {...rest}
+      render={() => isLoggedIn && isAdmin && !isLoading && children}
+    />
+  );
+};
+
+const AuthenticatedRoutes = ({ children, ...rest }) => {
+  const { isLoggedIn, isLoading } = useAuthContext();
+  return (
+    <Route
+      {...rest}
+      render={({ location }) =>
+        isLoggedIn && !isLoading ? (
+          <div>{children}</div>
+        ) : (
+          <Redirect to={{ pathname: '/login', state: { from: location } }} />
+        )
+      }
+    />
+  );
+};
 
 const Routes = () => (
   <Router>
@@ -37,9 +69,9 @@ const Routes = () => (
           <ArticleDetailedView />
         </Route>
         {/* TODO replace /newarticle with /:id */}
-        <Route path="/articles/newarticle">
+        <AdminRoutes path="/create">
           <CreateNewArticle />
-        </Route>
+        </AdminRoutes>
       </Switch>
     </MainLayout>
   </Router>

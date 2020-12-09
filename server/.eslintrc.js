@@ -10,7 +10,7 @@ module.exports = {
   ],
   parserOptions: {
     ecmaFeatures: {
-      jsx: true,
+      js: true,
     },
     ecmaVersion: 12,
     sourceType: 'module',
@@ -19,5 +19,7 @@ module.exports = {
     'react',
   ],
   rules: {
+    'linebreak-style': ['error', 'windows'],
+    'import/extensions': 0,
   },
 };

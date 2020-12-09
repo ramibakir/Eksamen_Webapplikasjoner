@@ -1,59 +1,167 @@
-import React from 'react';
-import styled from 'styled-components';
-import { StyledButton, StyledContainer } from '../styles/mainStyles.js';
+import React, { useEffect, useState } from 'react';
+import { StyledButton, StyledCenteredFlex } from '../styles/mainStyles.js';
+import Upload from './Upload';
 import {
   StyledFormContainter,
   StyledForm,
   StyledInput,
   StyledTextArea,
   StyledLabel,
-  StyledSelect,
 } from '../styles/formStyles.js';
+import {
+  NewCategoryContainer,
+  NewCategoryButton,
+  CategorySelector,
+  AuthorSelector,
+} from '../styles/articleStyles';
+import { listCategories, createCategory } from '../utils/categoryService.js';
+import ModalForm from './ModalForm';
 
-const NewCategoryContainer = styled(StyledContainer)`
-  display: flex;
-  justify-content: space-between;
-`;
+const ArticleForm = ({ submitNewArticle, articleData, setArticleData }) => {
+  const [error, setError] = useState(null);
+  const [categories, setCategories] = useState(null);
+  const [modalVisibility, setModalVisibility] = useState(false);
+  const [newCategory, setNewCategory] = useState(null);
 
-const NewCategoryButton = styled(StyledButton)`
-  width: 20%;
-`;
+  const authorList = [
+    { id: 'l', name: 'Lars Larsen' },
+    { id: 'g', name: 'Gunn Gundersen' },
+    { id: 's', name: 'Simen Simensen' },
+  ];
 
-const CategorySelector = styled(StyledSelect)`
-  width: 70%;
-`;
+  const updateArticleData = (event) => {
+    event.preventDefault();
 
-const ArticleForm = () => (
-  <>
-    <StyledFormContainter>
-      <StyledForm>
-        <StyledLabel htmlFor="title">Tittel</StyledLabel>
-        <StyledInput required type="text" placeholder="Tittel" />
+    setArticleData({
+      ...articleData,
+      [event.target.name]: event.target.value,
+    });
 
-        <StyledLabel htmlFor="ingress">Ingress</StyledLabel>
-        <StyledInput required type="text" placeholder="Ingress" />
+    console.log(articleData);
+  };
 
-        <StyledLabel htmlFor="content">Innhold</StyledLabel>
-        <StyledTextArea required type="text" placeholder="Innhold" />
+  useEffect(() => {
+    const fetchCategories = async () => {
+      const { data, error } = await listCategories();
+      if (error) {
+        setError(error.statusCode);
+      } else {
+        setCategories(data);
+      }
+    };
+    fetchCategories();
+  }, []);
 
-        <StyledLabel htmlFor="date">Dato</StyledLabel>
-        <StyledInput required type="date" placeholder="Dato" />
+  const toggleNewCategoryModal = () => {
+    setModalVisibility((display) => !display);
+  };
 
-        <StyledLabel htmlFor="category">Kategori</StyledLabel>
-        <NewCategoryContainer>
-          <CategorySelector name="category">
-            <option value="test">Just testing</option>
-          </CategorySelector>
-          <NewCategoryButton>NY</NewCategoryButton>
-        </NewCategoryContainer>
-        <StyledLabel htmlFor="author">Forfatter</StyledLabel>
-        <StyledSelect name="author">
-          <option value="author">Rami Bakir</option>
-        </StyledSelect>
-        <StyledButton>OPPRETT ARTIKKEL</StyledButton>
-      </StyledForm>
-    </StyledFormContainter>
-  </>
-);
+  const submitNewCategory = async () => {
+    if (newCategory.name) {
+      setCategories({ ...categories, newCategory });
+      const { error } = await createCategory(newCategory);
+      if (error) {
+        setError(error.statusCode);
+      } else {
+        alert('Ny kategori lagt til!');
+      }
+    } else {
+      alert('Data mangler');
+    }
+  };
+
+  return (
+    <>
+      <StyledFormContainter>
+        <ModalForm
+          setNewCategory={setNewCategory}
+          submitNewCategory={submitNewCategory}
+        />
+        <StyledForm>
+          <StyledLabel htmlFor="title">Tittel</StyledLabel>
+          <StyledInput
+            type="text"
+            placeholder="Tittel"
+            name="title"
+            onChange={updateArticleData}
+          />
+
+          <StyledLabel htmlFor="ingress">Ingress</StyledLabel>
+          <StyledInput
+            type="text"
+            placeholder="Ingress"
+            name="ingress"
+            onChange={updateArticleData}
+          />
+
+          <StyledLabel htmlFor="date">Dato</StyledLabel>
+          <StyledInput
+            type="date"
+            placeholder="Dato"
+            name="publishDate"
+            onChange={updateArticleData}
+          />
+
+          <StyledLabel htmlFor="category">Kategori</StyledLabel>
+          <NewCategoryContainer>
+            {error && <p>{error}</p>}
+            <CategorySelector
+              name="category"
+              defaultValue="none"
+              onChange={updateArticleData}
+            >
+              <option value="none" disabled>
+                -- Velg kategori --
+              </option>
+              {categories &&
+                categories.map((category) => (
+                  <option key={category._id} value={category._id}>
+                    {category.name}
+                  </option>
+                ))}
+            </CategorySelector>
+            <NewCategoryButton onClick={toggleNewCategoryModal}>
+              NY
+            </NewCategoryButton>
+          </NewCategoryContainer>
+          <StyledLabel htmlFor="author">Forfatter</StyledLabel>
+          <AuthorSelector
+            name="author"
+            defaultValue="none"
+            onChange={updateArticleData}
+          >
+            <option value="none" disabled>
+              -- Velg forfatter --
+            </option>
+            {authorList.map((author) => (
+              <option key={author.id} value={author.name}>
+                {author.name}
+              </option>
+            ))}
+          </AuthorSelector>
+          <StyledLabel htmlFor="content">Innhold</StyledLabel>
+          <StyledTextArea
+            required
+            type="text"
+            placeholder="Innhold"
+            name="content"
+            onChange={updateArticleData}
+          />
+        </StyledForm>
+        <StyledCenteredFlex>
+          <Upload />
+        </StyledCenteredFlex>
+        <StyledCenteredFlex>
+          <StyledButton
+            style={{ margin: '30px 0 50px 0' }}
+            onClick={() => submitNewArticle()}
+          >
+            OPPRETT ARTIKKEL
+          </StyledButton>
+        </StyledCenteredFlex>
+      </StyledFormContainter>
+    </>
+  );
+};
 
 export default ArticleForm;

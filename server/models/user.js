@@ -19,7 +19,7 @@ const UserSchema = new Schema(
     password: {
       type: String,
       required: [true, 'Fyll inn passord'],
-      minLength: [8, 'Passordet må minimum bestå av 8 tegn'],
+      minlength: [8, 'Passordet må minimum bestå av 8 tegn'],
       select: false,
     },
     role: {

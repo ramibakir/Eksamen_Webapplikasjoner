@@ -8,13 +8,13 @@ const ArticleSchema = new Schema(
     title: {
       type: String,
       required: true,
-      min: ['3', 'Tittel må bestå av flere enn 3 tegn'],
+      minlength: ['3', 'Tittel må bestå av flere enn 3 tegn'],
       max: ['100', 'Tittel må være under 100 tegn'],
     },
     ingress: {
       type: String,
       required: true,
-      min: ['3', 'Ingress må bestå av flere enn 3 tegn'],
+      minlength: ['3', 'Ingress må bestå av flere enn 3 tegn'],
       max: ['150', 'Ingress må være under 150 tegn'],
     },
     content: {
@@ -39,15 +39,22 @@ const ArticleSchema = new Schema(
       ref: 'Category',
       required: true,
     },
+    hidden: {
+      type: Boolean,
+      required: true,
+    },
+    image: {
+      type: mongoose.Schema.ObjectId,
+      ref: 'Image',
+      required: true,
+    },
   },
   { timestamps: true },
 );
 
 ArticleSchema.pre('save', function (next) {
-  this.slug = slugify(this.name, { lower: true });
+  this.slug = slugify(this.title, { lower: true });
   next();
 });
 
-const Article = mongoose.model('Article', ArticleSchema);
-
-export default Article;
+export default mongoose.model('Article', ArticleSchema);

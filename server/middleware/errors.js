@@ -17,6 +17,11 @@ export default (err, req, res, next) => {
     let error = { ...err };
     error.message = err.message;
 
+    if (err.code === 'EBADCSRFTOKEN') {
+      const message = 'Ikke gyldig token';
+      error = new ErrorHandler(message, 403);
+    }
+
     if (err.name === 'CastError') {
       const message = `Fant ikke ressursen du ser etter. Invalid ${err.path}`;
       error = new ErrorHandler(message, 404);
@@ -30,6 +35,16 @@ export default (err, req, res, next) => {
     if (err.code === 11000) {
       const message = `Duplikat av ${Object.keys(err.keyValue)}`;
       error = new ErrorHandler(message, 400);
+    }
+
+    if (err.name === 'JsonWebTokenError') {
+      const message = 'JSON Web Token er ugyldig!';
+      error = new ErrorHandler(message, 500);
+    }
+
+    if (err.name === 'TokenExpiresError') {
+      const message = 'JSON Web Token har utløpt';
+      error = new ErrorHandler(message, 500);
     }
 
     res.status(error.statusCode).json({
