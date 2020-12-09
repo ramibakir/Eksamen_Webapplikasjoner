@@ -9,3 +9,5 @@ export const uploadImage = async (data) => {
 
   return savedImage;
 };
+
+export const getImageById = async (id) => Image.findById(id);

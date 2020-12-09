@@ -22,20 +22,28 @@ import image from './routes/image.js';
 
 const app = express();
 
-app.use(helmet());
-app.use(mongoSanitize());
-app.use(xssClean());
-app.use(hpp());
-
-const limiter = rateLimit({
-  windowMs: 10 * 60 * 1000,
-  max: 100,
-});
-
-app.use(limiter);
-
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
+}
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(helmet());
+  app.use(mongoSanitize());
+  app.use(xssClean());
+  app.use(hpp());
+
+  const limiter = rateLimit({
+    windowMs: 10 * 60 * 1000,
+    max: 100,
+  });
+
+  app.use(limiter);
+
+  app.use(csrf({ cookie: true }));
+
+  app.get(`${process.env.BASE_URL}/csrf-token`, (req, res) => {
+    res.status(200).json({ data: req.csrfToken() });
+  });
 }
 
 app.use(express.json());
@@ -51,12 +59,6 @@ app.use(
 );
 
 app.use(cookieParser());
-
-app.use(csrf({ cookie: true }));
-
-app.get(`${process.env.BASE_URL}/csrf-token`, (req, res) => {
-  res.status(200).json({ data: req.csrfToken() });
-});
 
 app.use(`${process.env.BASE_URL}/articles`, article);
 app.use(`${process.env.BASE_URL}/users`, user);
