@@ -39,6 +39,15 @@ const ArticleSchema = new Schema(
       ref: 'Category',
       required: true,
     },
+    hidden: {
+      type: Boolean,
+      required: true,
+    },
+    image: {
+      type: mongoose.Schema.ObjectId,
+      ref: 'Image',
+      required: true,
+    },
   },
   { timestamps: true },
 );
