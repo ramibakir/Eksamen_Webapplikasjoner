@@ -19,7 +19,7 @@ export const getUserInfo = async () => {
 
 export const login = async (credentials) => {
   try {
-    await getCsrfToken();
+    // await getCsrfToken();
     return await http.post('/login', { ...credentials });
   } catch (err) {
     return err.response;
@@ -28,7 +28,7 @@ export const login = async (credentials) => {
 
 export const logout = async () => {
   try {
-    await getCsrfToken();
+    // await getCsrfToken();
     return await http.post('/logout');
   } catch (err) {
     return err.response;

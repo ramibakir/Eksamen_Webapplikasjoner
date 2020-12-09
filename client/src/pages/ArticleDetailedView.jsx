@@ -10,7 +10,7 @@ import {
   ContentParagraph,
   EditButton,
   DeleteButton,
-} from '../styles/articleStyles';
+} from '../styles/ArticleStyles';
 
 const ArticleDetailedView = () => {
   const [article, setArticle] = useState(null);

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useForm } from 'react-hook-form';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { StyledButton } from '../styles/mainStyles.js';
 import {
   StyledFormContainter,
@@ -10,7 +9,8 @@ import {
 } from '../styles/formStyles.js';
 import { create } from '../utils/userService';
 
-const SignUpForm = (props) => {
+const SignUpForm = () => {
+  const history = useHistory();
   const [user, setUser] = useState({
     name: '',
     email: '',
@@ -23,7 +23,7 @@ const SignUpForm = (props) => {
 
   const createUser = () => {
     create(user);
-    props.history.push('/');
+    history.push('/login');
   };
 
   return (

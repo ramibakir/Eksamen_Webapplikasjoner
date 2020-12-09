@@ -18,7 +18,7 @@ import {
   ArticleImage,
   ArticleContentContainer,
   ArticleIntroParagraph,
-} from '../styles/articleStyles';
+} from '../styles/ArticleStyles';
 
 const Articles = () => {
   const [articles, setArticles] = useState(null);

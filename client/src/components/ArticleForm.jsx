@@ -13,7 +13,7 @@ import {
   NewCategoryButton,
   CategorySelector,
   AuthorSelector,
-} from '../styles/articleStyles';
+} from '../styles/ArticleStyles';
 import { listCategories, createCategory } from '../utils/categoryService.js';
 import ModalForm from './ModalForm';
 
