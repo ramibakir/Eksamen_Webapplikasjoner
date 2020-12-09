@@ -82,6 +82,11 @@ export const AuthorSelector = styled(StyledSelect)`
   margin: 10px 0 30px 0;
 `;
 
+export const SecrecySelector = styled(StyledSelect)`
+  width: 100%;
+  margin: 10px 0 30px 0;
+`;
+
 export const ArticleDataContainer = styled.div`
   display: flex;
   justify-content: flex-start;

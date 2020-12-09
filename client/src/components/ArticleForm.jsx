@@ -13,6 +13,7 @@ import {
   NewCategoryButton,
   CategorySelector,
   AuthorSelector,
+  SecrecySelector,
 } from '../styles/ArticleStyles';
 import { listCategories, createCategory } from '../utils/categoryService.js';
 import ModalForm from './ModalForm';
@@ -69,6 +70,10 @@ const ArticleForm = ({ submitNewArticle, articleData, setArticleData }) => {
       alert('Data mangler');
     }
   };
+
+  useEffect(() => {
+    const fetchImages = async () => {};
+  });
 
   return (
     <>
@@ -147,6 +152,17 @@ const ArticleForm = ({ submitNewArticle, articleData, setArticleData }) => {
             name="content"
             onChange={updateArticleData}
           />
+          <SecrecySelector
+            name="hidden"
+            defaultValue="none"
+            onChange={updateArticleData}
+          >
+            <option value="none" disabled>
+              -- Velg visning --
+            </option>
+            <option value="false">Ikke hemmelig</option>
+            <option value="true">Hemmelig</option>
+          </SecrecySelector>
         </StyledForm>
         <StyledCenteredFlex>
           <Upload />
