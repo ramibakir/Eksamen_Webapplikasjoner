@@ -13,7 +13,7 @@ const userSchema = {
   }),
 };
 
-export const reqisterSchema = Joi.object().keys({
+export const registerSchema = Joi.object().keys({
   name: Joi.string(),
   ...userSchema,
 }).options({ abortEarly: false });
