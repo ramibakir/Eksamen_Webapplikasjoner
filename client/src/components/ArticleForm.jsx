@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { StyledButton } from '../styles/mainStyles.js';
+import { StyledButton, StyledCenteredFlex } from '../styles/mainStyles.js';
+import Upload from './Upload';
 import {
   StyledFormContainter,
   StyledForm,
@@ -146,13 +147,18 @@ const ArticleForm = ({ submitNewArticle, articleData, setArticleData }) => {
             name="content"
             onChange={updateArticleData}
           />
+        </StyledForm>
+        <StyledCenteredFlex>
+          <Upload />
+        </StyledCenteredFlex>
+        <StyledCenteredFlex>
           <StyledButton
             style={{ margin: '30px 0 50px 0' }}
             onClick={() => submitNewArticle()}
           >
             OPPRETT ARTIKKEL
           </StyledButton>
-        </StyledForm>
+        </StyledCenteredFlex>
       </StyledFormContainter>
     </>
   );
