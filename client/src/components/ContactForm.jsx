@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { StyledButton } from '../styles/mainStyles.js';
 import {
   StyledFormContainter,
@@ -8,21 +8,82 @@ import {
   StyledTextArea,
   StyledLabel,
 } from '../styles/formStyles.js';
+import { useAuthContext } from '../context/AuthProvider';
+import { create } from '../utils/emailService.js';
 
-const ContactForm = () => (
-  <>
-    <StyledFormContainter>
-      <StyledForm>
-        <StyledLabel htmlFor="fullname">Fullt navn: </StyledLabel>
-        <StyledInput required type="text" maxLength="100" />
-        <StyledLabel htmlFor="email">E-post: </StyledLabel>
-        <StyledInput required type="email" />
-        <StyledLabel htmlFor="message">Din beskjed til oss: </StyledLabel>
-        <StyledTextArea wrap="off" required overflow="auto" />
-        <StyledButton>SEND BESKJED</StyledButton>
-      </StyledForm>
-    </StyledFormContainter>
-  </>
-);
+const ContactForm = () => {
+  const { user, isLoggedIn } = useAuthContext();
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(false);
+  const [mailData, setMailData] = useState(null);
+
+  const submitEmail = async () => {
+    if (mailData) {
+      console.log(mailData);
+      const { data } = await create(mailData);
+      if (!data.success) {
+        setError(data.message);
+      } else {
+        setSuccess(true);
+        setError(null);
+      }
+    } else {
+      console.log('no mail data');
+    }
+  };
+
+  const newEmail = (event) => {
+    event.preventDefault();
+
+    setMailData({
+      ...mailData,
+      [event.target.name]: event.target.value,
+    });
+  };
+  return (
+    <>
+      <StyledFormContainter>
+        <StyledForm>
+          {isLoggedIn && user ? (
+            <>
+              <StyledLabel htmlFor="email">E-post: </StyledLabel>
+              <StyledInput
+                required
+                type="email"
+                placeholder="Din epost"
+                name="email"
+                value={user?.email}
+                onChange={newEmail}
+              />
+            </>
+          ) : (
+            <>
+              <StyledLabel htmlFor="fullname">Fullt navn: </StyledLabel>
+              <StyledInput
+                required
+                type="text"
+                maxLength="100"
+                onChange={newEmail}
+              />
+              <StyledLabel htmlFor="email">E-post: </StyledLabel>
+              <StyledInput required type="email" onChange={newEmail} />
+            </>
+          )}
+          <StyledLabel htmlFor="message">Din beskjed til oss: </StyledLabel>
+          <StyledTextArea
+            wrap="off"
+            required
+            overflow="auto"
+            name="content"
+            onChange={newEmail}
+          />
+          <StyledButton type="submit" onClick={() => submitEmail()}>
+            SEND BESKJED
+          </StyledButton>
+        </StyledForm>
+      </StyledFormContainter>
+    </>
+  );
+};
 
 export default ContactForm;

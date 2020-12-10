@@ -11,6 +11,7 @@ import {
   EditButton,
   DeleteButton,
 } from '../styles/ArticleStyles';
+import { useAuthContext } from '../context/AuthProvider';
 
 const ArticleDetailedView = () => {
   const [article, setArticle] = useState(null);
@@ -19,6 +20,7 @@ const ArticleDetailedView = () => {
   const [loading, setLoading] = useState(false);
 
   const { id } = useParams();
+  const { isLoggedIn, isAdmin } = useAuthContext();
 
   useEffect(() => {
     const fetchArticle = async () => {
@@ -70,11 +72,13 @@ const ArticleDetailedView = () => {
           {category && (
             <AuthorDateParagraph>{category.name}</AuthorDateParagraph>
           )}
-          <ArticleDataContainer>
-            <EditButton>Rediger</EditButton>
-            <DeleteButton>Slett</DeleteButton>
-          </ArticleDataContainer>
         </>
+      )}
+      {isLoggedIn && isAdmin && (
+        <ArticleDataContainer>
+          <EditButton>Rediger</EditButton>
+          <DeleteButton>Slett</DeleteButton>
+        </ArticleDataContainer>
       )}
     </StyledDetailViewWrapper>
   );

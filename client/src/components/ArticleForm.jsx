@@ -71,10 +71,6 @@ const ArticleForm = ({ submitNewArticle, articleData, setArticleData }) => {
     }
   };
 
-  useEffect(() => {
-    const fetchImages = async () => {};
-  });
-
   return (
     <>
       <StyledFormContainter>

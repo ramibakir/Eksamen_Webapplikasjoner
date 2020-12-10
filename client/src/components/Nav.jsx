@@ -12,7 +12,7 @@ import { logout } from '../utils/authService';
 
 const Nav = () => {
   const [menu, setShowMenu] = useState(false);
-  const { isLoggedIn, isAdmin, setUser } = useAuthContext();
+  const { isLoggedIn, setUser } = useAuthContext();
 
   const MenuIconContainer = styled.div`
     display: none;

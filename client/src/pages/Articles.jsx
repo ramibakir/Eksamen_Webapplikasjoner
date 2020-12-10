@@ -69,26 +69,47 @@ const Articles = () => {
       <StyledListContainer>
         {loading && <div>Loading ...</div>}
         {articles &&
-          articles.reverse().map((article) => (
-            <Link
-              to={`/articles/${article._id}`}
-              style={{ textDecoration: 'none' }}
-            >
-              <FullSizeListItem>
-                <ArticleImage src="https://media.gettyimages.com/photos/coffee-and-the-morning-paper-picture-id184993811?s=612x612" />
-                <ArticleContentContainer>
-                  <StyledCardTitle>{article.title}</StyledCardTitle>
-                  <StyledCardInfo>
-                    Publisert {formatDate(article.publishDate)} av{' '}
-                    {article.author}
-                  </StyledCardInfo>
-                  <ArticleIntroParagraph>
-                    {article.ingress}
-                  </ArticleIntroParagraph>
-                </ArticleContentContainer>
-              </FullSizeListItem>
-            </Link>
-          ))}
+          articles.reverse().map((article) => {
+            !isLoggedIn && article.hidden ? (
+              <Link
+                to={`/articles/${article._id}`}
+                style={{ textDecoration: 'none' }}
+              >
+                <FullSizeListItem>
+                  <ArticleImage src="https://media.gettyimages.com/photos/coffee-and-the-morning-paper-picture-id184993811?s=612x612" />
+                  <ArticleContentContainer>
+                    <StyledCardTitle>{article.title}</StyledCardTitle>
+                    <StyledCardInfo>
+                      Publisert {formatDate(article.publishDate)} av{' '}
+                      {article.author}
+                    </StyledCardInfo>
+                    <ArticleIntroParagraph>
+                      {article.ingress}
+                    </ArticleIntroParagraph>
+                  </ArticleContentContainer>
+                </FullSizeListItem>
+              </Link>
+            ) : (
+              <Link
+                to={`/articles/${article._id}`}
+                style={{ textDecoration: 'none' }}
+              >
+                <FullSizeListItem>
+                  <ArticleImage src="https://media.gettyimages.com/photos/coffee-and-the-morning-paper-picture-id184993811?s=612x612" />
+                  <ArticleContentContainer>
+                    <StyledCardTitle>{article.title}</StyledCardTitle>
+                    <StyledCardInfo>
+                      Publisert {formatDate(article.publishDate)} av{' '}
+                      {article.author}
+                    </StyledCardInfo>
+                    <ArticleIntroParagraph>
+                      {article.ingress}
+                    </ArticleIntroParagraph>
+                  </ArticleContentContainer>
+                </FullSizeListItem>
+              </Link>
+            );
+          })}
       </StyledListContainer>
     </StyledArticlesWrapper>
   );

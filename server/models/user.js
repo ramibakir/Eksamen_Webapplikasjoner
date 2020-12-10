@@ -57,6 +57,13 @@ UserSchema.virtual('article', {
   justOne: false,
 });
 
+UserSchema.virtual('mail', {
+  ref: 'Email',
+  localField: '_id',
+  foreignField: 'from',
+  justOne: false,
+});
+
 const User = mongoose.model('User', UserSchema);
 
 export default User;
