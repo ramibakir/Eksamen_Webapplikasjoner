@@ -4,9 +4,13 @@
 
 `See .env.txt in server folder`
 
+Rename `.env.txt` to `.env` to use in project
+
 ### .env configuration on client
 
 `See .env.txt in client folder`
+
+ename `.env.txt` to `.env` to use in project
 
 ## Available Scripts
 
