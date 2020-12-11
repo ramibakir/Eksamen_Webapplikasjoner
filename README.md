@@ -27,16 +27,6 @@ Then start the server with:
 `npm run dev`
 
 Starts the server in the development mode.\
-Open [http://localhost:5000] to view it in the browser.
-
-The page will automatically reload if you save any edits you make.\
-You will also see any requests made in the console.
-
-If you want to change the environment, you have to change NODE_ENV in .env to production:
-
-NODE_ENV = development -> NODE_ENV = production
-
-Security features have been disabled for the development environment.
 
 ### Then open up a new terminal window and navigate to the client directory
 
@@ -49,6 +39,21 @@ When inside client directory, install all dependencies with:
 After all dependencies are installed, type:
 
 `npm run dev`
+
+## Project will now be available on localhost
+
+Open (http://localhost:3000) to view it in the browser.
+
+The server will automatically restart if you save any edits you make. \
+You will also see any requests made in the console.
+
+## Changing the environment
+
+If you want to change the environment to check the security features, you have to change NODE_ENV in .env to production:
+
+NODE_ENV = development -> NODE_ENV = production
+
+Security features have been disabled for the development environment.
 
 ## Users
 
