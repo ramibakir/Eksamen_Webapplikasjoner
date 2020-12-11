@@ -37,9 +37,18 @@ export const create = async (data) => {
   }
 };
 
+export const getNonHidden = async () => {
+  try {
+    return await http.get('/nu-articles');
+  } catch (err) {
+    return err.response;
+  }
+};
+
 export default {
   create,
   list,
   get,
   put,
+  getNonHidden,
 };

@@ -4,6 +4,7 @@ import { isAuthenticated, isAuthorized } from '../middleware/auth.js';
 
 const router = express.Router();
 
+router.get('/nu-articles', articleController.getNonHiddenArticles);
 router.get('/:id', articleController.get);
 router.get('/', articleController.list);
 router.post('/', [isAuthenticated, isAuthorized('admin')], articleController.create);

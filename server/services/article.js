@@ -4,13 +4,17 @@ import { ApiFilters } from '../utils/apiFilters.js';
 export const getArticleById = async (id) => Article.findById(id);
 
 export const listArticles = async (queryStr) => {
+  const { page, limit } = queryStr;
   const filters = new ApiFilters(Article.find(), queryStr).sort().filter().searchByQuery()
     .limitFields();
-  const count = await Article.estimatedDocumentCount();
+
   const articles = await filters.query;
+  const paginated = await filters.pagination().query;
   return {
     results: articles.length,
-    data: articles,
+    totalPages: Math.ceil(articles.length / limit) || 1,
+    currentPage: page && page > 0 ? parseInt(page) : 1,
+    data: paginated,
   };
 };
 
@@ -25,4 +29,15 @@ export const updateArticle = async (id, data) => Article.findByIdAndUpdate(id, d
 export const deleteArticle = async (id) => {
   const article = await Article.findById(id);
   article.remove();
+};
+
+export const getNonHiddenArticles = async () => {
+  const articles = await Article.aggregate([
+    {
+      $match: { hidden: false },
+    },
+
+  ]);
+
+  return articles;
 };

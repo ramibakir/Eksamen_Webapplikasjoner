@@ -46,3 +46,8 @@ export const remove = catchAsyncErrors(async (req, res, next) => {
   article = await articleService.deleteArticle(req.params.id);
   res.status(204).json({});
 });
+
+export const getNonHiddenArticles = catchAsyncErrors(async (req, res, next) => {
+  const articles = await articleService.getNonHiddenArticles(req.query);
+  res.status(200).json({ success: true, data: articles });
+});
