@@ -68,7 +68,7 @@ app.use(`${process.env.BASE_URL}/users`, user);
 app.use(`${process.env.BASE_URL}/`, auth);
 app.use(`${process.env.BASE_URL}/create`, category);
 app.use(`${process.env.BASE_URL}/`, image);
-app.use(`${process.env.BASE_URL}/`, email);
+app.use(`${process.env.BASE_URL}/send`, email);
 
 app.use(errorMiddleware);
 

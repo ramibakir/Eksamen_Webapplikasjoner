@@ -9,12 +9,12 @@ export const list = catchAsyncErrors(async (req, res, next) => {
 
 export const create = catchAsyncErrors(async (req, res, next) => {
   const email = await emailService.createEmail(req.body);
-  const user = await userService.getUserById(req.user.id);
+  const user = await userService.getUserById(req.body.from);
   try {
     await sendMail({
       email: user.email,
       subject: `Ny  mail fra ${user.email}`,
-      message: email,
+      message: req.body.content,
     });
   } catch (error) {
     console.log(error);

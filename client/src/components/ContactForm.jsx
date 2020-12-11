@@ -20,6 +20,7 @@ const ContactForm = () => {
   const submitEmail = async () => {
     if (mailData) {
       console.log(mailData);
+
       const { data } = await create(mailData);
       if (!data.success) {
         setError(data.message);
@@ -37,38 +38,31 @@ const ContactForm = () => {
 
     setMailData({
       ...mailData,
+      from: user?._id,
       [event.target.name]: event.target.value,
     });
+
+    console.log(mailData);
   };
+
   return (
     <>
       <StyledFormContainter>
         <StyledForm>
-          {isLoggedIn && user ? (
+          {isLoggedIn && user && (
             <>
               <StyledLabel htmlFor="email">E-post: </StyledLabel>
               <StyledInput
                 required
                 type="email"
                 placeholder="Din epost"
-                name="email"
+                name="from"
                 value={user?.email}
                 onChange={newEmail}
               />
             </>
-          ) : (
-            <>
-              <StyledLabel htmlFor="fullname">Fullt navn: </StyledLabel>
-              <StyledInput
-                required
-                type="text"
-                maxLength="100"
-                onChange={newEmail}
-              />
-              <StyledLabel htmlFor="email">E-post: </StyledLabel>
-              <StyledInput required type="email" onChange={newEmail} />
-            </>
           )}
+
           <StyledLabel htmlFor="message">Din beskjed til oss: </StyledLabel>
           <StyledTextArea
             wrap="off"
@@ -77,7 +71,7 @@ const ContactForm = () => {
             name="content"
             onChange={newEmail}
           />
-          <StyledButton type="submit" onClick={() => submitEmail()}>
+          <StyledButton type="submit" onClick={submitEmail}>
             SEND BESKJED
           </StyledButton>
         </StyledForm>

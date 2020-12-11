@@ -5,6 +5,6 @@ import { isAuthenticated } from '../middleware/auth.js';
 const router = express.Router();
 
 router.get('/', emailController.list);
-router.post('/send', isAuthenticated, emailController.create);
+router.post('/', isAuthenticated, emailController.create);
 
 export default router;
