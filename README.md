@@ -60,10 +60,12 @@ Password: `12345678`
 Email: `user@lgror.no`
 Password: `12345678`
 
-### Run Jest init with:
+## Postman environment
 
-`node_modules\.bin\jest --init`
+![](environmentPostman.png)
 
-(Tests does not work properly)
+These are the variables you need in order to send request from Postman
 
-![](createPollUserString.png)
+### Postman documentation
+
+`https://documenter.getpostman.com/view/13486177/TVmV7Ziw#intro`

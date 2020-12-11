@@ -25,7 +25,7 @@ const UserSchema = new Schema(
     role: {
       type: String,
       enum: {
-        values: ['user', 'admin', 'superadmin'],
+        values: ['user', 'admin'],
         message: 'Ingen rolle valgt',
       },
       default: 'user',
