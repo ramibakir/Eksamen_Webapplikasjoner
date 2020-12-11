@@ -95,6 +95,7 @@ export const ArticleDataContainer = styled.div`
 
 export const AuthorDateParagraph = styled(StyledParagraph)`
   font-size: 14px;
+  margin-top: 5px;
 `;
 
 export const IntroParagraph = styled(StyledParagraph)`

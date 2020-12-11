@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { useAuthContext } from '../context/AuthProvider';
-import { list, getNonHidden } from '../utils/articleService';
+import { useSetHeader } from '../context/HeaderProvider';
+import { list } from '../utils/articleService';
+import { listCategories } from '../utils/categoryService';
 import { FilterButton } from '../styles/mainStyles';
 import {
   StyledListContainer,
@@ -18,44 +20,41 @@ import {
   ArticleImage,
   ArticleContentContainer,
   ArticleIntroParagraph,
-} from '../styles/ArticleStyles';
+} from '../styles/articleStyles';
 
 const Articles = () => {
   const [articles, setArticles] = useState(null);
+  const [categories, setCategories] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [notHidden, setNotHidden] = useState(null);
 
   const { isLoggedIn, isAdmin } = useAuthContext();
+  const setHeader = useSetHeader();
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      const { data } = await list();
-      if (!data.success) {
-        setError(error);
+      const artRes = await list();
+      const catRes = await listCategories();
+      if (!artRes.data.success) {
+        setError(artRes.error);
       } else {
-        setArticles(data.data);
+        setArticles(artRes.data.data);
         setError(null);
+        if (!catRes.data) {
+          setError(catRes.error);
+        } else {
+          setCategories(catRes.data);
+          setError(null);
+        }
       }
       setLoading(false);
     };
-    fetchData();
-  }, []);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      const { data } = await getNonHidden();
-      if (!data.success) {
-        setError(error);
-      } else {
-        setNotHidden(data.data);
-        setError(null);
-      }
-      setLoading(false);
+    const setHeaderContent = () => {
+      setHeader('Fagartikler');
     };
     fetchData();
+    setHeaderContent();
   }, []);
 
   const formatDate = (date) => {
@@ -94,10 +93,16 @@ const Articles = () => {
                 <ArticleImage src="https://media.gettyimages.com/photos/coffee-and-the-morning-paper-picture-id184993811?s=612x612" />
                 <ArticleContentContainer>
                   <StyledCardTitle>{article.title}</StyledCardTitle>
-                  <StyledCardInfo>
-                    Publisert {formatDate(article.publishDate)} av{' '}
-                    {article.author}
-                  </StyledCardInfo>
+                  {categories &&
+                    categories.map(
+                      (category) =>
+                        category._id === article.category && (
+                          <StyledCardInfo style={{ fontSize: '15px' }}>
+                            {category.name} | {formatDate(article.publishDate)}{' '}
+                            | {article.author}
+                          </StyledCardInfo>
+                        )
+                    )}
                   <ArticleIntroParagraph>
                     {article.ingress}
                   </ArticleIntroParagraph>

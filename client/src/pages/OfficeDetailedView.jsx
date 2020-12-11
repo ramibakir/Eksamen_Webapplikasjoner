@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import {
@@ -13,6 +13,7 @@ import {
   StyledCardItem,
   StyledCardInfo,
 } from '../styles/listStyles';
+import { useSetHeader } from '../context/HeaderProvider';
 
 const StyledEmpoyeeGrid = styled(StyledGridContainer)`
   margin: 20px 0;
@@ -62,11 +63,19 @@ const OfficeDetailedView = () => {
 
   // eslint-disable-next-line eqeqeq
   const officeNumber = officeLocation[0].officeNr.filter((nr) => nr == paramNr);
+  const setHeader = useSetHeader();
+
+  useEffect(() => {
+    const setHeaderContent = () => {
+      setHeader(`${officeLocation[0].place} ${officeNumber}`);
+    };
+    setHeaderContent();
+  }, []);
 
   return (
     <StyledDetailViewWrapper>
       <StyledSubtitle>
-        Velkommen til Rørlegger {officeNumber} i {officeLocation[0].place}
+        Velkommen til {officeLocation[0].place} {officeNumber}
       </StyledSubtitle>
 
       <IntroParagraph>
