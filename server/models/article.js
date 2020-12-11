@@ -53,7 +53,7 @@ const ArticleSchema = new Schema(
 );
 
 ArticleSchema.index({
-  name: 'text',
+  title: 'text',
 });
 
 ArticleSchema.pre('save', function (next) {

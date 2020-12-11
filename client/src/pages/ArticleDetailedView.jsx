@@ -74,10 +74,10 @@ const ArticleDetailedView = () => {
           </AuthorDateParagraph>
           <IntroParagraph>{article.ingress}</IntroParagraph>
           <ContentParagraph>{article.content}</ContentParagraph>
-          <ArticleButtonContainer>
+          <ArticleDataContainer>
             <EditButton>Rediger</EditButton>
             <DeleteButton>Slett</DeleteButton>
-          </ArticleButtonContainer>
+          </ArticleDataContainer>
         </>
       )}
       {isLoggedIn && isAdmin && (
