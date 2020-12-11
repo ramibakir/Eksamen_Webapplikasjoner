@@ -13,7 +13,7 @@ export const get = catchAsyncErrors(async (req, res, next) => {
 });
 
 export const list = catchAsyncErrors(async (req, res, next) => {
-  const articles = await articleService.listArticles();
+  const articles = await articleService.listArticles(req.query);
   res.status(200).json({ success: true, data: articles });
 });
 

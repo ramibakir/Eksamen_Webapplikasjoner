@@ -52,6 +52,10 @@ const ArticleSchema = new Schema(
   { timestamps: true },
 );
 
+ArticleSchema.index({
+  name: 'text',
+});
+
 ArticleSchema.pre('save', function (next) {
   this.slug = slugify(this.title, { lower: true });
   next();

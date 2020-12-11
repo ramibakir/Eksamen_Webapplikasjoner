@@ -3,9 +3,9 @@ import { getCsrfToken } from './authService';
 
 const API_URL = '/articles';
 
-export const list = async (data) => {
+export const list = async () => {
   try {
-    return await http.get(`${API_URL}`, data);
+    return await http.get(`${API_URL}`);
   } catch (err) {
     return err.response;
   }
