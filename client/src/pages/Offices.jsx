@@ -1,34 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import { StyledContainer } from '../styles/mainStyles';
 import CardView from '../components/CardView';
 import ListView from '../components/ListView';
 import Filter from '../components/Filter';
+import { useSetHeader } from '../context/HeaderProvider';
 
 const StyledOfficesWrapper = styled(StyledContainer)`
   margin: 20px 5%;
 `;
 
-const fullOfficeList = [
-  { id: 'fr', place: 'Fredrikstad', officeNr: [1, 2, 3, 4, 5, 6, 7, 8] },
-  { id: 'sa', place: 'Sarpsborg', officeNr: [1, 2, 3, 4, 5] },
-  { id: 'mo', place: 'Moss', officeNr: [1, 2, 3, 4] },
-  { id: 'os', place: 'Oslo', officeNr: [1, 2, 3, 4] },
-];
-
 const Offices = () => {
   const [cardView, setCardView] = useState(false);
   const [filterBox, setFilterBox] = useState(false);
   const [filterCriteria, setFilterCriteria] = useState('all');
-  const [officeList, setOfficeList] = useState([
+
+  const setHeader = useSetHeader();
+
+  useEffect(() => {
+    const setHeaderContent = () => {
+      setHeader('Våre kontorer');
+    };
+    setHeaderContent();
+  }, []);
+
+  let officeList = [
     { id: 'fr', place: 'Fredrikstad', officeNr: [1, 2, 3, 4, 5, 6, 7, 8] },
     { id: 'sa', place: 'Sarpsborg', officeNr: [1, 2, 3, 4, 5] },
     { id: 'mo', place: 'Moss', officeNr: [1, 2, 3, 4] },
     { id: 'os', place: 'Oslo', officeNr: [1, 2, 3, 4] },
-  ]);
+  ];
 
-  // let filteredOffices = officeList;
+  let tempOffices;
 
   const toggleCardView = () => {
     setCardView((display) => !display);
@@ -42,20 +46,15 @@ const Offices = () => {
   const filter = (event) => {
     console.log(event.target.value);
     setFilterCriteria(event.target.value);
+    tempOffices = officeList;
 
-    const filteredOffices = officeList.filter(
+    officeList = officeList.filter(
       (office) => office.id === event.target.value
     );
 
-    setOfficeList(filteredOffices);
-
-    console.log(filteredOffices);
-
     if (event.target.value !== 'all') {
-      setOfficeList(fullOfficeList);
+      officeList = tempOffices;
     }
-
-    console.log(officeList);
   };
 
   return (
@@ -68,7 +67,6 @@ const Offices = () => {
         cardView={cardView}
         toggleCardView={toggleCardView}
       />
-
       {cardView
         ? officeList.map((office) => <CardView office={office} />)
         : officeList.map((office) => <ListView office={office} />)}

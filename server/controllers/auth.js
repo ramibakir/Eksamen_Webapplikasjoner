@@ -2,9 +2,19 @@ import catchAsyncErrors from '../middleware/catchAsync.js';
 import { userService } from '../services/index.js';
 import ErrorHandler from '../utils/errorHandler.js';
 import { sendToken } from '../utils/jwtToken.js';
+import { sendMail } from '../utils/sendEmail.js';
 
 export const register = catchAsyncErrors(async (req, res, next) => {
   const user = await userService.createUser(req.body);
+  try {
+    await sendMail({
+      email: user.email,
+      subject: 'Velkommen som ny kunde hos LG Rør!',
+      message: `Din konto har blitt opprettet med epost: ${user.email}`,
+    });
+  } catch (error) {
+    console.log(error);
+  }
   sendToken(user, res);
 });
 

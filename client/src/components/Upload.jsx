@@ -10,11 +10,12 @@ import {
 import { StyledButton } from '../styles/mainStyles.js';
 
 const Upload = () => {
-  const [file, setFile] = useState();
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
+  const [file, setFile] = useState();
   const [id, setImageId] = useState(null);
   const [src, setSrc] = useState(null);
+  const [articleData, setArticleData] = useState(null);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -32,10 +33,11 @@ const Upload = () => {
     const { data } = await download(id);
     const imgUrl = `${process.env.BASE_URL}/${data?.data?.imagePath}`;
     setSrc(imgUrl);
+    setArticleData({ ...articleData, image: imgUrl });
   };
   return (
     <>
-      {src && <img alt="my" src={src} />}
+      {/* {src && <img alt="my" src={src} />} */}
       {success && (
         <p>
           Bilde lastet opp med{' '}

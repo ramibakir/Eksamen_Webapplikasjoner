@@ -1,10 +1,14 @@
 import React from 'react';
 import { StyledHeader } from '../styles/mainStyles';
+import { useHeader } from '../context/HeaderProvider';
 
-const Header = () => (
-  <StyledHeader>
-    <h1>Header</h1>
-  </StyledHeader>
-);
+const Header = () => {
+  const content = useHeader();
+  return (
+    <StyledHeader>
+      <h1>{content}</h1>
+    </StyledHeader>
+  );
+};
 
 export default Header;

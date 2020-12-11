@@ -16,6 +16,7 @@ import Login from '../pages/Login';
 import OfficeDetailedView from '../pages/OfficeDetailedView';
 import ArticleDetailedView from '../pages/ArticleDetailedView';
 import CreateNewArticle from '../pages/CreateNewArticle';
+import SignUp from '../pages/SignUp';
 
 const AdminRoutes = ({ children, ...rest }) => {
   const { isLoggedIn, isAdmin, isLoading } = useAuthContext();
@@ -68,7 +69,9 @@ const Routes = () => (
         <Route path="/articles/:id">
           <ArticleDetailedView />
         </Route>
-        {/* TODO replace /newarticle with /:id */}
+        <Route path="/register">
+          <SignUp />
+        </Route>
         <AdminRoutes path="/create">
           <CreateNewArticle />
         </AdminRoutes>

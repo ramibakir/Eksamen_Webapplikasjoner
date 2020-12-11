@@ -13,14 +13,12 @@ export const get = catchAsyncErrors(async (req, res, next) => {
 });
 
 export const list = catchAsyncErrors(async (req, res, next) => {
-  const articles = await articleService.listArticles();
+  const articles = await articleService.listArticles(req.query);
   res.status(200).json({ success: true, data: articles });
 });
 
 export const create = catchAsyncErrors(async (req, res, next) => {
-
   req.body.admin = req.user.id;
-
   const article = await articleService.createArticle(req.body);
   res.status(201).json({ success: true, data: article });
 });
@@ -47,4 +45,9 @@ export const remove = catchAsyncErrors(async (req, res, next) => {
 
   article = await articleService.deleteArticle(req.params.id);
   res.status(204).json({});
+});
+
+export const getNonHiddenArticles = catchAsyncErrors(async (req, res, next) => {
+  const articles = await articleService.getNonHiddenArticles(req.query);
+  res.status(200).json({ success: true, data: articles });
 });

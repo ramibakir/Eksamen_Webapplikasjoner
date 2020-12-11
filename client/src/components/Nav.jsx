@@ -12,7 +12,7 @@ import { logout } from '../utils/authService';
 
 const Nav = () => {
   const [menu, setShowMenu] = useState(false);
-  const { isLoggedIn, isAdmin, setUser } = useAuthContext();
+  const { isLoggedIn, setUser } = useAuthContext();
 
   const MenuIconContainer = styled.div`
     display: none;
@@ -58,14 +58,20 @@ const Nav = () => {
             Kontakt
           </NavLink>
         </StyledNavMenuItem>
-        {!isLoggedIn && (
-          <StyledNavMenuItem menu={menu}>
-            <NavLink exact to="/login" activeClassName="active">
-              Logg inn
-            </NavLink>
-          </StyledNavMenuItem>
-        )}
-        {isLoggedIn && (
+        {!isLoggedIn ? (
+          <>
+            <StyledNavMenuItem menu={menu}>
+              <NavLink exact to="/register" activeClassName="active">
+                Registrering
+              </NavLink>
+            </StyledNavMenuItem>
+            <StyledNavMenuItem menu={menu}>
+              <NavLink exact to="/login" activeClassName="active">
+                Logg inn
+              </NavLink>
+            </StyledNavMenuItem>
+          </>
+        ) : (
           <StyledNavMenuItem menu={menu}>
             <StyledButton type="button" onClick={handleLogout}>
               Logg ut

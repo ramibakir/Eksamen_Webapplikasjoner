@@ -20,6 +20,7 @@ import user from './routes/user.js';
 import auth from './routes/auth.js';
 import category from './routes/category.js';
 import image from './routes/image.js';
+import email from './routes/email.js';
 
 const app = express();
 
@@ -67,6 +68,7 @@ app.use(`${process.env.BASE_URL}/users`, user);
 app.use(`${process.env.BASE_URL}/`, auth);
 app.use(`${process.env.BASE_URL}/create`, category);
 app.use(`${process.env.BASE_URL}/`, image);
+app.use(`${process.env.BASE_URL}/send`, email);
 
 app.use(errorMiddleware);
 

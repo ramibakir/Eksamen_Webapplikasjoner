@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { StyledButton, StyledCenteredFlex } from '../styles/mainStyles.js';
-import Upload from './Upload';
 import {
   StyledFormContainter,
   StyledForm,
@@ -13,7 +12,8 @@ import {
   NewCategoryButton,
   CategorySelector,
   AuthorSelector,
-} from '../styles/articleStyles';
+  SecrecySelector,
+} from '../styles/ArticleStyles';
 import { listCategories, createCategory } from '../utils/categoryService.js';
 import ModalForm from './ModalForm';
 
@@ -147,10 +147,19 @@ const ArticleForm = ({ submitNewArticle, articleData, setArticleData }) => {
             name="content"
             onChange={updateArticleData}
           />
+          <SecrecySelector
+            name="hidden"
+            defaultValue="none"
+            onChange={updateArticleData}
+          >
+            <option value="none" disabled>
+              -- Velg visning --
+            </option>
+            <option value="false">Ikke hemmelig</option>
+            <option value="true">Hemmelig</option>
+          </SecrecySelector>
         </StyledForm>
-        <StyledCenteredFlex>
-          <Upload />
-        </StyledCenteredFlex>
+        <StyledCenteredFlex>{/* <Upload /> */}</StyledCenteredFlex>
         <StyledCenteredFlex>
           <StyledButton
             style={{ margin: '30px 0 50px 0' }}

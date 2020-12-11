@@ -25,7 +25,7 @@ const UserSchema = new Schema(
     role: {
       type: String,
       enum: {
-        values: ['user', 'admin', 'superadmin'],
+        values: ['user', 'admin'],
         message: 'Ingen rolle valgt',
       },
       default: 'user',
@@ -54,6 +54,13 @@ UserSchema.virtual('article', {
   ref: 'Article',
   localField: '_id',
   foreignField: 'admin',
+  justOne: false,
+});
+
+UserSchema.virtual('mail', {
+  ref: 'Email',
+  localField: '_id',
+  foreignField: 'from',
   justOne: false,
 });
 
