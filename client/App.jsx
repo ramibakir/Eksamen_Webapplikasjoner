@@ -4,6 +4,7 @@ import Routes from './src/routes/Routes';
 import Theme from './src/layouts/Theme';
 import Footer from './src/components/Footer';
 import AuthProvider from './src/context/AuthProvider';
+import HeaderProvider from './src/context/HeaderProvider';
 
 // Put this here to make footer stick to bottom with and without scroll
 // https://css-tricks.com/couple-takes-sticky-footer/
@@ -17,10 +18,12 @@ const StyledWrapper = styled.div`
 const App = () => (
   <Theme>
     <AuthProvider>
-      <StyledWrapper>
-        <Routes />
-        <Footer />
-      </StyledWrapper>
+      <HeaderProvider>
+        <StyledWrapper>
+          <Routes />
+          <Footer />
+        </StyledWrapper>
+      </HeaderProvider>
     </AuthProvider>
   </Theme>
 );

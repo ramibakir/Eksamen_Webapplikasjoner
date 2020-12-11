@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import ArticleForm from '../components/ArticleForm';
 import { create } from '../utils/articleService';
+import { useSetHeader } from '../context/HeaderProvider';
 
 const CreateNewArticle = () => {
   const [error, setError] = useState(null);
@@ -9,9 +10,25 @@ const CreateNewArticle = () => {
   const [articleData, setArticleData] = useState(null);
 
   const history = useHistory();
+  const setHeader = useSetHeader();
+
+  useEffect(() => {
+    const setHeaderContent = () => {
+      setHeader('Ny artikkel');
+    };
+    setHeaderContent();
+  }, []);
 
   const submitNewArticle = async () => {
-    if (articleData) {
+    if (
+      articleData &&
+      articleData.title &&
+      articleData.ingress &&
+      articleData.publishDate &&
+      articleData.category &&
+      articleData.author &&
+      articleData.content
+    ) {
       console.log(articleData);
       const { data } = await create(articleData);
       if (!data.success) {
@@ -24,7 +41,7 @@ const CreateNewArticle = () => {
         }, 2000);
       }
     } else {
-      console.log('no form data');
+      alert('Fyll ut alle felter!');
     }
   };
 

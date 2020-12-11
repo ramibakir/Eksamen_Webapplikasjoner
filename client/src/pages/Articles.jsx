@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { useAuthContext } from '../context/AuthProvider';
+import { useSetHeader } from '../context/HeaderProvider';
 import { list } from '../utils/articleService';
 import { listCategories } from '../utils/categoryService';
 import { FilterButton } from '../styles/mainStyles';
@@ -28,6 +29,7 @@ const Articles = () => {
   const [loading, setLoading] = useState(false);
 
   const { isLoggedIn, isAdmin } = useAuthContext();
+  const setHeader = useSetHeader();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -48,7 +50,11 @@ const Articles = () => {
       }
       setLoading(false);
     };
+    const setHeaderContent = () => {
+      setHeader('Fagartikler');
+    };
     fetchData();
+    setHeaderContent();
   }, []);
 
   const formatDate = (date) => {

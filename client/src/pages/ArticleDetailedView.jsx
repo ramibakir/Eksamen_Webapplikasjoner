@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { get } from '../utils/articleService';
 import { listCategories } from '../utils/categoryService';
+import { useSetHeader } from '../context/HeaderProvider';
 import { StyledSubtitle, StyledDetailViewWrapper } from '../styles/mainStyles';
 import {
   ArticleButtonContainer,
@@ -19,6 +20,7 @@ const ArticleDetailedView = () => {
   const [loading, setLoading] = useState(false);
 
   const { id } = useParams();
+  const setHeader = useSetHeader();
 
   useEffect(() => {
     const fetchArticle = async () => {
@@ -29,6 +31,7 @@ const ArticleDetailedView = () => {
         setError(artRes.error);
       } else {
         setArticle(artRes.data.data);
+        setHeader(artRes.data.data.title);
         setError(null);
         if (!catRes.data) {
           setError(catRes.error);

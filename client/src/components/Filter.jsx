@@ -14,6 +14,7 @@ const Filter = ({
   filterBox,
   filter,
   officeList,
+  selectOffices,
   toggleFilterBox,
   cardView,
   toggleCardView,
