@@ -9,11 +9,11 @@ import {
 } from '../styles/formStyles.js';
 import { StyledButton } from '../styles/mainStyles.js';
 
-const Upload = () => {
+const Upload = ({ id, setImageId }) => {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
   const [file, setFile] = useState();
-  const [id, setImageId] = useState(null);
+  // const [id, setImageId] = useState(null);
   const [src, setSrc] = useState(null);
   const [articleData, setArticleData] = useState(null);
 

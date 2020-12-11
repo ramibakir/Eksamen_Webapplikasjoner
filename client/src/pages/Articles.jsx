@@ -4,6 +4,7 @@ import { useAuthContext } from '../context/AuthProvider';
 import { useSetHeader } from '../context/HeaderProvider';
 import { list, getNonHidden } from '../utils/articleService';
 import { listCategories } from '../utils/categoryService';
+import { download } from '../utils/imageService';
 import { FilterButton } from '../styles/mainStyles';
 import {
   StyledListContainer,
@@ -81,6 +82,16 @@ const Articles = () => {
     fetchData();
   }, []);
 
+  const fetchImagePath = async (id) => {
+    const { data, error } = await download(id);
+    if (data) {
+      console.log(`${process.env.BASE_URL}${data.data.imagePath}`);
+      return `${process.env.BASE_URL}${data.data.imagePath}`;
+    }
+    setError(error);
+    return 'https://media.gettyimages.com/photos/coffee-and-the-morning-paper-picture-id184993811?s=612x612';
+  };
+
   const formatDate = (date) => {
     const d = date.substr(8, 2);
     const m = date.substr(5, 2);
@@ -115,7 +126,7 @@ const Articles = () => {
               style={{ textDecoration: 'none' }}
             >
               <FullSizeListItem>
-                <ArticleImage src="https://media.gettyimages.com/photos/coffee-and-the-morning-paper-picture-id184993811?s=612x612" />
+                <ArticleImage src={fetchImagePath(article.image)} />
                 <ArticleContentContainer>
                   <StyledCardTitle>{article.title}</StyledCardTitle>
                   {categories &&
@@ -143,7 +154,7 @@ const Articles = () => {
               style={{ textDecoration: 'none' }}
             >
               <FullSizeListItem>
-                <ArticleImage src="https://media.gettyimages.com/photos/coffee-and-the-morning-paper-picture-id184993811?s=612x612" />
+                <ArticleImage src={fetchImagePath(article.image)} />
                 <ArticleContentContainer>
                   <StyledCardTitle>{article.title}</StyledCardTitle>
                   {categories &&
