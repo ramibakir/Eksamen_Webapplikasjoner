@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { get } from '../utils/articleService';
 import { listCategories } from '../utils/categoryService';
+import { download } from '../utils/imageService';
 import { useSetHeader } from '../context/HeaderProvider';
 import { StyledSubtitle, StyledDetailViewWrapper } from '../styles/mainStyles';
 import {
@@ -19,6 +20,7 @@ const ArticleDetailedView = () => {
   const [category, setCategory] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [image, setImage] = useState(null);
 
   const { id } = useParams();
   const { isLoggedIn, isAdmin } = useAuthContext();
@@ -50,6 +52,23 @@ const ArticleDetailedView = () => {
     fetchArticle();
   }, []);
 
+  useEffect(() => {
+    const fetchImagePath = async () => {
+      if (article) {
+        console.log(article.image);
+        const { data, error } = await download(article.image);
+        if (data) {
+          setImage(data.data);
+        } else {
+          setError(error);
+        }
+      } else {
+        console.log('no article set');
+      }
+    };
+    fetchImagePath();
+  }, [article]);
+
   const formatDate = (date) => {
     const d = date.substr(8, 2);
     const m = date.substr(5, 2);
@@ -62,6 +81,12 @@ const ArticleDetailedView = () => {
     <StyledDetailViewWrapper>
       {error && <p>{error}</p>}
       {loading && <div>Loading ...</div>}
+      {image && (
+        <img
+          src={`${process.env.BASE_URL}${image.imagePath}`}
+          alt="article illustration"
+        />
+      )}
       {article && (
         <>
           <StyledSubtitle>{article.title}</StyledSubtitle>

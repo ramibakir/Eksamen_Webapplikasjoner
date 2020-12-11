@@ -17,7 +17,7 @@ import {
 import { listCategories, createCategory } from '../utils/categoryService.js';
 import ModalForm from './ModalForm';
 
-const ArticleForm = ({ submitNewArticle, articleData, setArticleData }) => {
+const ArticleForm = ({ submitNewArticle, articleData, setArticleData, id }) => {
   const [error, setError] = useState(null);
   const [categories, setCategories] = useState(null);
   const [modalVisibility, setModalVisibility] = useState(false);
@@ -35,9 +35,8 @@ const ArticleForm = ({ submitNewArticle, articleData, setArticleData }) => {
     setArticleData({
       ...articleData,
       [event.target.name]: event.target.value,
+      image: id,
     });
-
-    console.log(articleData);
   };
 
   useEffect(() => {

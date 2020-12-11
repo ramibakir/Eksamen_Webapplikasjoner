@@ -9,6 +9,7 @@ const CreateNewArticle = () => {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
   const [articleData, setArticleData] = useState(null);
+  const [id, setImageId] = useState(null);
 
   const history = useHistory();
   const setHeader = useSetHeader();
@@ -31,6 +32,7 @@ const CreateNewArticle = () => {
       articleData.content
     ) {
       console.log(articleData);
+      console.log(articleData);
       const { data } = await create(articleData);
       if (!data.success) {
         setError(data.message);
@@ -48,11 +50,12 @@ const CreateNewArticle = () => {
 
   return (
     <>
-      <Upload />
+      <Upload id={id} setImageId={setImageId} />
       <ArticleForm
         submitNewArticle={submitNewArticle}
         articleData={articleData}
         setArticleData={setArticleData}
+        id={id}
       />
     </>
   );
