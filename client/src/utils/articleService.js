@@ -39,7 +39,7 @@ export const create = async (data) => {
 
 export const getNonHidden = async () => {
   try {
-    return await http.get('/nu-articles');
+    return await http.get(`${API_URL}/nu-articles`);
   } catch (err) {
     return err.response;
   }

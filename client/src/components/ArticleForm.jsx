@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { StyledButton, StyledCenteredFlex } from '../styles/mainStyles.js';
-import Upload from './Upload';
 import {
   StyledFormContainter,
   StyledForm,

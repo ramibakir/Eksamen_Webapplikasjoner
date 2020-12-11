@@ -5,7 +5,7 @@ import { listCategories } from '../utils/categoryService';
 import { useSetHeader } from '../context/HeaderProvider';
 import { StyledSubtitle, StyledDetailViewWrapper } from '../styles/mainStyles';
 import {
-  ArticleButtonContainer,
+  ArticleDataContainer,
   AuthorDateParagraph,
   IntroParagraph,
   ContentParagraph,

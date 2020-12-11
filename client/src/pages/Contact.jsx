@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import ContactForm from '../components/ContactForm';
-import { useAuthContext } from '../context/AuthProvider';
 import { useSetHeader } from '../context/HeaderProvider';
 
 const Contact = () => {
