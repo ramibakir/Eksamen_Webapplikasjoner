@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import ArticleForm from '../components/ArticleForm';
 import { create } from '../utils/articleService';
+import Upload from '../components/Upload';
 
 const CreateNewArticle = () => {
   const [error, setError] = useState(null);
@@ -30,6 +31,7 @@ const CreateNewArticle = () => {
 
   return (
     <>
+      <Upload />
       <ArticleForm
         submitNewArticle={submitNewArticle}
         articleData={articleData}

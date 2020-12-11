@@ -160,9 +160,7 @@ const ArticleForm = ({ submitNewArticle, articleData, setArticleData }) => {
             <option value="true">Hemmelig</option>
           </SecrecySelector>
         </StyledForm>
-        <StyledCenteredFlex>
-          <Upload />
-        </StyledCenteredFlex>
+        <StyledCenteredFlex>{/* <Upload /> */}</StyledCenteredFlex>
         <StyledCenteredFlex>
           <StyledButton
             style={{ margin: '30px 0 50px 0' }}

@@ -8,7 +8,7 @@ const userSchema = {
   }),
   password: Joi.string().min(8).required().messages({
     'any.required': 'Passord må fylles ut',
-    'string.min': 'Må bestå av minst 8 tall og bokstaver',
+    'string.min': 'Må bestå av minst 8 tegn',
     'string.empty': 'Fyll ut passord',
   }),
 };

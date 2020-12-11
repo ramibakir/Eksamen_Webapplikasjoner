@@ -30,7 +30,7 @@ const Articles = () => {
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      const { data } = await list();
+      const { data } = await list(isLoggedIn);
       if (!data.success) {
         setError(error);
       } else {
@@ -69,8 +69,8 @@ const Articles = () => {
       <StyledListContainer>
         {loading && <div>Loading ...</div>}
         {articles &&
-          articles.reverse().map((article) => {
-            !isLoggedIn && article.hidden ? (
+          articles.reverse().map((article) =>
+            !isLoggedIn && !article.hidden ? (
               <Link
                 to={`/articles/${article._id}`}
                 style={{ textDecoration: 'none' }}
@@ -108,8 +108,8 @@ const Articles = () => {
                   </ArticleContentContainer>
                 </FullSizeListItem>
               </Link>
-            );
-          })}
+            )
+          )}
       </StyledListContainer>
     </StyledArticlesWrapper>
   );

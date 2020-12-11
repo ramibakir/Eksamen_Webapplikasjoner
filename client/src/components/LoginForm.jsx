@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useHistory, useLocation } from 'react-router-dom';
+import {
+  Alert,
+  AlertTitle,
+  CloseButton,
+  FormControl,
+  FormErrorMessage,
+  AlertIcon,
+} from '@chakra-ui/react';
+import styled from 'styled-components';
 import { StyledButton } from '../styles/mainStyles.js';
 import {
   StyledFormContainter,
@@ -10,6 +19,10 @@ import {
 } from '../styles/formStyles.js';
 import { login } from '../utils/authService';
 import { useAuthContext } from '../context/AuthProvider';
+
+const LoginInput = styled(StyledInput)`
+  width: 100%;
+`;
 
 const LoginForm = () => {
   const [closeBtnState, setCloseBtnState] = useState(false);
@@ -48,30 +61,63 @@ const LoginForm = () => {
       <StyledFormContainter>
         <StyledForm onSubmit={handleSubmit(onSubmit)}>
           {success && (
-            <p status="success">
-              Du er logget inn. Omdirigerer til forsiden...
-            </p>
+            <Alert status="success">
+              <AlertIcon w={20} h={20} />
+              Du er logget inn. Omdirigerer til forsiden ...
+            </Alert>
           )}
-          <StyledLabel htmlFor="email">Epost</StyledLabel>
-          <StyledInput
-            type="email"
-            placeholder="Din epost"
-            name="email"
-            ref={register({
-              required: true,
-            })}
-          />
-
-          <StyledLabel htmlFor="password">Passord</StyledLabel>
-          <StyledInput
-            type="password"
-            placeholder="Ditt passord"
-            name="password"
-            ref={register({
-              required: true,
-              minLength: 3,
-            })}
-          />
+          {error && closeBtnState && (
+            <Alert mb={4} color="red">
+              <AlertIcon w={20} h={20} />
+              {error &&
+                Array.isArray(error) &&
+                error.map((err) => (
+                  <AlertTitle variant="subtle" mr={2}>
+                    {err.message}
+                  </AlertTitle>
+                ))}
+              {error && !Array.isArray(error) && (
+                <AlertTitle mr={2}>{error}</AlertTitle>
+              )}
+              <CloseButton
+                position="absolute"
+                right="8px"
+                height="100%"
+                onClick={() => setCloseBtnState(false)}
+              />
+            </Alert>
+          )}
+          <FormControl isInvalid={errors.email}>
+            <StyledLabel htmlFor="email">Epost</StyledLabel>
+            <FormErrorMessage valid={!errors.email}>
+              Fyll inn e-post
+            </FormErrorMessage>
+            <LoginInput
+              id="email"
+              type="email"
+              placeholder="Din epost"
+              name="email"
+              ref={register({
+                required: true,
+              })}
+            />
+          </FormControl>
+          <FormControl margin="25px 0" isInvalid={errors.password}>
+            <StyledLabel htmlFor="password">Passord</StyledLabel>
+            <FormErrorMessage valid={!errors.password}>
+              Passord må fylles inn og bestå av minst 8 tegn
+            </FormErrorMessage>
+            <LoginInput
+              id="password"
+              type="password"
+              placeholder="Ditt passord"
+              name="password"
+              ref={register({
+                required: true,
+                minLength: 8,
+              })}
+            />
+          </FormControl>
 
           <StyledButton
             style={{ margin: '30px 0 50px 0' }}
