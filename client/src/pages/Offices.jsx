@@ -74,9 +74,12 @@ const Offices = () => {
         cardView={cardView}
         toggleCardView={toggleCardView}
       />
-      {cardView
-        ? offices.map((office) => <CardView office={office} />)
-        : offices.map((office) => <ListView office={office} />)}
+      {offices &&
+        cardView &&
+        offices.map((office) => <CardView office={office} />)}
+      {offices &&
+        !cardView &&
+        offices.map((office) => <ListView office={office} />)}
     </StyledOfficesWrapper>
   );
 };
