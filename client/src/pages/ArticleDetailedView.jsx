@@ -12,7 +12,7 @@ import {
   ContentParagraph,
   EditButton,
   DeleteButton,
-} from '../styles/ArticleStyles';
+} from '../styles/articleStyles';
 import { useAuthContext } from '../context/AuthProvider';
 
 const ArticleDetailedView = () => {
@@ -98,10 +98,6 @@ const ArticleDetailedView = () => {
           </AuthorDateParagraph>
           <IntroParagraph>{article.ingress}</IntroParagraph>
           <ContentParagraph>{article.content}</ContentParagraph>
-          <ArticleDataContainer>
-            <EditButton>Rediger</EditButton>
-            <DeleteButton>Slett</DeleteButton>
-          </ArticleDataContainer>
         </>
       )}
       {isLoggedIn && isAdmin && (

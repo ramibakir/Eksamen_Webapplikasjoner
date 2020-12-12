@@ -13,7 +13,6 @@ const Upload = ({ id, setImageId }) => {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
   const [file, setFile] = useState();
-  // const [id, setImageId] = useState(null);
   const [src, setSrc] = useState(null);
   const [articleData, setArticleData] = useState(null);
 
@@ -37,7 +36,6 @@ const Upload = ({ id, setImageId }) => {
   };
   return (
     <>
-      {/* {src && <img alt="my" src={src} />} */}
       {success && (
         <p>
           Bilde lastet opp med{' '}
