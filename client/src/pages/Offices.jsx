@@ -7,7 +7,7 @@ import ListView from '../components/ListView';
 import Filter from '../components/Filter';
 import { useSetHeader } from '../context/HeaderProvider';
 
-const StyledOfficesWrapper = styled(StyledContainer)`
+export const StyledOfficesWrapper = styled(StyledContainer)`
   margin: 20px 5%;
 `;
 
@@ -48,7 +48,6 @@ const Offices = () => {
     setFilterBox((display) => !display);
   };
 
-  // funker ikke, den vil ikke endre state på officeList til den filtrerte lista
   const filter = (event) => {
     console.log(event.target.value);
     setFilterCriteria(event.target.value);
