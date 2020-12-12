@@ -58,6 +58,7 @@ Security features have been disabled for the development environment.
 ## Users
 
 There are two users in the database already, but more can be made on the sign up page.
+Admin users can only be made through Postman, but you can create a user with a default role.
 
 ### Admin:
 
