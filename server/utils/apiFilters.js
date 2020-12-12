@@ -16,7 +16,7 @@ export class ApiFilters {
 
   filter() {
     const query = { ...this.queryStr };
-    const removeFields = ['sort', 'q', 'fields', 'page', 'limit'];
+    const removeFields = ['sort', 'q', 'fields', 'page', 'limit', 'category'];
     removeFields.forEach((el) => delete query[el]);
     let queryStr = JSON.stringify(query);
     queryStr = queryStr.replace(

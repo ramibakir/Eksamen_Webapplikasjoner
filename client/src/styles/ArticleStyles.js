@@ -6,6 +6,7 @@ import {
   FilterButton,
   StyledButton,
   StyledParagraph,
+  StyledCenteredFlex,
 } from './mainStyles';
 import { StyledSelect } from './formStyles';
 
@@ -54,6 +55,13 @@ export const LeftAlignContainer = styled(FilterContainer)`
 
 export const SpacedFilterContainer = styled(FilterContainer)`
   justify-content: space-between;
+  margin-bottom: 10px;
+`;
+
+export const FilterOptionsContainer = styled(FilterContainer)`
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-direction: column;
   margin-bottom: 30px;
 `;
 
@@ -123,4 +131,15 @@ export const EditButton = styled(StyledButton)`
   margin-left: 0px;
   margin-right: 10px;
   text-transform: uppercase;
+`;
+
+/* export const PaginationContainer = styled(StyledCenteredFlex)`
+
+`; */
+
+export const PaginationButton = styled(StyledButton)`
+  color: white;
+  background-color: #204051;
+  padding: 5px 10px;
+  margin: 10px 5px 10px 0;
 `;
