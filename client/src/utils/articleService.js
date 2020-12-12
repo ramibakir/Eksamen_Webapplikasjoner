@@ -53,6 +53,14 @@ export const listByCategory = async (id) => {
   }
 };
 
+export const listBySearch = async (term) => {
+  try {
+    return await http.get(`${API_URL}?q=${term}`);
+  } catch (err) {
+    return err.response;
+  }
+};
+
 export default {
   create,
   list,

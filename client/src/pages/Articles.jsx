@@ -2,11 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { useAuthContext } from '../context/AuthProvider';
 import { useSetHeader } from '../context/HeaderProvider';
-import { list, getNonHidden, listByCategory } from '../utils/articleService';
+import {
+  list,
+  getNonHidden,
+  listByCategory,
+  listBySearch,
+} from '../utils/articleService';
 import { listCategories } from '../utils/categoryService';
 import { listImages } from '../utils/imageService';
 import { FilterButton, StyledCenteredFlex } from '../styles/mainStyles';
-import { StyledSelect } from '../styles/formStyles';
+import { StyledInput, StyledSelect } from '../styles/formStyles';
 import {
   StyledListContainer,
   StyledCardTitle,
@@ -34,6 +39,8 @@ const Articles = () => {
   const [hidden, setHidden] = useState(null);
   const [images, setImages] = useState(null);
   const [categoryFilter, setCategoryFilter] = useState(false);
+  const [search, setSearch] = useState(false);
+  const [searchTerm, setSearchTerm] = useState(null);
   const [pages, setPages] = useState(null);
 
   const { isLoggedIn, isAdmin } = useAuthContext();
@@ -128,9 +135,27 @@ const Articles = () => {
     setCategoryFilter((display) => !display);
   };
 
+  const toggleSearch = () => {
+    setSearch((display) => !display);
+  };
+
   const filterByCategory = async (event) => {
     const filterCriteria = event.target.value;
     const { data, error } = await listByCategory(filterCriteria);
+    if (!data) {
+      setError(error);
+    } else {
+      setArticles(data.data.data);
+      setError(null);
+    }
+  };
+
+  const updateSearchTerm = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const searchByInput = async () => {
+    const { data, error } = await listBySearch(searchTerm);
     if (!data) {
       setError(error);
     } else {
@@ -160,7 +185,7 @@ const Articles = () => {
           </LeftAlignContainer>
         )}
         <RightAlignContainer>
-          <FilterButton>SØK</FilterButton>
+          <FilterButton onClick={toggleSearch}>SØK</FilterButton>
           <FilterButton onClick={toggleCategoryFilter}>FILTER</FilterButton>
         </RightAlignContainer>
       </SpacedFilterContainer>
@@ -173,6 +198,12 @@ const Articles = () => {
                 <option value={category.id}>{category.name}</option>
               ))}
           </StyledSelect>
+        </FilterOptionsContainer>
+      )}
+      {search && (
+        <FilterOptionsContainer>
+          <StyledInput onChange={updateSearchTerm} />
+          <FilterButton onClick={searchByInput}>OK</FilterButton>
         </FilterOptionsContainer>
       )}
       {error && <p>{error}</p>}
