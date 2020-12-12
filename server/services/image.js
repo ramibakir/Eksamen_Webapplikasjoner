@@ -11,3 +11,5 @@ export const uploadImage = async (data) => {
 };
 
 export const getImageById = async (id) => Image.findById(id);
+
+export const listImages = async () => Image.find();

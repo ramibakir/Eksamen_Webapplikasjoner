@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { StyledContainer } from './mainStyles.js';
+import { StyledContainer, StyledCenteredFlex } from './mainStyles.js';
 
 export const StyledSelect = styled.select`
   width: 20%;
@@ -46,4 +46,22 @@ export const StyledForm = styled.form`
   border-radius: 10px;
   display: flex;
   flex-direction: column;
+`;
+
+export const ModalOverlay = styled(StyledCenteredFlex)`
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+`;
+
+export const Modal = styled.div`
+  box-shadow: 0px 1px 8px #00000029;
+  border-radius: 8px;
+  width: 30%;
+  background-color: white;
+  padding: 20px;
 `;

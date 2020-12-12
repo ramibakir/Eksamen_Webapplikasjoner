@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import { StyledButton } from '../styles/mainStyles.js';
 import {
   StyledFormContainter,

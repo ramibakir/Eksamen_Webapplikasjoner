@@ -9,7 +9,7 @@ const Home = () => {
 
   useEffect(() => {
     const setHeaderContent = () => {
-      setHeader('Velkommen til FG Rørleggerservice as');
+      setHeader({ title: 'Velkommen til FG Rørleggerservice as', image: '' });
     };
     setHeaderContent();
   }, []);

@@ -41,3 +41,12 @@ export const getNonHiddenArticles = async () => {
 
   return articles;
 };
+
+export const filteredArticles = async (id) => {
+  const articles = await Article.aggregate([
+    {
+      $match: { category: id },
+    },
+  ]);
+  return articles;
+};

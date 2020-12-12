@@ -13,11 +13,11 @@ import {
   CategorySelector,
   AuthorSelector,
   SecrecySelector,
-} from '../styles/ArticleStyles';
+} from '../styles/articleStyles';
 import { listCategories, createCategory } from '../utils/categoryService.js';
 import ModalForm from './ModalForm';
 
-const ArticleForm = ({ submitNewArticle, articleData, setArticleData }) => {
+const ArticleForm = ({ submitNewArticle, articleData, setArticleData, id }) => {
   const [error, setError] = useState(null);
   const [categories, setCategories] = useState(null);
   const [modalVisibility, setModalVisibility] = useState(false);
@@ -35,18 +35,18 @@ const ArticleForm = ({ submitNewArticle, articleData, setArticleData }) => {
     setArticleData({
       ...articleData,
       [event.target.name]: event.target.value,
+      image: id,
     });
-
-    console.log(articleData);
   };
 
   useEffect(() => {
     const fetchCategories = async () => {
       const { data, error } = await listCategories();
-      if (error) {
-        setError(error.statusCode);
+      if (!data) {
+        setError(error);
       } else {
         setCategories(data);
+        setError(null);
       }
     };
     fetchCategories();
@@ -56,14 +56,24 @@ const ArticleForm = ({ submitNewArticle, articleData, setArticleData }) => {
     setModalVisibility((display) => !display);
   };
 
+  const updateCategories = async () => {
+    const { data, error } = await listCategories();
+    if (!data) {
+      setError(error);
+    } else {
+      setCategories(data);
+      setError(null);
+    }
+  };
+
   const submitNewCategory = async () => {
     if (newCategory.name) {
-      setCategories({ ...categories, newCategory });
       const { error } = await createCategory(newCategory);
       if (error) {
         setError(error.statusCode);
       } else {
-        alert('Ny kategori lagt til!');
+        updateCategories();
+        toggleNewCategoryModal();
       }
     } else {
       alert('Data mangler');
@@ -73,10 +83,6 @@ const ArticleForm = ({ submitNewArticle, articleData, setArticleData }) => {
   return (
     <>
       <StyledFormContainter>
-        <ModalForm
-          setNewCategory={setNewCategory}
-          submitNewCategory={submitNewCategory}
-        />
         <StyledForm>
           <StyledLabel htmlFor="title">Tittel</StyledLabel>
           <StyledInput
@@ -124,6 +130,13 @@ const ArticleForm = ({ submitNewArticle, articleData, setArticleData }) => {
               NY
             </NewCategoryButton>
           </NewCategoryContainer>
+          {modalVisibility && (
+            <ModalForm
+              setNewCategory={setNewCategory}
+              submitNewCategory={submitNewCategory}
+              toggleNewCategoryModal={toggleNewCategoryModal}
+            />
+          )}
           <StyledLabel htmlFor="author">Forfatter</StyledLabel>
           <AuthorSelector
             name="author"

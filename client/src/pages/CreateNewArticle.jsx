@@ -9,13 +9,14 @@ const CreateNewArticle = () => {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
   const [articleData, setArticleData] = useState(null);
+  const [id, setImageId] = useState(null);
 
   const history = useHistory();
   const setHeader = useSetHeader();
 
   useEffect(() => {
     const setHeaderContent = () => {
-      setHeader('Ny artikkel');
+      setHeader({ title: 'Ny artikkel', image: '' });
     };
     setHeaderContent();
   }, []);
@@ -30,6 +31,7 @@ const CreateNewArticle = () => {
       articleData.author &&
       articleData.content
     ) {
+      console.log(articleData);
       console.log(articleData);
       const { data } = await create(articleData);
       if (!data.success) {
@@ -48,11 +50,12 @@ const CreateNewArticle = () => {
 
   return (
     <>
-      <Upload />
+      <Upload id={id} setImageId={setImageId} />
       <ArticleForm
         submitNewArticle={submitNewArticle}
         articleData={articleData}
         setArticleData={setArticleData}
+        id={id}
       />
     </>
   );

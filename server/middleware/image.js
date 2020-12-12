@@ -2,12 +2,12 @@ import multer from 'multer';
 import ErrorHandler from '../utils/errorHandler.js';
 
 function fileFilter(req, file, cb) {
-  const filetypes = /\.(jpeg|jpg|png)$/;
+  const filetypes = /\.(jpeg|JPEG|jpg|JPG|png|PNG)$/;
   if (!file.originalname.match(filetypes)) {
     return cb(new ErrorHandler('Kun bildefiler er tillat', 400));
   }
   cb(null, true);
-}
+} /*(/\.(gif|jpe?g|tiff?|png|webp|bmp)$/i) */
 
 const storage = multer.diskStorage({
   destination(req, file, cb) {

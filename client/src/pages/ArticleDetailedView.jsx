@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { get } from '../utils/articleService';
 import { listCategories } from '../utils/categoryService';
+import { download } from '../utils/imageService';
 import { useSetHeader } from '../context/HeaderProvider';
-import { StyledSubtitle, StyledDetailViewWrapper } from '../styles/mainStyles';
+import { StyledDetailViewWrapper } from '../styles/mainStyles';
 import {
   ArticleDataContainer,
   AuthorDateParagraph,
@@ -11,7 +12,7 @@ import {
   ContentParagraph,
   EditButton,
   DeleteButton,
-} from '../styles/ArticleStyles';
+} from '../styles/articleStyles';
 import { useAuthContext } from '../context/AuthProvider';
 
 const ArticleDetailedView = () => {
@@ -27,28 +28,52 @@ const ArticleDetailedView = () => {
   useEffect(() => {
     const fetchArticle = async () => {
       setLoading(true);
-      const artRes = await get(id);
-      const catRes = await listCategories();
-      if (!artRes.data.success) {
-        setError(artRes.error);
+      const { data, error } = await get(id);
+      if (!data.success) {
+        setError(error);
       } else {
-        setArticle(artRes.data.data);
-        setHeader(artRes.data.data.title);
+        setArticle(data.data);
         setError(null);
-        if (!catRes.data) {
-          setError(catRes.error);
-        } else {
-          const cat = catRes.data.filter(
-            (c) => c._id === artRes.data.data.category
-          );
-          setCategory(cat[0]);
-          setError(null);
-        }
       }
       setLoading(false);
     };
     fetchArticle();
   }, []);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      if (article) {
+        const { data, error } = await listCategories();
+        if (!data) {
+          setError(error);
+        } else {
+          const cat = data.filter((c) => c._id === article.category);
+          setCategory(cat[0]);
+          setError(null);
+        }
+      }
+    };
+    fetchCategories();
+  }, [article]);
+
+  useEffect(() => {
+    const fetchImagePath = async () => {
+      if (article) {
+        const { data, error } = await download(article.image);
+        if (!data.success) {
+          setError(error);
+        } else {
+          setHeader({
+            title: article.title,
+            image: `${process.env.BASE_URL}${data.data.imagePath}`,
+          });
+        }
+      } else {
+        console.log('no article set');
+      }
+    };
+    fetchImagePath();
+  }, [article]);
 
   const formatDate = (date) => {
     const d = date.substr(8, 2);
@@ -64,7 +89,6 @@ const ArticleDetailedView = () => {
       {loading && <div>Loading ...</div>}
       {article && (
         <>
-          <StyledSubtitle>{article.title}</StyledSubtitle>
           {category && (
             <AuthorDateParagraph>Kategori: {category.name}</AuthorDateParagraph>
           )}
@@ -74,10 +98,6 @@ const ArticleDetailedView = () => {
           </AuthorDateParagraph>
           <IntroParagraph>{article.ingress}</IntroParagraph>
           <ContentParagraph>{article.content}</ContentParagraph>
-          <ArticleDataContainer>
-            <EditButton>Rediger</EditButton>
-            <DeleteButton>Slett</DeleteButton>
-          </ArticleDataContainer>
         </>
       )}
       {isLoggedIn && isAdmin && (

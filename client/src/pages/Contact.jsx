@@ -7,7 +7,7 @@ const Contact = () => {
 
   useEffect(() => {
     const setHeaderContent = () => {
-      setHeader('Kontakt oss');
+      setHeader({ title: 'Kontakt oss', image: '' });
     };
     setHeaderContent();
   }, []);

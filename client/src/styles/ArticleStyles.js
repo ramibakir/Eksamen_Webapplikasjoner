@@ -32,6 +32,7 @@ export const ArticleImage = styled(StyledImage)`
   display: block;
   margin: 10px;
   float: left;
+  object-fit: cover;
 `;
 
 export const ArticleIntroParagraph = styled(StyledCardInfo)`
@@ -53,6 +54,12 @@ export const LeftAlignContainer = styled(FilterContainer)`
 
 export const SpacedFilterContainer = styled(FilterContainer)`
   justify-content: space-between;
+  margin-bottom: 10px;
+`;
+
+export const FilterOptionsContainer = styled(FilterContainer)`
+  justify-content: flex-end;
+  align-items: center;
   margin-bottom: 30px;
 `;
 
@@ -122,4 +129,11 @@ export const EditButton = styled(StyledButton)`
   margin-left: 0px;
   margin-right: 10px;
   text-transform: uppercase;
+`;
+
+export const PaginationButton = styled(StyledButton)`
+  color: white;
+  background-color: #204051;
+  padding: 5px 10px;
+  margin: 10px 5px 10px 0;
 `;
