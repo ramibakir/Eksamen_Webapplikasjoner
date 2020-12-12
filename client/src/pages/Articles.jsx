@@ -141,12 +141,22 @@ const Articles = () => {
 
   const filterByCategory = async (event) => {
     const filterCriteria = event.target.value;
-    const { data, error } = await listByCategory(filterCriteria);
-    if (!data) {
-      setError(error);
+    if (filterCriteria === 'all') {
+      const { data, error } = await list('1');
+      if (!data) {
+        setError(error);
+      } else {
+        setArticles(data.data.data);
+        setError(null);
+      }
     } else {
-      setArticles(data.data.data);
-      setError(null);
+      const { data, error } = await listByCategory(filterCriteria);
+      if (!data) {
+        setError(error);
+      } else {
+        setArticles(data.data.data);
+        setError(null);
+      }
     }
   };
 
@@ -203,7 +213,12 @@ const Articles = () => {
       {search && (
         <FilterOptionsContainer>
           <StyledInput onChange={updateSearchTerm} />
-          <FilterButton onClick={searchByInput}>OK</FilterButton>
+          <FilterButton
+            onClick={searchByInput}
+            style={{ height: '50px', margin: '10px 5px 30px 10px' }}
+          >
+            OK
+          </FilterButton>
         </FilterOptionsContainer>
       )}
       {error && <p>{error}</p>}

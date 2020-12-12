@@ -15,6 +15,14 @@ const Offices = () => {
   const [cardView, setCardView] = useState(false);
   const [filterBox, setFilterBox] = useState(false);
   const [filterCriteria, setFilterCriteria] = useState('all');
+  const [offices, setOffices] = useState(null);
+
+  const officeList = [
+    { id: 'fr', place: 'Fredrikstad', officeNr: [1, 2, 3, 4, 5, 6, 7, 8] },
+    { id: 'sa', place: 'Sarpsborg', officeNr: [1, 2, 3, 4, 5] },
+    { id: 'mo', place: 'Moss', officeNr: [1, 2, 3, 4] },
+    { id: 'os', place: 'Oslo', officeNr: [1, 2, 3, 4] },
+  ];
 
   const setHeader = useSetHeader();
 
@@ -25,14 +33,12 @@ const Offices = () => {
     setHeaderContent();
   }, []);
 
-  let officeList = [
-    { id: 'fr', place: 'Fredrikstad', officeNr: [1, 2, 3, 4, 5, 6, 7, 8] },
-    { id: 'sa', place: 'Sarpsborg', officeNr: [1, 2, 3, 4, 5] },
-    { id: 'mo', place: 'Moss', officeNr: [1, 2, 3, 4] },
-    { id: 'os', place: 'Oslo', officeNr: [1, 2, 3, 4] },
-  ];
-
-  let tempOffices;
+  useEffect(() => {
+    const fetchOffices = () => {
+      setOffices(officeList);
+    };
+    fetchOffices();
+  }, []);
 
   const toggleCardView = () => {
     setCardView((display) => !display);
@@ -46,14 +52,15 @@ const Offices = () => {
   const filter = (event) => {
     console.log(event.target.value);
     setFilterCriteria(event.target.value);
-    tempOffices = officeList;
 
-    officeList = officeList.filter(
+    const temp = officeList.filter(
       (office) => office.id === event.target.value
     );
 
-    if (event.target.value !== 'all') {
-      officeList = tempOffices;
+    if (event.target.value === 'all') {
+      setOffices(officeList);
+    } else {
+      setOffices(temp);
     }
   };
 
@@ -68,8 +75,8 @@ const Offices = () => {
         toggleCardView={toggleCardView}
       />
       {cardView
-        ? officeList.map((office) => <CardView office={office} />)
-        : officeList.map((office) => <ListView office={office} />)}
+        ? offices.map((office) => <CardView office={office} />)
+        : offices.map((office) => <ListView office={office} />)}
     </StyledOfficesWrapper>
   );
 };

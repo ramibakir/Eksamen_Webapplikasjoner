@@ -51,3 +51,8 @@ export const getNonHiddenArticles = catchAsyncErrors(async (req, res, next) => {
   const articles = await articleService.getNonHiddenArticles(req.query);
   res.status(200).json({ success: true, data: articles });
 });
+
+export const getFilteredArticles = catchAsyncErrors(async (req, res, next) => {
+  const articles = await articleService.filteredArticles(req.query);
+  res.status(200).json({ success: true, data: articles });
+});

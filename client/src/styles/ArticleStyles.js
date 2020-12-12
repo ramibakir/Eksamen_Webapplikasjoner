@@ -59,9 +59,8 @@ export const SpacedFilterContainer = styled(FilterContainer)`
 `;
 
 export const FilterOptionsContainer = styled(FilterContainer)`
-  justify-content: space-between;
-  align-items: flex-end;
-  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
   margin-bottom: 30px;
 `;
 
@@ -132,10 +131,6 @@ export const EditButton = styled(StyledButton)`
   margin-right: 10px;
   text-transform: uppercase;
 `;
-
-/* export const PaginationContainer = styled(StyledCenteredFlex)`
-
-`; */
 
 export const PaginationButton = styled(StyledButton)`
   color: white;
