@@ -10,7 +10,7 @@ Rename `.env.txt` to `.env` to use in project
 
 `See .env.txt in client folder`
 
-ename `.env.txt` to `.env` to use in project
+Rename `.env.txt` to `.env` to use in project
 
 ## Available Scripts
 
@@ -18,7 +18,7 @@ To start the server, first do:
 
 `cd server`
 
-When your're in the server folder, first install dependencies with:
+When your're in the `server` folder, first install dependencies with:
 
 `npm install`
 
@@ -28,11 +28,11 @@ Then start the server with:
 
 Starts the server in the development mode.\
 
-### Then open up a new terminal window and navigate to the client directory
+### Then open up a new terminal window and navigate to the `client` directory
 
 `cd client`
 
-When inside client directory, install all dependencies with:
+When inside `client` directory, install all dependencies with:
 
 `npm install`
 
@@ -77,7 +77,7 @@ These are the variables you need in order to send request from Postman
 
 ### Postman documentation
 
-[Link to Postman documentation] (https://documenter.getpostman.com/view/13486177/TVmV7Ziw#intro)
+[Link to Postman documentation] (https://documenter.getpostman.com/view/13486177/TVmV7Ziw)
 
 ## UML
 
@@ -88,3 +88,10 @@ UML of the models and their relations
 ## Trello
 
 [Link to Trello board] (https://trello.com/b/aRLZpjuT)
+
+## Bugs 
+
+After starting the client, you may encounter a problem where the client will not compile because of some style files.
+We have not found the reason why this problem appears, but it has to do with the import of `ArticleStyles.js` in `ArticleDetailedView.jsx`, `Articles.jsx` and `ArticleFrom.jsx` all being lowercase. 
+The solution:
+- Rename the imports of `ArticleStyles.js` from `articleStyles.js` to `ArticleStyles.js`
