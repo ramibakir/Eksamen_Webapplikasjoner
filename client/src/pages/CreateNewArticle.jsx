@@ -16,7 +16,7 @@ const CreateNewArticle = () => {
 
   useEffect(() => {
     const setHeaderContent = () => {
-      setHeader('Ny artikkel');
+      setHeader({ title: 'Ny artikkel', image: '' });
     };
     setHeaderContent();
   }, []);

@@ -29,7 +29,7 @@ import {
   ArticleImage,
   ArticleContentContainer,
   ArticleIntroParagraph,
-} from '../styles/ArticleStyles';
+} from '../styles/articleStyles';
 
 const Articles = () => {
   const [articles, setArticles] = useState(null);
@@ -57,12 +57,11 @@ const Articles = () => {
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      console.log(await getNonHidden());
       const { data } = await list('1');
       if (!data.success) {
         setError(data.error);
       } else {
-        console.log(data.data);
+        console.log(data);
         setPages(data.data.totalPages);
         setArticles(data.data.data);
         setError(null);
