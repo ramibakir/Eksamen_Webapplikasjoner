@@ -5,7 +5,12 @@
   "main": "main.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon server.js"
+    "dev": "nodemon --exec babel-node server.js",
+    "build": "rimraf dist && babel src --out-dir dist",
+    "serve": "cross-env NODE_ENV=development nodemon --exec babel-node server.js",
+    "test": "jest",
+    "test:watch": "jest --watchAll",
+    "test:coverage": "jest --coverage"
   },
   "repository": {
     "type": "git",
@@ -18,9 +23,13 @@
   },
   "homepage": "https://github.com/ramibakir/Eksamen_Webapplikasjoner#readme",
   "dependencies": {
+    "@babel/cli": "^7.12.10",
+    "@babel/node": "^7.12.10",
+    "@shelf/jest-mongodb": "^1.2.3",
     "argon2": "^0.27.0",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
     "csurf": "^1.11.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
@@ -29,13 +38,16 @@
     "express-routemap": "^1.6.0",
     "helmet": "^4.2.0",
     "hpp": "^0.2.3",
+    "jest": "^26.6.3",
     "joi": "^17.3.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.10.7",
     "morgan": "^1.10.0",
     "multer": "^1.4.2",
     "nodemailer": "^6.4.16",
+    "rimraf": "^3.0.2",
     "slugify": "^1.4.5",
+    "supertest": "^6.0.1",
     "xss-clean": "^0.1.1"
   },
   "devDependencies": {
@@ -50,6 +62,7 @@
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.21.5",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "mongodb-memory-server": "^6.9.2",
     "nodemon": "^2.0.6",
     "prettier": "^2.1.2"
   }
