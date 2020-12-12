@@ -99,10 +99,10 @@ The solution:
 
 ## Sources
 
-server > utils > apiFilters, sendEmail, validation, jwtToken: kodeeksempel fra forelesning modul 14
-server > services > image: kodeeksempel fra forelesning modul 13
-server > middleware: kodeeksempel fra forelesning modul 13
-server > schemas > user: kodeeksempel fra forelesning modul 13
-client > layouts > mainlayout > linje 9-11: (https://css-tricks.com/couple-takes-sticky-footer)
-client > components > LoginForm > kodeeksempel fra forelesning modul 13
-client > routes > AdminRoutes > kodeeksempel fra forelesning modul 13
+- server > utils > apiFilters, sendEmail, validation, jwtToken: kodeeksempel fra forelesning modul 14
+- server > services > image: kodeeksempel fra forelesning modul 13
+- server > middleware: kodeeksempel fra forelesning modul 13
+- server > schemas > user: kodeeksempel fra forelesning modul 13
+- client > layouts > mainlayout > linje 9-11: (https://css-tricks.com/couple-takes-sticky-footer)
+- client > components > LoginForm > kodeeksempel fra forelesning modul 13
+- client > routes > AdminRoutes > kodeeksempel fra forelesning modul 13
