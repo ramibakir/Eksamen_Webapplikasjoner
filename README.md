@@ -96,3 +96,13 @@ After starting the client, you may encounter a problem where the client will not
 We have not found the reason why this problem appears, but it has to do with the import of `ArticleStyles.js` in `ArticleDetailedView.jsx`, `Articles.jsx` and `ArticleFrom.jsx` all being lowercase. 
 The solution:
 - Rename the imports of `ArticleStyles.js` from `articleStyles.js` to `ArticleStyles.js`
+
+## Sources
+
+server > utils > apiFilters, sendEmail, validation, jwtToken: kodeeksempel fra forelesning modul 14
+server > services > image: kodeeksempel fra forelesning modul 13
+server > middleware: kodeeksempel fra forelesning modul 13
+server > schemas > user: kodeeksempel fra forelesning modul 13
+client > layouts > mainlayout > linje 9-11: (https://css-tricks.com/couple-takes-sticky-footer)
+client > components > LoginForm > kodeeksempel fra forelesning modul 13
+client > routes > AdminRoutes > kodeeksempel fra forelesning modul 13
