@@ -20,7 +20,7 @@ const Offices = () => {
 
   useEffect(() => {
     const setHeaderContent = () => {
-      setHeader('Våre kontorer');
+      setHeader({ title: 'Våre kontorer', image: '' });
     };
     setHeaderContent();
   }, []);

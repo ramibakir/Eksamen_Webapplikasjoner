@@ -67,7 +67,10 @@ const OfficeDetailedView = () => {
 
   useEffect(() => {
     const setHeaderContent = () => {
-      setHeader(`${officeLocation[0].place} ${officeNumber}`);
+      setHeader({
+        title: `${officeLocation[0].place} ${officeNumber}`,
+        image: '',
+      });
     };
     setHeaderContent();
   }, []);

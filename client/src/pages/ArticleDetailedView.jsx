@@ -12,7 +12,7 @@ import {
   ContentParagraph,
   EditButton,
   DeleteButton,
-} from '../styles/ArticleStyles';
+} from '../styles/articleStyles';
 import { useAuthContext } from '../context/AuthProvider';
 
 const ArticleDetailedView = () => {
@@ -20,7 +20,6 @@ const ArticleDetailedView = () => {
   const [category, setCategory] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [image, setImage] = useState(null);
 
   const { id } = useParams();
   const { isLoggedIn, isAdmin } = useAuthContext();
@@ -29,23 +28,12 @@ const ArticleDetailedView = () => {
   useEffect(() => {
     const fetchArticle = async () => {
       setLoading(true);
-      const artRes = await get(id);
-      const catRes = await listCategories();
-      if (!artRes.data.success) {
-        setError(artRes.error);
+      const { data, error } = await get(id);
+      if (!data.success) {
+        setError(error);
       } else {
-        setArticle(artRes.data.data);
-        setHeader(artRes.data.data.title);
+        setArticle(data.data);
         setError(null);
-        if (!catRes.data) {
-          setError(catRes.error);
-        } else {
-          const cat = catRes.data.filter(
-            (c) => c._id === artRes.data.data.category
-          );
-          setCategory(cat[0]);
-          setError(null);
-        }
       }
       setLoading(false);
     };
@@ -53,14 +41,32 @@ const ArticleDetailedView = () => {
   }, []);
 
   useEffect(() => {
+    const fetchCategories = async () => {
+      if (article) {
+        const { data, error } = await listCategories();
+        if (!data) {
+          setError(error);
+        } else {
+          const cat = data.filter((c) => c._id === article.category);
+          setCategory(cat[0]);
+          setError(null);
+        }
+      }
+    };
+    fetchCategories();
+  }, [article]);
+
+  useEffect(() => {
     const fetchImagePath = async () => {
       if (article) {
-        console.log(article.image);
         const { data, error } = await download(article.image);
-        if (data) {
-          setImage(data.data);
-        } else {
+        if (!data.success) {
           setError(error);
+        } else {
+          setHeader({
+            title: article.title,
+            image: `${process.env.BASE_URL}${data.data.imagePath}`,
+          });
         }
       } else {
         console.log('no article set');
@@ -81,15 +87,8 @@ const ArticleDetailedView = () => {
     <StyledDetailViewWrapper>
       {error && <p>{error}</p>}
       {loading && <div>Loading ...</div>}
-      {image && (
-        <img
-          src={`${process.env.BASE_URL}${image.imagePath}`}
-          alt="article illustration"
-        />
-      )}
       {article && (
         <>
-          <StyledSubtitle>{article.title}</StyledSubtitle>
           {category && (
             <AuthorDateParagraph>Kategori: {category.name}</AuthorDateParagraph>
           )}

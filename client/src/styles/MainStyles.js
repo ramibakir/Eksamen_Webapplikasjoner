@@ -18,9 +18,20 @@ export const StyledCenteredFlex = styled.section`
 export const StyledHeader = styled(StyledCenteredFlex)`
   width: 100%;
   background-color: #84a9ac;
-  height: 12rem;
+  min-height: 12rem;
   display: inline-flex;
   margin-bottom: 30px;
+`;
+
+export const StyledHeaderWithImage = styled(StyledHeader)`
+  background-image: url(${(props) => props.image});
+  align-items: flex-end;
+  padding-bottom: 20px;
+
+  & > h1 {
+    -webkit-text-stroke: 1px white;
+    text-align: center;
+  }
 `;
 
 export const StyledSubHeader = styled.div`

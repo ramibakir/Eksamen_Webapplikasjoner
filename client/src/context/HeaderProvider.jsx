@@ -4,7 +4,10 @@ const HeaderContext = createContext();
 const SetHeaderContext = createContext();
 
 const HeaderProvider = ({ children }) => {
-  const [headerContent, setHeaderContent] = useState('Default');
+  const [headerContent, setHeaderContent] = useState({
+    title: 'default',
+    image: '',
+  });
 
   return (
     <SetHeaderContext.Provider value={setHeaderContent}>

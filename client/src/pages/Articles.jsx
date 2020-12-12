@@ -21,7 +21,7 @@ import {
   ArticleImage,
   ArticleContentContainer,
   ArticleIntroParagraph,
-} from '../styles/ArticleStyles';
+} from '../styles/articleStyles';
 
 const Articles = () => {
   const [articles, setArticles] = useState(null);
@@ -29,6 +29,7 @@ const Articles = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [hidden, setHidden] = useState(null);
+  const [image, setImage] = useState(null);
 
   const { isLoggedIn, isAdmin } = useAuthContext();
   const setHeader = useSetHeader();
@@ -47,7 +48,7 @@ const Articles = () => {
       setLoading(false);
     };
     const setHeaderContent = () => {
-      setHeader('Fagartikler');
+      setHeader({ title: 'Fagartikler', image: '' });
     };
     fetchData();
     setHeaderContent();
@@ -127,6 +128,7 @@ const Articles = () => {
             >
               <FullSizeListItem>
                 <ArticleImage src={fetchImagePath(article.image)} />
+
                 <ArticleContentContainer>
                   <StyledCardTitle>{article.title}</StyledCardTitle>
                   {categories &&
@@ -155,6 +157,7 @@ const Articles = () => {
             >
               <FullSizeListItem>
                 <ArticleImage src={fetchImagePath(article.image)} />
+
                 <ArticleContentContainer>
                   <StyledCardTitle>{article.title}</StyledCardTitle>
                   {categories &&

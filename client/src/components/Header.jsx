@@ -1,13 +1,21 @@
 import React from 'react';
-import { StyledHeader } from '../styles/mainStyles';
+import { StyledHeader, StyledHeaderWithImage } from '../styles/mainStyles';
 import { useHeader } from '../context/HeaderProvider';
 
 const Header = () => {
   const content = useHeader();
   return (
-    <StyledHeader>
-      <h1>{content}</h1>
-    </StyledHeader>
+    <>
+      {content.image !== '' ? (
+        <StyledHeaderWithImage image={content.image}>
+          <h1>{content.title}</h1>
+        </StyledHeaderWithImage>
+      ) : (
+        <StyledHeader>
+          <h1>{content.title}</h1>
+        </StyledHeader>
+      )}
+    </>
   );
 };
 
