@@ -4,7 +4,7 @@ import { useAuthContext } from '../context/AuthProvider';
 import { useSetHeader } from '../context/HeaderProvider';
 import { list, getNonHidden } from '../utils/articleService';
 import { listCategories } from '../utils/categoryService';
-import { download } from '../utils/imageService';
+import { listImages } from '../utils/imageService';
 import { FilterButton } from '../styles/mainStyles';
 import {
   StyledListContainer,
@@ -29,7 +29,7 @@ const Articles = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [hidden, setHidden] = useState(null);
-  const [image, setImage] = useState(null);
+  const [images, setImages] = useState(null);
 
   const { isLoggedIn, isAdmin } = useAuthContext();
   const setHeader = useSetHeader();
@@ -69,6 +69,20 @@ const Articles = () => {
   }, []);
 
   useEffect(() => {
+    const fetchImages = async () => {
+      const { data, error } = await listImages();
+      if (!data.success) {
+        setError(error);
+      } else {
+        console.log(data);
+        setImages(data.data);
+        setError(null);
+      }
+    };
+    fetchImages();
+  }, []);
+
+  useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       const { data } = await getNonHidden();
@@ -83,22 +97,17 @@ const Articles = () => {
     fetchData();
   }, []);
 
-  const fetchImagePath = async (id) => {
-    const { data, error } = await download(id);
-    if (data) {
-      console.log(`${process.env.BASE_URL}${data.data.imagePath}`);
-      return `${process.env.BASE_URL}${data.data.imagePath}`;
-    }
-    setError(error);
-    return 'https://media.gettyimages.com/photos/coffee-and-the-morning-paper-picture-id184993811?s=612x612';
-  };
-
   const formatDate = (date) => {
     const d = date.substr(8, 2);
     const m = date.substr(5, 2);
     const y = date.substr(0, 4);
 
     return `${d}/${m}/${y}`;
+  };
+
+  const modifyPath = (image) => {
+    const imagePath = image.file_path.replace(/\\/g, '/').replace('public', '');
+    return imagePath;
   };
 
   return (
@@ -127,7 +136,15 @@ const Articles = () => {
               style={{ textDecoration: 'none' }}
             >
               <FullSizeListItem>
-                <ArticleImage src={fetchImagePath(article.image)} />
+                {images &&
+                  images.map(
+                    (image) =>
+                      image._id === article.image && (
+                        <ArticleImage
+                          src={`${process.env.BASE_URL}${modifyPath(image)}`}
+                        />
+                      )
+                  )}
 
                 <ArticleContentContainer>
                   <StyledCardTitle>{article.title}</StyledCardTitle>
@@ -156,7 +173,15 @@ const Articles = () => {
               style={{ textDecoration: 'none' }}
             >
               <FullSizeListItem>
-                <ArticleImage src={fetchImagePath(article.image)} />
+                {images &&
+                  images.map(
+                    (image) =>
+                      image._id === article.image && (
+                        <ArticleImage
+                          src={`${process.env.BASE_URL}${modifyPath(image)}`}
+                        />
+                      )
+                  )}
 
                 <ArticleContentContainer>
                   <StyledCardTitle>{article.title}</StyledCardTitle>

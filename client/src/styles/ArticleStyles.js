@@ -32,6 +32,7 @@ export const ArticleImage = styled(StyledImage)`
   display: block;
   margin: 10px;
   float: left;
+  object-fit: cover;
 `;
 
 export const ArticleIntroParagraph = styled(StyledCardInfo)`

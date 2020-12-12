@@ -4,7 +4,7 @@ import { get } from '../utils/articleService';
 import { listCategories } from '../utils/categoryService';
 import { download } from '../utils/imageService';
 import { useSetHeader } from '../context/HeaderProvider';
-import { StyledSubtitle, StyledDetailViewWrapper } from '../styles/mainStyles';
+import { StyledDetailViewWrapper } from '../styles/mainStyles';
 import {
   ArticleDataContainer,
   AuthorDateParagraph,

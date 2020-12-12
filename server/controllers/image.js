@@ -33,3 +33,11 @@ export const get = catchAsyncErrors(async (req, res, next) => {
     data: { image, imagePath },
   });
 });
+
+export const list = catchAsyncErrors(async (req, res, next) => {
+  const images = await imageService.listImages();
+  if (!images) {
+    return next(new ErrorHandler('Fant ikke bilder', 404));
+  }
+  res.status(200).json({ success: true, data: images });
+});
