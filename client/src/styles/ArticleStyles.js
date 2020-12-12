@@ -6,7 +6,6 @@ import {
   FilterButton,
   StyledButton,
   StyledParagraph,
-  StyledCenteredFlex,
 } from './mainStyles';
 import { StyledSelect } from './formStyles';
 
