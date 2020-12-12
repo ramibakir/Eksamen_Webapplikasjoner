@@ -12,7 +12,7 @@ import {
   ContentParagraph,
   EditButton,
   DeleteButton,
-} from '../styles/articleStyles';
+} from '../styles/ArticleStyles';
 import { useAuthContext } from '../context/AuthProvider';
 
 const ArticleDetailedView = () => {
