@@ -84,3 +84,7 @@ These are the variables you need in order to send request from Postman
 ![](dbUML.png)
 
 UML of the models and their relations
+
+## Trello
+
+[Link to Trello board] (https://trello.com/b/aRLZpjuT)
