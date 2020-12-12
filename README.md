@@ -78,3 +78,9 @@ These are the variables you need in order to send request from Postman
 ### Postman documentation
 
 [Link to Postman documentation] (https://documenter.getpostman.com/view/13486177/TVmV7Ziw#intro)
+
+## UML
+
+![](dbUML.png)
+
+UML of the models and their relations
